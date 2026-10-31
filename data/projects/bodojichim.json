@@ -118,43 +118,43 @@
       "id": "juhyuk",
       "role": "주혁",
       "label": "주혁",
-      "color": "#e07a5f"
+      "color": "#e53935"
     },
     {
       "id": "jeongbae",
       "role": "정배",
       "label": "정배",
-      "color": "#f2cc8f"
+      "color": "#fb8c00"
     },
     {
       "id": "seunguk",
       "role": "승욱",
       "label": "승욱",
-      "color": "#81b29a"
+      "color": "#fdd835"
     },
     {
       "id": "dongyeol",
       "role": "돈결",
       "label": "돈결",
-      "color": "#6d9dc5"
+      "color": "#43a047"
     },
     {
       "id": "wondal",
       "role": "원달",
       "label": "원달",
-      "color": "#c38fd6"
+      "color": "#1e88e5"
     },
     {
       "id": "voice-1",
       "role": "목소리1",
       "label": "목소리1",
-      "color": "#888888"
+      "color": "#3949ab"
     },
     {
       "id": "voice-2",
       "role": "목소리2",
       "label": "목소리2",
-      "color": "#888888"
+      "color": "#8e24aa"
     }
   ],
   "scenes": [
@@ -181,5 +181,5 @@
       "note": "샘플. 조명값은 행잉도 받은 뒤 입력"
     }
   ],
-  "dataVersion": "2026-10-31.6"
+  "dataVersion": "2026-10-31.7"
 }
