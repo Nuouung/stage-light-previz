@@ -1,4 +1,4 @@
-import type { Blocking, CueState, Project } from "../model";
+import type { Blocking, CueState, Project, Staging } from "../model";
 
 /** 화면에 그릴 조명 한 대의 최종 값 (fixtureId 제외) */
 export type LightLook = Omit<CueState, "fixtureId">;
@@ -22,18 +22,21 @@ function merge<T extends object>(prev: T | undefined, next: T): T {
 
 /**
  * 트래킹 방식으로 큐 시점의 최종 상태를 계산한다.
- * 첫 큐부터 cueId까지 순서대로 바뀐 값만 덮어쓴다.
+ * 큐 순서는 작품(Project)에서, 큐마다 바뀌는 값은 배치(Staging)에서 가져온다.
  */
-export function resolveCue(project: Project, cueId: string): Look {
+export function resolveCue(project: Project, staging: Staging, cueId: string): Look {
   const index = project.cues.findIndex((c) => c.id === cueId);
   if (index < 0) throw new Error(`큐 '${cueId}'가 없음`);
 
+  const valuesByCue = new Map(staging.cues.map((v) => [v.cueId, v]));
   const look: Look = { lights: {}, characters: {} };
   for (const cue of project.cues.slice(0, index + 1)) {
-    for (const { fixtureId, ...rest } of cue.lights) {
+    const values = valuesByCue.get(cue.id);
+    if (!values) continue;
+    for (const { fixtureId, ...rest } of values.lights) {
       look.lights[fixtureId] = merge(look.lights[fixtureId], rest);
     }
-    for (const { characterId, ...rest } of cue.blocking) {
+    for (const { characterId, ...rest } of values.blocking) {
       look.characters[characterId] = merge(look.characters[characterId], rest);
     }
   }

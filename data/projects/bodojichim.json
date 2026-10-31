@@ -1,186 +1,116 @@
 {
   "id": "bodojichim",
   "title": "보도지침",
-  "stageId": "bonomaru",
-  "curtainOverrides": {
-    "draw-2": true
-  },
   "objects": [
     {
       "id": "judge-platform",
       "name": "판사석 단상",
       "kind": "platform",
-      "position": {
-        "x": 0,
-        "y": 0,
-        "z": 3.85
-      },
       "size": {
         "x": 1.8,
         "y": 0.4,
         "z": 1.8
-      },
-      "rotation": 0
+      }
     },
     {
       "id": "desk-judge",
       "name": "판사석 책상",
       "kind": "desk",
-      "position": {
-        "x": 0,
-        "y": 0.4,
-        "z": 3.5
-      },
       "size": {
         "x": 1.2,
         "y": 0.75,
         "z": 0.6
-      },
-      "rotation": 0
+      }
     },
     {
       "id": "desk-left",
       "name": "하수 책상",
       "kind": "desk",
-      "position": {
-        "x": -2.3,
-        "y": 0,
-        "z": 2.4
-      },
       "size": {
         "x": 1.2,
         "y": 0.75,
         "z": 0.6
-      },
-      "rotation": 0
+      }
     },
     {
       "id": "desk-right",
       "name": "상수 책상",
       "kind": "desk",
-      "position": {
-        "x": 2.3,
-        "y": 0,
-        "z": 2.4
-      },
       "size": {
         "x": 1.2,
         "y": 0.75,
         "z": 0.6
-      },
-      "rotation": 0
+      }
     },
     {
       "id": "chair-judge",
       "name": "판사 의자",
       "kind": "chair",
-      "position": {
-        "x": 0,
-        "y": 0.4,
-        "z": 4.1
-      },
       "size": {
         "x": 0.45,
         "y": 0.45,
         "z": 0.45
-      },
-      "rotation": 0
+      }
     },
     {
       "id": "chair-left-1",
       "name": "하수 의자 1",
       "kind": "chair",
-      "position": {
-        "x": -2.75,
-        "y": 0,
-        "z": 2.95
-      },
       "size": {
         "x": 0.45,
         "y": 0.45,
         "z": 0.45
-      },
-      "rotation": 0
+      }
     },
     {
       "id": "chair-left-2",
       "name": "하수 의자 2",
       "kind": "chair",
-      "position": {
-        "x": -2.3,
-        "y": 0,
-        "z": 2.95
-      },
       "size": {
         "x": 0.45,
         "y": 0.45,
         "z": 0.45
-      },
-      "rotation": 0
+      }
     },
     {
       "id": "chair-left-3",
       "name": "하수 의자 3",
       "kind": "chair",
-      "position": {
-        "x": -1.85,
-        "y": 0,
-        "z": 2.95
-      },
       "size": {
         "x": 0.45,
         "y": 0.45,
         "z": 0.45
-      },
-      "rotation": 0
+      }
     },
     {
       "id": "chair-right-1",
       "name": "상수 의자 1",
       "kind": "chair",
-      "position": {
-        "x": 1.85,
-        "y": 0,
-        "z": 2.95
-      },
       "size": {
         "x": 0.45,
         "y": 0.45,
         "z": 0.45
-      },
-      "rotation": 0
+      }
     },
     {
       "id": "chair-right-2",
       "name": "상수 의자 2",
       "kind": "chair",
-      "position": {
-        "x": 2.3,
-        "y": 0,
-        "z": 2.95
-      },
       "size": {
         "x": 0.45,
         "y": 0.45,
         "z": 0.45
-      },
-      "rotation": 0
+      }
     },
     {
       "id": "chair-right-3",
       "name": "상수 의자 3",
       "kind": "chair",
-      "position": {
-        "x": 2.75,
-        "y": 0,
-        "z": 2.95
-      },
       "size": {
         "x": 0.45,
         "y": 0.45,
         "z": 0.45
-      },
-      "rotation": 0
+      }
     }
   ],
   "characters": [
@@ -232,65 +162,6 @@
       "number": 1,
       "label": "샘플 · 법정 전체",
       "fadeIn": 3,
-      "lights": [],
-      "blocking": [
-        {
-          "characterId": "judge",
-          "x": 0,
-          "z": 4.1,
-          "facing": 0,
-          "posture": "sit",
-          "onStage": true
-        },
-        {
-          "characterId": "ca",
-          "x": -2.75,
-          "z": 2.95,
-          "facing": 0,
-          "posture": "sit",
-          "onStage": true
-        },
-        {
-          "characterId": "cb",
-          "x": -2.3,
-          "z": 2.95,
-          "facing": 0,
-          "posture": "sit",
-          "onStage": true
-        },
-        {
-          "characterId": "cc",
-          "x": -1.85,
-          "z": 2.95,
-          "facing": 0,
-          "posture": "sit",
-          "onStage": true
-        },
-        {
-          "characterId": "cd",
-          "x": 1.85,
-          "z": 2.95,
-          "facing": 0,
-          "posture": "sit",
-          "onStage": true
-        },
-        {
-          "characterId": "ce",
-          "x": 2.3,
-          "z": 2.95,
-          "facing": 0,
-          "posture": "sit",
-          "onStage": true
-        },
-        {
-          "characterId": "cf",
-          "x": 2.75,
-          "z": 2.95,
-          "facing": 0,
-          "posture": "sit",
-          "onStage": true
-        }
-      ],
       "sceneId": "scene-1"
     },
     {
@@ -298,16 +169,9 @@
       "number": 2,
       "label": "샘플 · 판사 독백",
       "fadeIn": 5,
-      "lights": [],
-      "blocking": [
-        {
-          "characterId": "judge",
-          "posture": "stand"
-        }
-      ],
       "note": "판사만 일어선다. (조명값은 행잉도 받은 뒤 입력)",
       "sceneId": "scene-1"
     }
   ],
-  "dataVersion": "2026-10-31.3"
+  "dataVersion": "2026-10-31.4"
 }
