@@ -1,7 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { characterHeight, Project, Stage, Staging } from "../src/model";
+import { characterHeight, FixtureType, Project, Stage, Staging } from "../src/model";
+import fresnel from "../data/fixture-types/generic-fresnel.json";
 import { resolveCue } from "../src/player";
 import { composeStage } from "../src/stage/compose";
+import { cctToRgb, describeLights } from "../src/view/stage3d/lights";
 import { describeActingArea, describeCharacters, describeStage, floorHeightAt } from "../src/view/stage3d/shapes";
 import bonomaru from "../data/stages/bonomaru.json";
 import bodojichim from "../data/projects/bodojichim.json";
@@ -10,6 +12,7 @@ import bodojichimBonomaru from "../data/stagings/bodojichim-bonomaru.json";
 const stage = Stage.parse(bonomaru);
 const project = Project.parse(bodojichim);
 const staging = Staging.parse(bodojichimBonomaru);
+const types = [FixtureType.parse(fresnel)];
 const composed = (overrides: Record<string, boolean>) => composeStage(stage, project, { ...staging, curtainOverrides: overrides });
 
 describe("무대 그리기 목록", () => {
@@ -90,5 +93,24 @@ describe("연기 공간 표시", () => {
     expect(right.position.x + right.size.x / 2).toBeCloseTo(3.5);
     const back = tapes.find((s) => s.id === "acting-back")!;
     expect(back.position.z + back.size.z / 2).toBeCloseTo(5);
+  });
+});
+
+describe("조명", () => {
+  it("색온도 3200K는 붉은빛이 도는 흰색이고, 6500K는 거의 흰색이다", () => {
+    const [r, g, b] = cctToRgb(3200);
+    expect(r).toBeGreaterThan(b);
+    const [r2, , b2] = cctToRgb(6500);
+    expect(r2 - b2).toBeLessThan(5);
+  });
+
+  it("프리셋에서는 걸린 조명 16대가 모두 켜진다", () => {
+    const look = resolveCue(project, staging, "cue-0");
+    expect(describeLights(stage, types, look.lights)).toHaveLength(16);
+  });
+
+  it("밝기 0인 조명은 켜지 않는다", () => {
+    const id = stage.fixtures[0]!.id;
+    expect(describeLights(stage, types, { [id]: { intensity: 0 } })).toHaveLength(0);
   });
 });

@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { buildFigure } from "./figure";
 import { buildChair, buildTable, tipOver } from "./furniture";
+import type { LightBeam } from "./lights";
 import type { Shape } from "./shapes";
 
 /**
@@ -30,8 +31,9 @@ export function createRenderer(canvas: HTMLCanvasElement) {
   const controls = new OrbitControls(camera, canvas);
   controls.enableDamping = true;
 
-  // 작업등: 조명기가 들어오기 전까지 무대 구조가 보이도록 은은하게
-  scene.add(new THREE.HemisphereLight("#ffffff", "#202020", 0.9));
+  // 작업등: 무대 구조를 보기 위한 전체 조명. 끄면 아주 희미한 빛만 남아 윤곽만 보인다
+  const hemi = new THREE.HemisphereLight("#ffffff", "#202020", 0.9);
+  scene.add(hemi);
   const work = new THREE.DirectionalLight("#ffffff", 0.6);
   work.position.copy(toThree(2, 10, -6));
   scene.add(work);
@@ -101,6 +103,38 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     for (const s of shapes) layer.add(meshOf(s));
   }
 
+  function setWorkLight(on: boolean) {
+    hemi.intensity = on ? 0.9 : 0.04;
+    work.intensity = on ? 0.6 : 0;
+  }
+
+  // 조명기 하나 = SpotLight 하나. id로 재사용하고, 목록에서 빠진 건 끈다
+  const spots = new Map<string, THREE.SpotLight>();
+  /** 밝기 100%인 기준 조명기의 광도(cd). 화면에서 보기 좋게 맞춘 값 */
+  const CANDELA = 650;
+  function setLights(beams: LightBeam[]) {
+    const live = new Set(beams.map((b) => b.id));
+    for (const [id, s] of spots) {
+      if (!live.has(id)) s.visible = false;
+    }
+    for (const b of beams) {
+      let s = spots.get(b.id);
+      if (!s) {
+        s = new THREE.SpotLight();
+        s.decay = 2;
+        scene.add(s, s.target);
+        spots.set(b.id, s);
+      }
+      s.visible = true;
+      s.color.set(b.color);
+      s.intensity = CANDELA * b.level;
+      s.angle = ((b.beamAngle / 2) * Math.PI) / 180;
+      s.penumbra = b.soft ? 0.7 : 0.15;
+      s.position.copy(toThree(b.position.x, b.position.y, b.position.z));
+      s.target.position.copy(toThree(b.target.x, b.target.y, b.target.z));
+    }
+  }
+
   function setView(name: ViewName) {
     const v = VIEWS[name];
     camera.position.copy(toThree(...v.eye));
@@ -127,5 +161,5 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     renderer.render(scene, camera);
   });
 
-  return { draw, setView };
+  return { draw, setView, setLights, setWorkLight };
 }

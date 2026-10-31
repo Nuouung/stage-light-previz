@@ -8,7 +8,7 @@ import type { ComposedStage } from "../../stage/compose";
  */
 export type Shape = {
   id: string;
-  group: "floor" | "wall" | "curtain" | "batten" | "object" | "character" | "guide";
+  group: "floor" | "wall" | "curtain" | "batten" | "fixture" | "object" | "character" | "guide";
   /** table·chair·figure는 모양을 렌더러가 만든다 */
   kind: "box" | "cylinder" | "figure" | "table" | "chair";
   position: { x: number; y: number; z: number };
@@ -67,6 +67,13 @@ export function describeStage(composed: ComposedStage, opts: StageViewOptions = 
     if (p.kind === "set" && !opts.setBattens) continue;
     const [x0, x1] = p.xRange;
     shapes.push({ id: p.id, group: "batten", kind: "cylinder", position: { x: (x0 + x1) / 2, y: p.y, z: p.z }, size: { x: x1 - x0, y: 0.05, z: 0.05 }, color: p.kind === "set" ? "#555555" : "#8a8a8a", label: p.name });
+  }
+
+  // 걸린 조명기 몸체: 배튼 아래 작은 상자
+  for (const f of stage.fixtures) {
+    const p = stage.positions.find((q) => q.id === f.positionId);
+    if (!p) continue;
+    shapes.push({ id: `fixture-${f.id}`, group: "fixture", kind: "box", position: { x: f.x, y: p.y - 0.42, z: p.z }, size: { x: 0.22, y: 0.3, z: 0.22 }, color: "#2b2b2e", label: f.role });
   }
 
   for (const o of objects) {
