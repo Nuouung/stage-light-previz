@@ -28,13 +28,8 @@ describe("무대 그리기 목록", () => {
     expect(shapes.filter((s) => s.id.startsWith("draw-2-"))).toHaveLength(2);
   });
 
-  it("기본으로는 조명 배튼만 그리고 세트 배튼은 그리지 않는다", () => {
+  it("배튼마다 막대가 하나씩 그려진다", () => {
     const battens = describeStage(composed({})).filter((s) => s.group === "batten");
-    expect(battens).toHaveLength(stage.positions.filter((p) => p.kind !== "set").length);
-  });
-
-  it("세트 배튼을 켜면 모든 배튼이 그려진다", () => {
-    const battens = describeStage(composed({}), { setBattens: true }).filter((s) => s.group === "batten");
     expect(battens).toHaveLength(stage.positions.length);
   });
 
@@ -104,9 +99,9 @@ describe("조명", () => {
     expect(r2 - b2).toBeLessThan(5);
   });
 
-  it("프리셋에서는 걸린 조명 16대가 모두 켜진다", () => {
+  it("프리셋에서는 걸린 조명이 모두 켜진다", () => {
     const look = resolveCue(project, staging, "cue-0");
-    expect(describeLights(stage, types, look.lights)).toHaveLength(16);
+    expect(describeLights(stage, types, look.lights)).toHaveLength(stage.fixtures.length);
   });
 
   it("밝기 0인 조명은 켜지 않는다", () => {

@@ -12,7 +12,6 @@ export type ControlsProps = {
   /** 연기 공간 경계가 데이터에 있을 때만 버튼을 보여준다 */
   hasActingArea: boolean;
   showActingArea: boolean;
-  showSetBattens: boolean;
   showWorkLight: boolean;
   haze: boolean;
 };
@@ -22,7 +21,6 @@ export type ControlsHandlers = {
   onToggleCurtain(id: string): void;
   onView(view: ViewName): void;
   onToggleActingArea(): void;
-  onToggleSetBattens(): void;
   onToggleWorkLight(): void;
   onToggleHaze(): void;
 };
@@ -49,7 +47,7 @@ export function renderControls(root: HTMLElement, p: ControlsProps, h: ControlsH
       .join("")}</section>
     <section class="row"><span>표시</span>${
       p.hasActingArea ? `<button data-guide="acting" class="${p.showActingArea ? "on" : ""}">연기 공간 ${p.showActingArea ? "켬" : "끔"}</button>` : ""
-    }<button data-guide="set-battens" class="${p.showSetBattens ? "on" : ""}">세트 배튼 ${p.showSetBattens ? "켬" : "끔"}</button><button data-guide="work-light" class="${p.showWorkLight ? "on" : ""}">작업등 ${p.showWorkLight ? "켬" : "끔"}</button><button data-guide="haze" class="${p.haze ? "on" : ""}">헤이즈 ${p.haze ? "켬" : "끔"}</button></section>
+    }<button data-guide="work-light" class="${p.showWorkLight ? "on" : ""}">작업등 ${p.showWorkLight ? "켬" : "끔"}</button><button data-guide="haze" class="${p.haze ? "on" : ""}">헤이즈 ${p.haze ? "켬" : "끔"}</button></section>
   `;
 
   root.querySelectorAll<HTMLButtonElement>("[data-cue]").forEach((b) =>
@@ -60,7 +58,6 @@ export function renderControls(root: HTMLElement, p: ControlsProps, h: ControlsH
   );
   root.querySelectorAll<HTMLButtonElement>("[data-view]").forEach((b) => b.addEventListener("click", () => h.onView(b.dataset.view as ViewName)));
   root.querySelector<HTMLButtonElement>("[data-guide=acting]")?.addEventListener("click", () => h.onToggleActingArea());
-  root.querySelector<HTMLButtonElement>("[data-guide=set-battens]")?.addEventListener("click", () => h.onToggleSetBattens());
   root.querySelector<HTMLButtonElement>("[data-guide=haze]")?.addEventListener("click", () => h.onToggleHaze());
   root.querySelector<HTMLButtonElement>("[data-guide=work-light]")?.addEventListener("click", () => h.onToggleWorkLight());
   root.querySelectorAll<HTMLButtonElement>("[data-curtain]").forEach((b) => b.addEventListener("click", () => h.onToggleCurtain(b.dataset.curtain!)));

@@ -44,80 +44,14 @@
   ],
   "positions": [
     {
-      "id": "foh-6",
-      "name": "객석 배튼 6",
+      "id": "foh-front",
+      "name": "객석 프런트 배튼 (3열 위)",
       "kind": "foh",
       "y": 6.8,
-      "z": -12.86,
+      "z": -4.6,
       "xRange": [
         -5.0,
         5.0
-      ]
-    },
-    {
-      "id": "foh-5",
-      "name": "객석 배튼 5",
-      "kind": "foh",
-      "y": 6.8,
-      "z": -10.51,
-      "xRange": [
-        -5.0,
-        5.0
-      ]
-    },
-    {
-      "id": "foh-4",
-      "name": "객석 배튼 4",
-      "kind": "foh",
-      "y": 6.8,
-      "z": -8.15,
-      "xRange": [
-        -5.0,
-        5.0
-      ]
-    },
-    {
-      "id": "foh-3",
-      "name": "객석 배튼 3",
-      "kind": "foh",
-      "y": 6.8,
-      "z": -5.79,
-      "xRange": [
-        -5.0,
-        5.0
-      ]
-    },
-    {
-      "id": "foh-2",
-      "name": "객석 배튼 2",
-      "kind": "foh",
-      "y": 6.8,
-      "z": -3.44,
-      "xRange": [
-        -5.0,
-        5.0
-      ]
-    },
-    {
-      "id": "foh-1",
-      "name": "객석 배튼 1",
-      "kind": "foh",
-      "y": 6.8,
-      "z": -1.08,
-      "xRange": [
-        -5.0,
-        5.0
-      ]
-    },
-    {
-      "id": "set-1",
-      "name": "Set 1",
-      "kind": "set",
-      "y": 6.5,
-      "z": 1.65,
-      "xRange": [
-        -6.135,
-        6.135
       ]
     },
     {
@@ -126,17 +60,6 @@
       "kind": "sus",
       "y": 6.5,
       "z": 2.15,
-      "xRange": [
-        -6.135,
-        6.135
-      ]
-    },
-    {
-      "id": "set-2",
-      "name": "Set 2",
-      "kind": "set",
-      "y": 6.5,
-      "z": 3.2,
       "xRange": [
         -6.135,
         6.135
@@ -154,33 +77,11 @@
       ]
     },
     {
-      "id": "set-3",
-      "name": "Set 3",
-      "kind": "set",
-      "y": 6.5,
-      "z": 5.51,
-      "xRange": [
-        -6.135,
-        6.135
-      ]
-    },
-    {
       "id": "sus-3",
       "name": "Sus 3",
       "kind": "sus",
       "y": 6.5,
       "z": 6.5,
-      "xRange": [
-        -6.135,
-        6.135
-      ]
-    },
-    {
-      "id": "set-4",
-      "name": "Set 4",
-      "kind": "set",
-      "y": 6.5,
-      "z": 7.5,
       "xRange": [
         -6.135,
         6.135
@@ -191,7 +92,7 @@
     {
       "id": "front-down-1",
       "typeId": "generic-fresnel",
-      "positionId": "foh-2",
+      "positionId": "foh-front",
       "x": -3,
       "channelNo": 1,
       "aim": {
@@ -199,13 +100,13 @@
         "y": 0,
         "z": 1.4
       },
-      "beamAngle": 30,
+      "beamAngle": 25,
       "role": "프론트 · 앞줄 하수 끝"
     },
     {
       "id": "front-down-2",
       "typeId": "generic-fresnel",
-      "positionId": "foh-2",
+      "positionId": "foh-front",
       "x": -1,
       "channelNo": 2,
       "aim": {
@@ -213,13 +114,13 @@
         "y": 0,
         "z": 1.4
       },
-      "beamAngle": 30,
+      "beamAngle": 25,
       "role": "프론트 · 앞줄 하수 가운데"
     },
     {
       "id": "front-down-3",
       "typeId": "generic-fresnel",
-      "positionId": "foh-2",
+      "positionId": "foh-front",
       "x": 1,
       "channelNo": 3,
       "aim": {
@@ -227,13 +128,13 @@
         "y": 0,
         "z": 1.4
       },
-      "beamAngle": 30,
+      "beamAngle": 25,
       "role": "프론트 · 앞줄 상수 가운데"
     },
     {
       "id": "front-down-4",
       "typeId": "generic-fresnel",
-      "positionId": "foh-2",
+      "positionId": "foh-front",
       "x": 3,
       "channelNo": 4,
       "aim": {
@@ -241,69 +142,69 @@
         "y": 0,
         "z": 1.4
       },
-      "beamAngle": 30,
+      "beamAngle": 25,
       "role": "프론트 · 앞줄 상수 끝"
     },
     {
       "id": "front-up-1",
       "typeId": "generic-fresnel",
-      "positionId": "foh-1",
+      "positionId": "foh-front",
       "x": -3,
       "channelNo": 5,
       "aim": {
         "x": -3,
         "y": 0.29,
-        "z": 3.7
+        "z": 3.9
       },
-      "beamAngle": 30,
+      "beamAngle": 20,
       "role": "프론트 · 뒷줄(단) 하수 끝"
     },
     {
       "id": "front-up-2",
       "typeId": "generic-fresnel",
-      "positionId": "foh-1",
+      "positionId": "foh-front",
       "x": -1,
       "channelNo": 6,
       "aim": {
         "x": -1,
         "y": 0.29,
-        "z": 3.7
+        "z": 3.9
       },
-      "beamAngle": 30,
+      "beamAngle": 20,
       "role": "프론트 · 뒷줄(단) 하수 가운데"
     },
     {
       "id": "front-up-3",
       "typeId": "generic-fresnel",
-      "positionId": "foh-1",
+      "positionId": "foh-front",
       "x": 1,
       "channelNo": 7,
       "aim": {
         "x": 1,
         "y": 0.29,
-        "z": 3.7
+        "z": 3.9
       },
-      "beamAngle": 30,
+      "beamAngle": 20,
       "role": "프론트 · 뒷줄(단) 상수 가운데"
     },
     {
       "id": "front-up-4",
       "typeId": "generic-fresnel",
-      "positionId": "foh-1",
+      "positionId": "foh-front",
       "x": 3,
       "channelNo": 8,
       "aim": {
         "x": 3,
         "y": 0.29,
-        "z": 3.7
+        "z": 3.9
       },
-      "beamAngle": 30,
+      "beamAngle": 20,
       "role": "프론트 · 뒷줄(단) 상수 끝"
     },
     {
-      "id": "back-down-1",
+      "id": "top-down-1",
       "typeId": "generic-fresnel",
-      "positionId": "sus-2",
+      "positionId": "sus-1",
       "x": -3,
       "channelNo": 11,
       "aim": {
@@ -312,12 +213,12 @@
         "z": 1.4
       },
       "beamAngle": 30,
-      "role": "백 · 앞줄 하수 끝"
+      "role": "탑 · 앞줄 하수 끝"
     },
     {
-      "id": "back-down-2",
+      "id": "top-down-2",
       "typeId": "generic-fresnel",
-      "positionId": "sus-2",
+      "positionId": "sus-1",
       "x": -1,
       "channelNo": 12,
       "aim": {
@@ -326,12 +227,12 @@
         "z": 1.4
       },
       "beamAngle": 30,
-      "role": "백 · 앞줄 하수 가운데"
+      "role": "탑 · 앞줄 하수 가운데"
     },
     {
-      "id": "back-down-3",
+      "id": "top-down-3",
       "typeId": "generic-fresnel",
-      "positionId": "sus-2",
+      "positionId": "sus-1",
       "x": 1,
       "channelNo": 13,
       "aim": {
@@ -340,12 +241,12 @@
         "z": 1.4
       },
       "beamAngle": 30,
-      "role": "백 · 앞줄 상수 가운데"
+      "role": "탑 · 앞줄 상수 가운데"
     },
     {
-      "id": "back-down-4",
+      "id": "top-down-4",
       "typeId": "generic-fresnel",
-      "positionId": "sus-2",
+      "positionId": "sus-1",
       "x": 3,
       "channelNo": 14,
       "aim": {
@@ -354,73 +255,129 @@
         "z": 1.4
       },
       "beamAngle": 30,
-      "role": "백 · 앞줄 상수 끝"
+      "role": "탑 · 앞줄 상수 끝"
     },
     {
-      "id": "back-up-1",
+      "id": "top-up-1",
       "typeId": "generic-fresnel",
-      "positionId": "sus-3",
+      "positionId": "sus-2",
       "x": -3,
       "channelNo": 15,
       "aim": {
         "x": -3,
         "y": 0.29,
-        "z": 3.7
+        "z": 4.0
       },
       "beamAngle": 30,
-      "role": "백 · 뒷줄(단) 하수 끝"
+      "role": "탑 · 뒷줄(단) 하수 끝"
     },
     {
-      "id": "back-up-2",
+      "id": "top-up-2",
       "typeId": "generic-fresnel",
-      "positionId": "sus-3",
+      "positionId": "sus-2",
       "x": -1,
       "channelNo": 16,
       "aim": {
         "x": -1,
         "y": 0.29,
-        "z": 3.7
+        "z": 4.0
       },
       "beamAngle": 30,
-      "role": "백 · 뒷줄(단) 하수 가운데"
+      "role": "탑 · 뒷줄(단) 하수 가운데"
     },
     {
-      "id": "back-up-3",
+      "id": "top-up-3",
       "typeId": "generic-fresnel",
-      "positionId": "sus-3",
+      "positionId": "sus-2",
       "x": 1,
       "channelNo": 17,
       "aim": {
         "x": 1,
         "y": 0.29,
-        "z": 3.7
+        "z": 4.0
       },
       "beamAngle": 30,
-      "role": "백 · 뒷줄(단) 상수 가운데"
+      "role": "탑 · 뒷줄(단) 상수 가운데"
     },
     {
-      "id": "back-up-4",
+      "id": "top-up-4",
       "typeId": "generic-fresnel",
-      "positionId": "sus-3",
+      "positionId": "sus-2",
       "x": 3,
       "channelNo": 18,
       "aim": {
         "x": 3,
         "y": 0.29,
-        "z": 3.7
+        "z": 4.0
       },
       "beamAngle": 30,
-      "role": "백 · 뒷줄(단) 상수 끝"
+      "role": "탑 · 뒷줄(단) 상수 끝"
+    },
+    {
+      "id": "back-1",
+      "typeId": "generic-fresnel",
+      "positionId": "sus-3",
+      "x": -3,
+      "channelNo": 21,
+      "aim": {
+        "x": -3,
+        "y": 0,
+        "z": 2.6
+      },
+      "beamAngle": 40,
+      "role": "백 · 하수 끝"
+    },
+    {
+      "id": "back-2",
+      "typeId": "generic-fresnel",
+      "positionId": "sus-3",
+      "x": -1,
+      "channelNo": 22,
+      "aim": {
+        "x": -1,
+        "y": 0,
+        "z": 2.6
+      },
+      "beamAngle": 40,
+      "role": "백 · 하수 가운데"
+    },
+    {
+      "id": "back-3",
+      "typeId": "generic-fresnel",
+      "positionId": "sus-3",
+      "x": 1,
+      "channelNo": 23,
+      "aim": {
+        "x": 1,
+        "y": 0,
+        "z": 2.6
+      },
+      "beamAngle": 40,
+      "role": "백 · 상수 가운데"
+    },
+    {
+      "id": "back-4",
+      "typeId": "generic-fresnel",
+      "positionId": "sus-3",
+      "x": 3,
+      "channelNo": 24,
+      "aim": {
+        "x": 3,
+        "y": 0,
+        "z": 2.6
+      },
+      "beamAngle": 40,
+      "role": "백 · 상수 끝"
     }
   ],
   "notes": [
     "0점 = 프로시니엄 벽면(단면도 배튼 치수선 시작점). 무대 깊이 9.45m = 단면도 막·배튼 간격 합",
     "폭 12.27m = 평면도 벽~벽. 앞쪽 0~3.8m 구간은 양옆 다리막으로 9.31m만 보임(다리막은 데이터에 넣지 않음)",
     "블랙박스형: 무대 바닥 = 객석 바닥 높이",
-    "무대 위 배튼 높이 6.5m는 가정값. 그리드는 약 14m",
-    "객석 배튼 6개: 높이 약 6.8m, 위치는 단면도에서 잰 값(±0.2m). 벽면 바로 위 파이프 1개는 용도 불명이라 제외",
-    "객석 배튼 좌우 길이(±5m)는 가정값",
-    "조명기 배치는 행잉도 없이 장비목록으로 추정한 값. LED 프레넬 22대 중 16대를 제너럴 워시로 씀(6대 여분). 프로파일 3대·무빙 워시 6대는 아직 안 걸음",
-    "제너럴 워시: 연기 공간 8×5m를 가로 4칸 × 세로 2줄(앞줄 깊이 1.25m, 뒷줄=단 3.9m)로 나눔. 프론트는 객석 배튼 2(앞줄)·1(뒷줄), 백은 Sus 2(앞줄)·Sus 3(뒷줄)에서 약 45~60도"
+    "조명 배튼만 넣음: 객석 프런트 배튼(3열 위) 1개 + Sus 1·2·3. 세트 배튼 4개와 쓰지 않는 객석 천장 배튼은 뺌",
+    "객석 프런트 배튼 위치(무대 앞에서 객석 쪽 4.6m, 높이 6.8m)는 단면도에서 3열 위에 그려진 조명기로 잰 값(±0.2m). 좌우 길이 ±5m는 가정",
+    "Sus 배튼 높이 6.5m는 가정값. 그리드는 약 14m",
+    "조명기 배치는 행잉도 없이 장비목록(LED 프레넬 22대)으로 추정. 20대 사용, 2대 여분. 프로파일 3대·무빙 워시 6대는 아직 안 걸음",
+    "제너럴 워시: 연기 공간 8×5m를 가로 4칸 × 세로 2줄(앞줄 1.4m, 뒷줄=단 3.9m). 프런트 8 · 탑(Sus 1 앞줄, Sus 2 뒷줄) 8 · 백(Sus 3) 4"
   ]
 }
