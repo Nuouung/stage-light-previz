@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { createBeam, updateBeam } from "./beams";
 import { buildFigure } from "./figure";
 import { buildChair, buildTable, tipOver } from "./furniture";
 import type { LightBeam } from "./lights";
@@ -110,6 +111,10 @@ export function createRenderer(canvas: HTMLCanvasElement) {
 
   // 조명기 하나 = SpotLight 하나. id로 재사용하고, 목록에서 빠진 건 끈다
   const spots = new Map<string, THREE.SpotLight>();
+  const beamMeshes = new Map<string, ReturnType<typeof createBeam>>();
+  /** 헤이즈 농도 0~1. 0이면 빛줄기를 그리지 않는다 */
+  let haze = 0;
+  let lastBeams: LightBeam[] = [];
   /** 밝기 100%인 기준 조명기의 광도(cd). 화면에서 보기 좋게 맞춘 값 */
   const CANDELA = 650;
   function setLights(beams: LightBeam[]) {
@@ -117,6 +122,10 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     for (const [id, s] of spots) {
       if (!live.has(id)) s.visible = false;
     }
+    for (const [id, m] of beamMeshes) {
+      if (!live.has(id) || haze <= 0) m.visible = false;
+    }
+    lastBeams = beams;
     for (const b of beams) {
       let s = spots.get(b.id);
       if (!s) {
@@ -132,7 +141,24 @@ export function createRenderer(canvas: HTMLCanvasElement) {
       s.penumbra = b.soft ? 0.7 : 0.15;
       s.position.copy(toThree(b.position.x, b.position.y, b.position.z));
       s.target.position.copy(toThree(b.target.x, b.target.y, b.target.z));
+
+      if (haze > 0) {
+        let m = beamMeshes.get(b.id);
+        if (!m) {
+          m = createBeam();
+          scene.add(m);
+          beamMeshes.set(b.id, m);
+        }
+        m.visible = true;
+        updateBeam(m, s.position, s.target.position, b.beamAngle, b.color, 0.35 * haze * b.level, b.soft);
+      }
     }
+  }
+
+  function setHaze(level: number) {
+    if (level === haze) return;
+    haze = level;
+    setLights(lastBeams);
   }
 
   function setView(name: ViewName) {
@@ -161,5 +187,5 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     renderer.render(scene, camera);
   });
 
-  return { draw, setView, setLights, setWorkLight };
+  return { draw, setView, setLights, setWorkLight, setHaze };
 }
