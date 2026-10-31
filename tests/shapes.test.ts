@@ -52,8 +52,27 @@ describe("인물 그리기", () => {
 
   it("인물은 키와 자세를 가진 사람 모형으로 그려진다", () => {
     const c = composed({});
-    const look = resolveCue(project, staging, project.cues[0]!.id);
-    const fig = describeCharacters(c, project, look.characters)[0]!;
+    const id = project.characters[0]!.id;
+    const fig = describeCharacters(c, project, { [id]: { x: 0, z: 1, posture: "stand", onStage: true } })[0]!;
     expect(fig).toMatchObject({ kind: "figure", size: { y: 1.7 }, pose: "stand" });
+  });
+
+  it("프리셋에서는 무대에 아무도 없다", () => {
+    const look = resolveCue(project, staging, project.cues[0]!.id);
+    expect(describeCharacters(composed({}), project, look.characters)).toHaveLength(0);
+  });
+});
+
+describe("가구 그리기", () => {
+  it("책상은 테이블 모형, 의자는 의자 모형으로 그려진다", () => {
+    const shapes = describeStage(composed({}));
+    expect(shapes.find((s) => s.id === "desk-judge")?.kind).toBe("table");
+    expect(shapes.find((s) => s.id === "chair-judge")?.kind).toBe("chair");
+  });
+
+  it("엎어 놓은 의자는 넘어진 상태로 그려진다", () => {
+    const shapes = describeStage(composed({}));
+    expect(shapes.find((s) => s.id === "chair-down-left")?.tipped).toBe(true);
+    expect(shapes.find((s) => s.id === "chair-judge")?.tipped).toBe(false);
   });
 });

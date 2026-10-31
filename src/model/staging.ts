@@ -13,6 +13,8 @@ export const Placement = z.object({
   position: Vec3,
   /** 위에서 볼 때 y축 회전(도). 0 = 긴 변이 객석과 나란함 */
   rotation: z.number().default(0),
+  /** 넘어뜨려 놓은 상태(엎어진 의자 등) */
+  tipped: z.boolean().default(false),
 });
 export type Placement = z.infer<typeof Placement>;
 

@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
 import { buildFigure } from "./figure";
+import { buildChair, buildTable, tipOver } from "./furniture";
 import type { Shape } from "./shapes";
 
 /**
@@ -57,6 +58,14 @@ export function createRenderer(canvas: HTMLCanvasElement) {
       fig.name = s.id;
       return fig;
     }
+    if (s.kind === "table" || s.kind === "chair") {
+      let model = s.kind === "table" ? buildTable(s.size.x, s.size.y, s.size.z, s.color) : buildChair(s.size.x, s.size.y, s.size.z, s.color);
+      if (s.tipped) model = tipOver(model);
+      model.position.copy(toThree(s.position.x, s.position.y, s.position.z));
+      if (s.rotationY) model.rotation.y = (-s.rotationY * Math.PI) / 180;
+      model.name = s.id;
+      return model;
+    }
     const mat = new THREE.MeshStandardMaterial({ color: s.color, roughness: s.group === "floor" ? 0.35 : 0.85 });
     let mesh: THREE.Mesh;
     if (s.kind === "cylinder" && s.group === "batten") {
@@ -70,6 +79,10 @@ export function createRenderer(canvas: HTMLCanvasElement) {
       mesh = new THREE.Mesh(new THREE.BoxGeometry(s.size.x, s.size.y, s.size.z), mat);
       mesh.position.copy(toThree(s.position.x, s.position.y + s.size.y / 2, s.position.z));
       if (s.rotationY) mesh.rotation.y = (-s.rotationY * Math.PI) / 180;
+      if (s.outline) {
+        const edges = new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry), new THREE.LineBasicMaterial({ color: "#4a4a50" }));
+        mesh.add(edges);
+      }
     }
     mesh.name = s.id;
     return mesh;
@@ -79,7 +92,7 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     for (const child of [...layer.children]) {
       layer.remove(child);
       child.traverse((o) => {
-        if (o instanceof THREE.Mesh) {
+        if (o instanceof THREE.Mesh || o instanceof THREE.LineSegments) {
           o.geometry.dispose();
           (o.material as THREE.Material).dispose();
         }

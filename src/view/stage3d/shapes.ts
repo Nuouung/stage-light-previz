@@ -9,7 +9,8 @@ import type { ComposedStage } from "../../stage/compose";
 export type Shape = {
   id: string;
   group: "floor" | "wall" | "curtain" | "batten" | "object" | "character";
-  kind: "box" | "cylinder" | "figure";
+  /** table·chair·figure는 모양을 렌더러가 만든다 */
+  kind: "box" | "cylinder" | "figure" | "table" | "chair";
   position: { x: number; y: number; z: number };
   /** box: 폭(x)·높이(y)·깊이(z). cylinder: 지름(x)·높이(y). 배튼(가로 원기둥)은 x가 길이. figure: y = 키 */
   size: { x: number; y: number; z: number };
@@ -17,6 +18,10 @@ export type Shape = {
   rotationY?: number;
   /** figure 전용: 서 있음 / 앉음 */
   pose?: "stand" | "sit";
+  /** chair 전용: 넘어진 상태 */
+  tipped?: boolean;
+  /** box 테두리 선을 그린다(검은 단의 층 구분용) */
+  outline?: boolean;
   color: string;
   label?: string;
 };
@@ -25,6 +30,8 @@ const CURTAIN_HEIGHT = 7;
 const CURTAIN_THICK = 0.08;
 /** 검은 막. 배경과 구분되도록 아주 약간 밝게 */
 const BLACK = "#202022";
+/** 앤틱 가구 색 (짙은 월넛) */
+const WALNUT = "#6b4128";
 /** 열린 막이 양옆에 모여 있는 폭(m) */
 const GATHERED = 1.0;
 
@@ -59,8 +66,11 @@ export function describeStage(composed: ComposedStage): Shape[] {
   }
 
   for (const o of objects) {
-    const color = o.kind === "platform" ? "#2a2a2a" : o.kind === "chair" ? "#6b4a30" : "#7a5535";
-    shapes.push({ id: o.id, group: "object", kind: "box", position: o.position, size: o.size, rotationY: o.rotation, color, label: o.name });
+    const base = { id: o.id, group: "object" as const, position: o.position, size: o.size, rotationY: o.rotation, label: o.name };
+    if (o.kind === "desk") shapes.push({ ...base, kind: "table", color: WALNUT });
+    else if (o.kind === "chair") shapes.push({ ...base, kind: "chair", color: WALNUT, tipped: o.tipped });
+    else if (o.kind === "platform") shapes.push({ ...base, kind: "box", color: "#1c1c1e", outline: true });
+    else shapes.push({ ...base, kind: "box", color: "#7a5535" });
   }
   return shapes;
 }

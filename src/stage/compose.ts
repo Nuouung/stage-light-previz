@@ -4,6 +4,7 @@ import type { Curtain, Project, Stage, StageObject, Staging } from "../model";
 export type PlacedObject = StageObject & {
   position: { x: number; y: number; z: number };
   rotation: number;
+  tipped: boolean;
 };
 
 /** 공연용 무대 = 공연장 + 작품의 세트 + 배치(위치·막 설정). 저장하지 않고 매번 합성한다. */
@@ -28,7 +29,7 @@ export function composeStage(stage: Stage, project: Project, staging: Staging): 
   const objects: PlacedObject[] = [];
   for (const p of staging.placements) {
     const def = project.objects.find((o) => o.id === p.objectId);
-    if (def) objects.push({ ...def, position: p.position, rotation: p.rotation });
+    if (def) objects.push({ ...def, position: p.position, rotation: p.rotation, tipped: p.tipped });
   }
   return { stage, curtains, objects };
 }
