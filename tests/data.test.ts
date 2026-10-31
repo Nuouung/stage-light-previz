@@ -46,6 +46,11 @@ describe("작품 데이터", () => {
       for (const cue of project.cues) if (cue.sceneId) expect(sceneIds, `${cue.id}의 장`).toContain(cue.sceneId);
     });
 
+    it(`${file}: 인물 id가 겹치지 않는다`, () => {
+      const ids = project.characters.map((c) => c.id);
+      expect(new Set(ids).size).toBe(ids.length);
+    });
+
     it(`${file}: 큐 번호가 오름차순이다`, () => {
       const nums = project.cues.map((c) => c.number);
       expect(nums).toEqual([...nums].sort((a, b) => a - b));

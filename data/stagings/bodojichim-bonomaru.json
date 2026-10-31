@@ -112,60 +112,52 @@
       "lights": [],
       "blocking": [
         {
-          "characterId": "judge",
+          "characterId": "juhyuk",
+          "x": -2,
+          "z": 1.5,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "jeongbae",
+          "x": -1,
+          "z": 1.5,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "seunguk",
           "x": 0,
-          "z": 4.1,
+          "z": 1.5,
           "facing": 0,
-          "posture": "sit",
+          "posture": "stand",
           "onStage": true
         },
         {
-          "characterId": "ca",
-          "x": -2.75,
-          "z": 2.95,
+          "characterId": "dongyeol",
+          "x": 1,
+          "z": 1.5,
           "facing": 0,
-          "posture": "sit",
+          "posture": "stand",
           "onStage": true
         },
         {
-          "characterId": "cb",
-          "x": -2.3,
-          "z": 2.95,
+          "characterId": "wondal",
+          "x": 2,
+          "z": 1.5,
           "facing": 0,
-          "posture": "sit",
+          "posture": "stand",
           "onStage": true
         },
         {
-          "characterId": "cc",
-          "x": -1.85,
-          "z": 2.95,
-          "facing": 0,
-          "posture": "sit",
-          "onStage": true
+          "characterId": "voice-1",
+          "onStage": false
         },
         {
-          "characterId": "cd",
-          "x": 1.85,
-          "z": 2.95,
-          "facing": 0,
-          "posture": "sit",
-          "onStage": true
-        },
-        {
-          "characterId": "ce",
-          "x": 2.3,
-          "z": 2.95,
-          "facing": 0,
-          "posture": "sit",
-          "onStage": true
-        },
-        {
-          "characterId": "cf",
-          "x": 2.75,
-          "z": 2.95,
-          "facing": 0,
-          "posture": "sit",
-          "onStage": true
+          "characterId": "voice-2",
+          "onStage": false
         }
       ]
     },
@@ -174,11 +166,11 @@
       "lights": [],
       "blocking": [
         {
-          "characterId": "judge",
-          "posture": "stand"
+          "characterId": "juhyuk",
+          "z": 0.7
         }
       ]
     }
   ],
-  "dataVersion": "2026-10-31.4"
+  "dataVersion": "2026-10-31.5"
 }

@@ -115,39 +115,46 @@
   ],
   "characters": [
     {
-      "id": "judge",
-      "role": "판사",
-      "label": "판사"
+      "id": "juhyuk",
+      "role": "주혁",
+      "label": "주혁",
+      "color": "#e07a5f"
     },
     {
-      "id": "ca",
-      "role": "미정",
-      "label": "인물 A"
+      "id": "jeongbae",
+      "role": "정배",
+      "label": "정배",
+      "color": "#f2cc8f"
     },
     {
-      "id": "cb",
-      "role": "미정",
-      "label": "인물 B"
+      "id": "seunguk",
+      "role": "승욱",
+      "label": "승욱",
+      "color": "#81b29a"
     },
     {
-      "id": "cc",
-      "role": "미정",
-      "label": "인물 C"
+      "id": "dongyeol",
+      "role": "돈결",
+      "label": "돈결",
+      "color": "#6d9dc5"
     },
     {
-      "id": "cd",
-      "role": "미정",
-      "label": "인물 D"
+      "id": "wondal",
+      "role": "원달",
+      "label": "원달",
+      "color": "#c38fd6"
     },
     {
-      "id": "ce",
-      "role": "미정",
-      "label": "인물 E"
+      "id": "voice-1",
+      "role": "목소리1",
+      "label": "목소리1",
+      "color": "#888888"
     },
     {
-      "id": "cf",
-      "role": "미정",
-      "label": "인물 F"
+      "id": "voice-2",
+      "role": "목소리2",
+      "label": "목소리2",
+      "color": "#888888"
     }
   ],
   "scenes": [
@@ -160,18 +167,19 @@
     {
       "id": "cue-1",
       "number": 1,
-      "label": "샘플 · 법정 전체",
+      "label": "샘플 · 전원 등장",
       "fadeIn": 3,
-      "sceneId": "scene-1"
+      "sceneId": "scene-1",
+      "note": "블로킹 미정. 앞쪽에 한 줄로 세워 둔 샘플"
     },
     {
       "id": "cue-2",
       "number": 2,
-      "label": "샘플 · 판사 독백",
+      "label": "샘플 · 주혁 앞으로",
       "fadeIn": 5,
-      "note": "판사만 일어선다. (조명값은 행잉도 받은 뒤 입력)",
-      "sceneId": "scene-1"
+      "sceneId": "scene-1",
+      "note": "샘플. 조명값은 행잉도 받은 뒤 입력"
     }
   ],
-  "dataVersion": "2026-10-31.4"
+  "dataVersion": "2026-10-31.5"
 }
