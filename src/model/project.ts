@@ -64,6 +64,7 @@ export const Cue = z.object({
   label: z.string(),
   /** 이 큐로 넘어올 때 걸리는 시간(초) */
   fadeIn: z.number().nonnegative(),
+  /** 이 큐가 속한 장 */
   sceneId: Id.optional(),
   lights: z.array(CueState).default([]),
   blocking: z.array(Blocking).default([]),
@@ -71,10 +72,9 @@ export const Cue = z.object({
 });
 export type Cue = z.infer<typeof Cue>;
 
+/** 장. 큐를 담는 상자가 아니라 이름표 목록. 큐가 sceneId로 가리킨다. 공연 순서대로 적는다. */
 export const Scene = z.object({ id: Id, name: z.string() });
-export const Act = z.object({ id: Id, name: z.string(), scenes: z.array(Scene) });
 export type Scene = z.infer<typeof Scene>;
-export type Act = z.infer<typeof Act>;
 
 /** 공연. 공연장(Stage)은 소유하지 않고 id로 골라 참조한다. */
 export const Project = z.object({
@@ -85,8 +85,8 @@ export const Project = z.object({
   curtainOverrides: z.record(z.string(), z.boolean()).default({}),
   objects: z.array(StageObject),
   characters: z.array(Character),
-  acts: z.array(Act).default([]),
-  /** 큐 번호 순서대로 정렬돼 있어야 함 */
+  scenes: z.array(Scene).default([]),
+  /** 공연 전체 큐를 한 줄로. 큐 번호 순서대로 정렬돼 있어야 함 */
   cues: z.array(Cue),
   dataVersion: z.string(),
 });

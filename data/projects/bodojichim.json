@@ -220,7 +220,12 @@
       "label": "인물 F"
     }
   ],
-  "acts": [],
+  "scenes": [
+    {
+      "id": "scene-1",
+      "name": "샘플 장"
+    }
+  ],
   "cues": [
     {
       "id": "cue-1",
@@ -358,7 +363,8 @@
           "posture": "sit",
           "onStage": true
         }
-      ]
+      ],
+      "sceneId": "scene-1"
     },
     {
       "id": "cue-2",
@@ -405,8 +411,9 @@
           "posture": "stand"
         }
       ],
-      "note": "판사만 남기고 양옆 구역을 끈다. 하수 쪽을 키로."
+      "note": "판사만 남기고 양옆 구역을 끈다. 하수 쪽을 키로.",
+      "sceneId": "scene-1"
     }
   ],
-  "dataVersion": "2026-10-31.1"
+  "dataVersion": "2026-10-31.2"
 }

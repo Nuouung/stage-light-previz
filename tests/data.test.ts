@@ -55,6 +55,11 @@ describe("데이터 연결", () => {
       }
     });
 
+    it(`${file}: 큐가 가리키는 장이 모두 존재한다`, () => {
+      const sceneIds = new Set(project.scenes.map((s) => s.id));
+      for (const cue of project.cues) if (cue.sceneId) expect(sceneIds, `${cue.id}의 장`).toContain(cue.sceneId);
+    });
+
     it(`${file}: 큐 번호가 오름차순이다`, () => {
       const nums = project.cues.map((c) => c.number);
       expect(nums).toEqual([...nums].sort((a, b) => a - b));

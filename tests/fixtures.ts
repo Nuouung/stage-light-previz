@@ -9,7 +9,7 @@ export function tinyProject(): Project {
     curtainOverrides: {},
     objects: [],
     characters: [{ id: "p", role: "판사", label: "판사" }],
-    acts: [],
+    scenes: [],
     dataVersion: "test",
     cues: [
       {
