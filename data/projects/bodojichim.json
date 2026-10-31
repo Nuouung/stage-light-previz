@@ -232,80 +232,7 @@
       "number": 1,
       "label": "샘플 · 법정 전체",
       "fadeIn": 3,
-      "lights": [
-        {
-          "fixtureId": "foh-l1",
-          "intensity": 70,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "foh-l2",
-          "intensity": 70,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "foh-l3",
-          "intensity": 70,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "foh-r1",
-          "intensity": 70,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "foh-r2",
-          "intensity": 70,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "foh-r3",
-          "intensity": 70,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "sus2-back1",
-          "intensity": 40,
-          "color": {
-            "r": 60,
-            "g": 80,
-            "b": 200,
-            "w": 0
-          }
-        },
-        {
-          "fixtureId": "sus2-back2",
-          "intensity": 40,
-          "color": {
-            "r": 60,
-            "g": 80,
-            "b": 200,
-            "w": 0
-          }
-        },
-        {
-          "fixtureId": "sus2-back3",
-          "intensity": 40,
-          "color": {
-            "r": 60,
-            "g": 80,
-            "b": 200,
-            "w": 0
-          }
-        }
-      ],
+      "lights": [],
       "blocking": [
         {
           "characterId": "judge",
@@ -371,49 +298,16 @@
       "number": 2,
       "label": "샘플 · 판사 독백",
       "fadeIn": 5,
-      "lights": [
-        {
-          "fixtureId": "foh-l1",
-          "intensity": 0
-        },
-        {
-          "fixtureId": "foh-l3",
-          "intensity": 0
-        },
-        {
-          "fixtureId": "foh-r1",
-          "intensity": 0
-        },
-        {
-          "fixtureId": "foh-r3",
-          "intensity": 0
-        },
-        {
-          "fixtureId": "sus2-back1",
-          "intensity": 0
-        },
-        {
-          "fixtureId": "sus2-back3",
-          "intensity": 0
-        },
-        {
-          "fixtureId": "foh-l2",
-          "intensity": 85
-        },
-        {
-          "fixtureId": "foh-r2",
-          "intensity": 30
-        }
-      ],
+      "lights": [],
       "blocking": [
         {
           "characterId": "judge",
           "posture": "stand"
         }
       ],
-      "note": "판사만 남기고 양옆 구역을 끈다. 하수 쪽을 키로.",
+      "note": "판사만 일어선다. (조명값은 행잉도 받은 뒤 입력)",
       "sceneId": "scene-1"
     }
   ],
-  "dataVersion": "2026-10-31.2"
+  "dataVersion": "2026-10-31.3"
 }

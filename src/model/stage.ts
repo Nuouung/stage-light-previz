@@ -6,6 +6,8 @@ import { Fixture } from "./fixture";
 export const Curtain = z.object({
   id: Id,
   name: z.string(),
+  /** draw = 여닫는 막 / border = 위쪽 가림막 / screen = 흰 스크린 */
+  kind: z.enum(["draw", "border", "screen"]).default("draw"),
   z: z.number().nonnegative(),
   closed: z.boolean(),
 });
@@ -15,7 +17,8 @@ export type Curtain = z.infer<typeof Curtain>;
 export const Position = z.object({
   id: Id,
   name: z.string(),
-  kind: z.enum(["foh", "sus", "side", "floor"]),
+  /** foh = 객석 위 / sus = 무대 위 조명 배튼 / set = 무대 위 세트 배튼 / side·floor = 옆·바닥 */
+  kind: z.enum(["foh", "sus", "set", "side", "floor"]),
   /** 높이(m) */
   y: z.number(),
   /** 깊이(m). 객석 위는 음수 */
@@ -35,8 +38,10 @@ export const Stage = z.object({
   width: z.number().positive(),
   /** 연기 공간 깊이(m) */
   depth: z.number().positive(),
-  /** 무대 바닥 높이(객석 바닥 기준, m) */
+  /** 무대 바닥 높이(객석 바닥 기준, m). 블랙박스면 0 */
   deckHeight: z.number().nonnegative(),
+  /** 무대 바닥 색 (#rrggbb) */
+  floorColor: z.string().regex(/^#[0-9a-fA-F]{6}$/),
   curtains: z.array(Curtain),
   positions: z.array(Position),
   fixtures: z.array(Fixture),
