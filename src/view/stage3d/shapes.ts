@@ -1,0 +1,95 @@
+import { characterHeight, type Project } from "../../model";
+import type { CharacterLook } from "../../player";
+import type { ComposedStage } from "../../stage/compose";
+
+/**
+ * 렌더러에 넘기는 "그릴 것" 목록. 좌표는 데이터 좌표계 그대로(원점 = 프로시니엄 벽면 중앙·바닥).
+ * position은 도형의 바닥 중심.
+ */
+export type Shape = {
+  id: string;
+  group: "floor" | "wall" | "curtain" | "batten" | "object" | "character";
+  kind: "box" | "cylinder";
+  position: { x: number; y: number; z: number };
+  /** box: 폭(x)·높이(y)·깊이(z). cylinder: 지름(x)·높이(y). 배튼(가로 원기둥)은 x가 길이 */
+  size: { x: number; y: number; z: number };
+  rotationY?: number;
+  color: string;
+  label?: string;
+};
+
+const CURTAIN_HEIGHT = 7;
+const CURTAIN_THICK = 0.08;
+/** 검은 막. 배경과 구분되도록 아주 약간 밝게 */
+const BLACK = "#202022";
+/** 열린 막이 양옆에 모여 있는 폭(m) */
+const GATHERED = 1.0;
+
+/** 공연용 무대(바닥·벽·막·배튼·물체)를 그릴 것 목록으로 바꾼다. */
+export function describeStage(composed: ComposedStage): Shape[] {
+  const { stage, curtains, objects } = composed;
+  const W = stage.width;
+  const D = stage.depth;
+  const shapes: Shape[] = [];
+
+  shapes.push({ id: "floor", group: "floor", kind: "box", position: { x: 0, y: -0.02, z: D / 2 }, size: { x: W, y: 0.02, z: D }, color: stage.floorColor });
+  shapes.push({ id: "back-wall", group: "wall", kind: "box", position: { x: 0, y: 0, z: D + 0.1 }, size: { x: W, y: 9, z: 0.2 }, color: "#141416" });
+
+  for (const c of curtains) {
+    if (c.kind === "border") {
+      shapes.push({ id: c.id, group: "curtain", kind: "box", position: { x: 0, y: CURTAIN_HEIGHT - 1.5, z: c.z }, size: { x: W, y: 1.5, z: CURTAIN_THICK }, color: BLACK, label: c.name });
+    } else if (c.kind === "screen") {
+      shapes.push({ id: c.id, group: "curtain", kind: "box", position: { x: 0, y: 0, z: c.z }, size: { x: 8, y: 6, z: 0.03 }, color: "#e8e8e8", label: c.name });
+    } else if (c.closed) {
+      shapes.push({ id: c.id, group: "curtain", kind: "box", position: { x: 0, y: 0, z: c.z }, size: { x: W, y: CURTAIN_HEIGHT, z: CURTAIN_THICK }, color: BLACK, label: c.name });
+    } else {
+      // 열린 막: 양옆 끝에 모여 있음
+      for (const side of [-1, 1]) {
+        shapes.push({ id: `${c.id}-${side < 0 ? "l" : "r"}`, group: "curtain", kind: "box", position: { x: side * (W / 2 - GATHERED / 2), y: 0, z: c.z }, size: { x: GATHERED, y: CURTAIN_HEIGHT, z: CURTAIN_THICK * 2 }, color: BLACK, label: c.name });
+      }
+    }
+  }
+
+  for (const p of stage.positions) {
+    const [x0, x1] = p.xRange;
+    shapes.push({ id: p.id, group: "batten", kind: "cylinder", position: { x: (x0 + x1) / 2, y: p.y, z: p.z }, size: { x: x1 - x0, y: 0.05, z: 0.05 }, color: p.kind === "set" ? "#555555" : "#8a8a8a", label: p.name });
+  }
+
+  for (const o of objects) {
+    const color = o.kind === "platform" ? "#2a2a2a" : o.kind === "chair" ? "#6b4a30" : "#7a5535";
+    shapes.push({ id: o.id, group: "object", kind: "box", position: o.position, size: o.size, rotationY: o.rotation, color, label: o.name });
+  }
+  return shapes;
+}
+
+/** 바닥 위 (x, z)에 단상 같은 물체가 있으면 그 윗면 높이를 돌려준다. */
+export function floorHeightAt(composed: ComposedStage, x: number, z: number): number {
+  let h = 0;
+  for (const o of composed.objects) {
+    if (o.kind !== "platform") continue;
+    const inX = Math.abs(x - o.position.x) <= o.size.x / 2;
+    const inZ = Math.abs(z - o.position.z) <= o.size.z / 2;
+    if (inX && inZ) h = Math.max(h, o.position.y + o.size.y);
+  }
+  return h;
+}
+
+/** 무대에 있는 인물을 원기둥으로. 앉으면 키의 약 0.7배 높이로 그린다. */
+export function describeCharacters(composed: ComposedStage, project: Project, looks: Record<string, CharacterLook>): Shape[] {
+  const shapes: Shape[] = [];
+  for (const c of project.characters) {
+    const look = looks[c.id];
+    if (!look?.onStage || look.x === undefined || look.z === undefined) continue;
+    const h = characterHeight(c) * (look.posture === "sit" ? 0.7 : 1);
+    shapes.push({
+      id: `char-${c.id}`,
+      group: "character",
+      kind: "cylinder",
+      position: { x: look.x, y: floorHeightAt(composed, look.x, look.z), z: look.z },
+      size: { x: 0.4, y: h, z: 0.4 },
+      color: c.color ?? "#d9c2a8",
+      label: c.label,
+    });
+  }
+  return shapes;
+}
