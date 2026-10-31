@@ -48,4 +48,11 @@ describe("인물 그리기", () => {
     const onStage = Object.values(look.characters).filter((l) => l.onStage).length;
     expect(describeCharacters(c, project, look.characters)).toHaveLength(onStage);
   });
+
+  it("인물은 키와 자세를 가진 사람 모형으로 그려진다", () => {
+    const c = composed({});
+    const look = resolveCue(project, staging, project.cues[0]!.id);
+    const fig = describeCharacters(c, project, look.characters)[0]!;
+    expect(fig).toMatchObject({ kind: "figure", size: { y: 1.7 }, pose: "stand" });
+  });
 });

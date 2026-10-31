@@ -113,7 +113,7 @@
       "blocking": [
         {
           "characterId": "juhyuk",
-          "x": -2,
+          "x": -3,
           "z": 1.5,
           "facing": 0,
           "posture": "stand",
@@ -121,7 +121,7 @@
         },
         {
           "characterId": "jeongbae",
-          "x": -1,
+          "x": -2,
           "z": 1.5,
           "facing": 0,
           "posture": "stand",
@@ -129,7 +129,7 @@
         },
         {
           "characterId": "seunguk",
-          "x": 0,
+          "x": -1,
           "z": 1.5,
           "facing": 0,
           "posture": "stand",
@@ -137,7 +137,7 @@
         },
         {
           "characterId": "dongyeol",
-          "x": 1,
+          "x": 0,
           "z": 1.5,
           "facing": 0,
           "posture": "stand",
@@ -145,7 +145,7 @@
         },
         {
           "characterId": "wondal",
-          "x": 2,
+          "x": 1,
           "z": 1.5,
           "facing": 0,
           "posture": "stand",
@@ -153,11 +153,19 @@
         },
         {
           "characterId": "voice-1",
-          "onStage": false
+          "x": 2,
+          "z": 1.5,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
         },
         {
           "characterId": "voice-2",
-          "onStage": false
+          "x": 3,
+          "z": 1.5,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
         }
       ]
     },
@@ -172,5 +180,5 @@
       ]
     }
   ],
-  "dataVersion": "2026-10-31.5"
+  "dataVersion": "2026-10-31.6"
 }

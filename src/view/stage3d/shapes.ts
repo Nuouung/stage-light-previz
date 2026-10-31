@@ -9,11 +9,14 @@ import type { ComposedStage } from "../../stage/compose";
 export type Shape = {
   id: string;
   group: "floor" | "wall" | "curtain" | "batten" | "object" | "character";
-  kind: "box" | "cylinder";
+  kind: "box" | "cylinder" | "figure";
   position: { x: number; y: number; z: number };
-  /** box: 폭(x)·높이(y)·깊이(z). cylinder: 지름(x)·높이(y). 배튼(가로 원기둥)은 x가 길이 */
+  /** box: 폭(x)·높이(y)·깊이(z). cylinder: 지름(x)·높이(y). 배튼(가로 원기둥)은 x가 길이. figure: y = 키 */
   size: { x: number; y: number; z: number };
+  /** 바라보는 방향(도). 0 = 객석 정면 */
   rotationY?: number;
+  /** figure 전용: 서 있음 / 앉음 */
+  pose?: "stand" | "sit";
   color: string;
   label?: string;
 };
@@ -74,19 +77,20 @@ export function floorHeightAt(composed: ComposedStage, x: number, z: number): nu
   return h;
 }
 
-/** 무대에 있는 인물을 원기둥으로. 앉으면 키의 약 0.7배 높이로 그린다. */
+/** 무대에 있는 인물을 사람 모형으로. 키·자세·방향을 넘기고, 모양은 렌더러가 만든다. */
 export function describeCharacters(composed: ComposedStage, project: Project, looks: Record<string, CharacterLook>): Shape[] {
   const shapes: Shape[] = [];
   for (const c of project.characters) {
     const look = looks[c.id];
     if (!look?.onStage || look.x === undefined || look.z === undefined) continue;
-    const h = characterHeight(c) * (look.posture === "sit" ? 0.7 : 1);
     shapes.push({
       id: `char-${c.id}`,
       group: "character",
-      kind: "cylinder",
+      kind: "figure",
       position: { x: look.x, y: floorHeightAt(composed, look.x, look.z), z: look.z },
-      size: { x: 0.4, y: h, z: 0.4 },
+      size: { x: 0.45, y: characterHeight(c), z: 0.3 },
+      rotationY: look.facing ?? 0,
+      pose: look.posture ?? "stand",
       color: c.color ?? "#d9c2a8",
       label: c.label,
     });

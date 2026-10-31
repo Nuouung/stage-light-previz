@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { buildFigure } from "./figure";
 import type { Shape } from "./shapes";
 
 /**
@@ -47,7 +48,14 @@ export function createRenderer(canvas: HTMLCanvasElement) {
   const layer = new THREE.Group();
   scene.add(layer);
 
-  function meshOf(s: Shape): THREE.Mesh {
+  function meshOf(s: Shape): THREE.Object3D {
+    if (s.kind === "figure") {
+      const fig = buildFigure(s.size.y, s.pose ?? "stand", s.color);
+      fig.position.copy(toThree(s.position.x, s.position.y, s.position.z));
+      if (s.rotationY) fig.rotation.y = (-s.rotationY * Math.PI) / 180;
+      fig.name = s.id;
+      return fig;
+    }
     const mat = new THREE.MeshStandardMaterial({ color: s.color, roughness: s.group === "floor" ? 0.35 : 0.85 });
     let mesh: THREE.Mesh;
     if (s.kind === "cylinder" && s.group === "batten") {
@@ -69,9 +77,12 @@ export function createRenderer(canvas: HTMLCanvasElement) {
   function draw(shapes: Shape[]) {
     for (const child of [...layer.children]) {
       layer.remove(child);
-      const m = child as THREE.Mesh;
-      m.geometry.dispose();
-      (m.material as THREE.Material).dispose();
+      child.traverse((o) => {
+        if (o instanceof THREE.Mesh) {
+          o.geometry.dispose();
+          (o.material as THREE.Material).dispose();
+        }
+      });
     }
     for (const s of shapes) layer.add(meshOf(s));
   }
