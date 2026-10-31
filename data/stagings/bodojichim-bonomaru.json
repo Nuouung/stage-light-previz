@@ -3,7 +3,7 @@
   "projectId": "bodojichim",
   "stageId": "bonomaru",
   "curtainOverrides": {
-    "draw-2": true
+    "draw-3": true
   },
   "placements": [
     {
@@ -180,5 +180,5 @@
       ]
     }
   ],
-  "dataVersion": "2026-10-31.7"
+  "dataVersion": "2026-10-31.8"
 }
