@@ -13,7 +13,8 @@ export type ViewName = "audience" | "top" | "side";
 
 const VIEWS: Record<ViewName, { eye: [number, number, number]; target: [number, number, number] }> = {
   audience: { eye: [0, 3.2, -6.5], target: [0, 1.5, 4.5] },
-  top: { eye: [0, 22, 4.7], target: [0, 0, 4.7] },
+  // 객석이 화면 아래에 오도록 아주 살짝 객석 쪽에서 내려다본다
+  top: { eye: [0, 22, 4.6], target: [0, 0, 4.7] },
   side: { eye: [16, 5, 2], target: [0, 1.5, 4.5] },
 };
 

@@ -11,7 +11,7 @@ export const Placement = z.object({
   objectId: Id,
   /** 바닥 중심 위치 */
   position: Vec3,
-  /** y축 회전(도) */
+  /** 위에서 볼 때 y축 회전(도). 0 = 긴 변이 객석과 나란함 */
   rotation: z.number().default(0),
 });
 export type Placement = z.infer<typeof Placement>;
@@ -59,6 +59,8 @@ export const Staging = z.object({
   placements: z.array(Placement),
   /** 큐마다 바뀌는 값. 아무것도 안 바뀌는 큐는 빠져도 된다 */
   cues: z.array(CueValues).default([]),
+  /** 아직 현장에서 확인 안 된 값에 대한 메모 */
+  notes: z.array(z.string()).default([]),
   dataVersion: z.string(),
 });
 export type Staging = z.infer<typeof Staging>;

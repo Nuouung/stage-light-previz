@@ -36,10 +36,11 @@ describe("무대 그리기 목록", () => {
 });
 
 describe("인물 그리기", () => {
-  it("단상 위에 선 인물은 단상 높이만큼 올라가 있다", () => {
+  it("단을 겹쳐 쌓은 곳에서는 가장 위층 윗면에 선다", () => {
     const c = composed({});
-    const platform = c.objects.find((o) => o.kind === "platform")!;
-    expect(floorHeightAt(c, platform.position.x, platform.position.z)).toBeCloseTo(platform.size.y);
+    const tops = c.objects.filter((o) => o.kind === "platform").map((o) => o.position.y + o.size.y);
+    const top = c.objects.find((o) => o.kind === "platform" && o.position.y + o.size.y === Math.max(...tops))!;
+    expect(floorHeightAt(c, top.position.x, top.position.z)).toBeCloseTo(Math.max(...tops));
   });
 
   it("무대에 나와 있는 인물만 그려진다", () => {

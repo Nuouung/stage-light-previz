@@ -7,11 +7,20 @@
   },
   "placements": [
     {
-      "objectId": "judge-platform",
+      "objectId": "platform-1",
       "position": {
         "x": 0,
         "y": 0,
-        "z": 3.85
+        "z": 4.1
+      },
+      "rotation": 0
+    },
+    {
+      "objectId": "platform-2",
+      "position": {
+        "x": 0,
+        "y": 0.15,
+        "z": 4.1
       },
       "rotation": 0
     },
@@ -19,26 +28,8 @@
       "objectId": "desk-judge",
       "position": {
         "x": 0,
-        "y": 0.4,
-        "z": 3.5
-      },
-      "rotation": 0
-    },
-    {
-      "objectId": "desk-left",
-      "position": {
-        "x": -2.3,
-        "y": 0,
-        "z": 2.4
-      },
-      "rotation": 0
-    },
-    {
-      "objectId": "desk-right",
-      "position": {
-        "x": 2.3,
-        "y": 0,
-        "z": 2.4
+        "y": 0.29,
+        "z": 4.1
       },
       "rotation": 0
     },
@@ -46,64 +37,82 @@
       "objectId": "chair-judge",
       "position": {
         "x": 0,
-        "y": 0.4,
-        "z": 4.1
+        "y": 0.29,
+        "z": 4.75
       },
       "rotation": 0
     },
     {
-      "objectId": "chair-left-1",
+      "objectId": "desk-right",
       "position": {
-        "x": -2.75,
+        "x": 3.6,
         "y": 0,
-        "z": 2.95
+        "z": 2.0
       },
-      "rotation": 0
-    },
-    {
-      "objectId": "chair-left-2",
-      "position": {
-        "x": -2.3,
-        "y": 0,
-        "z": 2.95
-      },
-      "rotation": 0
-    },
-    {
-      "objectId": "chair-left-3",
-      "position": {
-        "x": -1.85,
-        "y": 0,
-        "z": 2.95
-      },
-      "rotation": 0
+      "rotation": 45
     },
     {
       "objectId": "chair-right-1",
       "position": {
-        "x": 1.85,
+        "x": 3.69,
         "y": 0,
-        "z": 2.95
+        "z": 2.76
       },
-      "rotation": 0
+      "rotation": 45
     },
     {
       "objectId": "chair-right-2",
       "position": {
-        "x": 2.3,
+        "x": 4.02,
         "y": 0,
-        "z": 2.95
+        "z": 2.42
       },
-      "rotation": 0
+      "rotation": 45
     },
     {
       "objectId": "chair-right-3",
       "position": {
-        "x": 2.75,
+        "x": 4.36,
         "y": 0,
-        "z": 2.95
+        "z": 2.09
       },
-      "rotation": 0
+      "rotation": 45
+    },
+    {
+      "objectId": "desk-left",
+      "position": {
+        "x": -3.6,
+        "y": 0,
+        "z": 2.0
+      },
+      "rotation": -45
+    },
+    {
+      "objectId": "chair-left-1",
+      "position": {
+        "x": -4.02,
+        "y": 0,
+        "z": 2.42
+      },
+      "rotation": -45
+    },
+    {
+      "objectId": "chair-down-left",
+      "position": {
+        "x": -2.25,
+        "y": 0.15,
+        "z": 4.2
+      },
+      "rotation": -25
+    },
+    {
+      "objectId": "chair-down-right",
+      "position": {
+        "x": 2.25,
+        "y": 0.15,
+        "z": 4.2
+      },
+      "rotation": 25
     }
   ],
   "cues": [
@@ -180,5 +189,12 @@
       ]
     }
   ],
-  "dataVersion": "2026-10-31.8"
+  "dataVersion": "2026-10-31.9",
+  "notes": [
+    "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
+    "덧마루 한 장 두께 약 14.5cm는 사진으로 추정한 값 (1단 15cm, 2단 29cm)",
+    "단 뒤끝 = 연기 공간 끝(깊이 5m). 연기 공간 깊이 5m, 그 뒤는 조명 안 비춤",
+    "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
+    "엎어진 의자는 바닥에 누운 상자로 단순화"
+  ]
 }

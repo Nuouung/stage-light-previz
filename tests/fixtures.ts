@@ -24,6 +24,7 @@ export function tinyStaging(): Staging {
     projectId: "tiny",
     stageId: "s",
     curtainOverrides: {},
+    notes: [],
     placements: [{ objectId: "box", position: { x: 0, y: 0, z: 3 }, rotation: 0 }],
     dataVersion: "test",
     cues: [
