@@ -1,0 +1,183 @@
+{
+  "id": "bonomaru",
+  "venue": "보노마루",
+  "width": 9.3,
+  "depth": 9.15,
+  "deckHeight": 0.53,
+  "curtains": [
+    {
+      "id": "draw-2",
+      "name": "2번 막 (Draw 2)",
+      "z": 4.85,
+      "closed": false
+    }
+  ],
+  "positions": [
+    {
+      "id": "foh-1",
+      "name": "객석 배튼 1",
+      "kind": "foh",
+      "y": 6.0,
+      "z": -3.0,
+      "xRange": [
+        -5,
+        5
+      ]
+    },
+    {
+      "id": "sus-1",
+      "name": "SUS 1",
+      "kind": "sus",
+      "y": 6.0,
+      "z": 1.65,
+      "xRange": [
+        -5.35,
+        5.35
+      ]
+    },
+    {
+      "id": "sus-2",
+      "name": "SUS 2",
+      "kind": "sus",
+      "y": 6.0,
+      "z": 3.65,
+      "xRange": [
+        -5.35,
+        5.35
+      ]
+    }
+  ],
+  "fixtures": [
+    {
+      "id": "foh-l1",
+      "typeId": "generic-fresnel",
+      "positionId": "foh-1",
+      "x": -4.93,
+      "channelNo": 1,
+      "aim": {
+        "x": -2.33,
+        "y": 1.6,
+        "z": 1.5
+      },
+      "beamAngle": 30,
+      "role": "하수 프론트 · 앞 구역 1"
+    },
+    {
+      "id": "foh-l2",
+      "typeId": "generic-fresnel",
+      "positionId": "foh-1",
+      "x": -2.6,
+      "channelNo": 2,
+      "aim": {
+        "x": 0,
+        "y": 1.6,
+        "z": 1.5
+      },
+      "beamAngle": 30,
+      "role": "하수 프론트 · 앞 구역 2"
+    },
+    {
+      "id": "foh-l3",
+      "typeId": "generic-fresnel",
+      "positionId": "foh-1",
+      "x": -0.27,
+      "channelNo": 3,
+      "aim": {
+        "x": 2.33,
+        "y": 1.6,
+        "z": 1.5
+      },
+      "beamAngle": 30,
+      "role": "하수 프론트 · 앞 구역 3"
+    },
+    {
+      "id": "foh-r1",
+      "typeId": "generic-fresnel",
+      "positionId": "foh-1",
+      "x": 0.27,
+      "channelNo": 4,
+      "aim": {
+        "x": -2.33,
+        "y": 1.6,
+        "z": 1.5
+      },
+      "beamAngle": 30,
+      "role": "상수 프론트 · 앞 구역 1"
+    },
+    {
+      "id": "foh-r2",
+      "typeId": "generic-fresnel",
+      "positionId": "foh-1",
+      "x": 2.6,
+      "channelNo": 5,
+      "aim": {
+        "x": 0,
+        "y": 1.6,
+        "z": 1.5
+      },
+      "beamAngle": 30,
+      "role": "상수 프론트 · 앞 구역 2"
+    },
+    {
+      "id": "foh-r3",
+      "typeId": "generic-fresnel",
+      "positionId": "foh-1",
+      "x": 4.93,
+      "channelNo": 6,
+      "aim": {
+        "x": 2.33,
+        "y": 1.6,
+        "z": 1.5
+      },
+      "beamAngle": 30,
+      "role": "상수 프론트 · 앞 구역 3"
+    },
+    {
+      "id": "sus2-back1",
+      "typeId": "generic-rgbw-wash",
+      "positionId": "sus-2",
+      "x": -2.33,
+      "channelNo": 7,
+      "aim": {
+        "x": -2.33,
+        "y": 1.0,
+        "z": 1.5
+      },
+      "beamAngle": 40,
+      "role": "백 · 구역 1"
+    },
+    {
+      "id": "sus2-back2",
+      "typeId": "generic-rgbw-wash",
+      "positionId": "sus-2",
+      "x": 0,
+      "channelNo": 8,
+      "aim": {
+        "x": 0,
+        "y": 1.0,
+        "z": 1.5
+      },
+      "beamAngle": 40,
+      "role": "백 · 구역 2"
+    },
+    {
+      "id": "sus2-back3",
+      "typeId": "generic-rgbw-wash",
+      "positionId": "sus-2",
+      "x": 2.33,
+      "channelNo": 9,
+      "aim": {
+        "x": 2.33,
+        "y": 1.0,
+        "z": 1.5
+      },
+      "beamAngle": 40,
+      "role": "백 · 구역 3"
+    }
+  ],
+  "notes": [
+    "폭 9.3m · 깊이 9.15m · 2번 막 4.85m는 도면 확인값",
+    "무대 높이 0.53m는 단면도 추정값",
+    "배튼 높이·위치와 조명 배치는 가정값. 극장 행잉도 받으면 교체"
+  ]
+}
