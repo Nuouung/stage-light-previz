@@ -25,8 +25,13 @@ describe("무대 그리기 목록", () => {
     expect(shapes.filter((s) => s.id.startsWith("draw-2-"))).toHaveLength(2);
   });
 
-  it("배튼마다 막대가 하나씩 그려진다", () => {
+  it("기본으로는 조명 배튼만 그리고 세트 배튼은 그리지 않는다", () => {
     const battens = describeStage(composed({})).filter((s) => s.group === "batten");
+    expect(battens).toHaveLength(stage.positions.filter((p) => p.kind !== "set").length);
+  });
+
+  it("세트 배튼을 켜면 모든 배튼이 그려진다", () => {
+    const battens = describeStage(composed({}), { setBattens: true }).filter((s) => s.group === "batten");
     expect(battens).toHaveLength(stage.positions.length);
   });
 

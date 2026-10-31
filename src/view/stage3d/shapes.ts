@@ -36,7 +36,10 @@ const WALNUT = "#6b4128";
 const GATHERED = 1.0;
 
 /** 공연용 무대(바닥·벽·막·배튼·물체)를 그릴 것 목록으로 바꾼다. */
-export function describeStage(composed: ComposedStage): Shape[] {
+/** 무엇을 같이 그릴지. 기본은 세트 배튼을 그리지 않는다(조명 작업에 필요 없으니). */
+export type StageViewOptions = { setBattens: boolean };
+
+export function describeStage(composed: ComposedStage, opts: StageViewOptions = { setBattens: false }): Shape[] {
   const { stage, curtains, objects } = composed;
   const W = stage.width;
   const D = stage.depth;
@@ -61,6 +64,7 @@ export function describeStage(composed: ComposedStage): Shape[] {
   }
 
   for (const p of stage.positions) {
+    if (p.kind === "set" && !opts.setBattens) continue;
     const [x0, x1] = p.xRange;
     shapes.push({ id: p.id, group: "batten", kind: "cylinder", position: { x: (x0 + x1) / 2, y: p.y, z: p.z }, size: { x: x1 - x0, y: 0.05, z: 0.05 }, color: p.kind === "set" ? "#555555" : "#8a8a8a", label: p.name });
   }
