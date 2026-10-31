@@ -136,31 +136,45 @@
       "cueId": "cue-0",
       "lights": [
         {
-          "fixtureId": "front-down-1",
+          "fixtureId": "front-key-1",
           "intensity": 60,
           "color": {
             "cct": 3200
           }
         },
         {
-          "fixtureId": "front-down-2",
+          "fixtureId": "front-key-2",
           "intensity": 60,
           "color": {
             "cct": 3200
           }
         },
         {
-          "fixtureId": "front-down-3",
+          "fixtureId": "front-key-3",
           "intensity": 60,
           "color": {
             "cct": 3200
           }
         },
         {
-          "fixtureId": "front-down-4",
-          "intensity": 60,
+          "fixtureId": "front-fill-1",
+          "intensity": 45,
           "color": {
-            "cct": 3200
+            "cct": 4300
+          }
+        },
+        {
+          "fixtureId": "front-fill-2",
+          "intensity": 45,
+          "color": {
+            "cct": 4300
+          }
+        },
+        {
+          "fixtureId": "front-fill-3",
+          "intensity": 45,
+          "color": {
+            "cct": 4300
           }
         },
         {
@@ -179,13 +193,6 @@
         },
         {
           "fixtureId": "front-up-3",
-          "intensity": 60,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-up-4",
           "intensity": 60,
           "color": {
             "cct": 3200
@@ -213,13 +220,6 @@
           }
         },
         {
-          "fixtureId": "top-down-4",
-          "intensity": 40,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
           "fixtureId": "top-up-1",
           "intensity": 40,
           "color": {
@@ -241,13 +241,6 @@
           }
         },
         {
-          "fixtureId": "top-up-4",
-          "intensity": 40,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
           "fixtureId": "back-1",
           "intensity": 35,
           "color": {
@@ -263,13 +256,6 @@
         },
         {
           "fixtureId": "back-3",
-          "intensity": 35,
-          "color": {
-            "cct": 4000
-          }
-        },
-        {
-          "fixtureId": "back-4",
           "intensity": 35,
           "color": {
             "cct": 4000
@@ -370,7 +356,7 @@
       ]
     }
   ],
-  "dataVersion": "2026-10-31.15",
+  "dataVersion": "2026-10-31.16",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "덧마루 한 장 두께 약 14.5cm는 사진으로 추정한 값 (1단 15cm, 2단 29cm)",
