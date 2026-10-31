@@ -165,9 +165,71 @@
           "onStage": false
         }
       ]
+    },
+    {
+      "cueId": "cue-test-row",
+      "lights": [],
+      "blocking": [
+        {
+          "characterId": "juhyuk",
+          "x": -2.1,
+          "z": 0.6,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "jeongbae",
+          "x": -1.4,
+          "z": 0.6,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "seunguk",
+          "x": -0.7,
+          "z": 0.6,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "dongyeol",
+          "x": 0,
+          "z": 0.6,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "wondal",
+          "x": 0.7,
+          "z": 0.6,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "voice-1",
+          "x": 1.4,
+          "z": 0.6,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "voice-2",
+          "x": 2.1,
+          "z": 0.6,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        }
+      ]
     }
   ],
-  "dataVersion": "2026-10-31.11",
+  "dataVersion": "2026-10-31.12",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "덧마루 한 장 두께 약 14.5cm는 사진으로 추정한 값 (1단 15cm, 2단 29cm)",

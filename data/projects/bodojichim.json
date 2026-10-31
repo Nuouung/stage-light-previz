@@ -128,43 +128,50 @@
       "id": "juhyuk",
       "role": "주혁",
       "label": "주혁",
-      "color": "#e53935"
+      "color": "#e53935",
+      "height": 1.74
     },
     {
       "id": "jeongbae",
       "role": "정배",
       "label": "정배",
-      "color": "#fb8c00"
+      "color": "#fb8c00",
+      "height": 1.74
     },
     {
       "id": "seunguk",
       "role": "승욱",
       "label": "승욱",
-      "color": "#fdd835"
+      "color": "#fdd835",
+      "height": 1.74
     },
     {
       "id": "dongyeol",
       "role": "돈결",
       "label": "돈결",
-      "color": "#43a047"
+      "color": "#43a047",
+      "height": 1.74
     },
     {
       "id": "wondal",
       "role": "원달",
       "label": "원달",
-      "color": "#1e88e5"
+      "color": "#1e88e5",
+      "height": 1.61
     },
     {
       "id": "voice-1",
       "role": "목소리1",
       "label": "목소리1",
-      "color": "#3949ab"
+      "color": "#3949ab",
+      "height": 1.61
     },
     {
       "id": "voice-2",
       "role": "목소리2",
       "label": "목소리2",
-      "color": "#8e24aa"
+      "color": "#8e24aa",
+      "height": 1.61
     }
   ],
   "scenes": [],
@@ -175,7 +182,14 @@
       "label": "프리셋",
       "fadeIn": 0,
       "note": "관객 입장. 배우는 모두 무대 밖"
+    },
+    {
+      "id": "cue-test-row",
+      "number": 1,
+      "label": "테스트 · 7명 가운데 일렬",
+      "fadeIn": 0,
+      "note": "공간 확인용. 키는 남 1.74m·여 1.61m로 가정"
     }
   ],
-  "dataVersion": "2026-10-31.11"
+  "dataVersion": "2026-10-31.12"
 }

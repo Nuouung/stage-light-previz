@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { Project, Stage, Staging } from "../src/model";
+import { characterHeight, Project, Stage, Staging } from "../src/model";
 import { resolveCue } from "../src/player";
 import { composeStage } from "../src/stage/compose";
 import { describeActingArea, describeCharacters, describeStage, floorHeightAt } from "../src/view/stage3d/shapes";
@@ -52,9 +52,9 @@ describe("인물 그리기", () => {
 
   it("인물은 키와 자세를 가진 사람 모형으로 그려진다", () => {
     const c = composed({});
-    const id = project.characters[0]!.id;
-    const fig = describeCharacters(c, project, { [id]: { x: 0, z: 1, posture: "stand", onStage: true } })[0]!;
-    expect(fig).toMatchObject({ kind: "figure", size: { y: 1.7 }, pose: "stand" });
+    const ch = project.characters[0]!;
+    const fig = describeCharacters(c, project, { [ch.id]: { x: 0, z: 1, posture: "stand", onStage: true } })[0]!;
+    expect(fig).toMatchObject({ kind: "figure", size: { y: characterHeight(ch) }, pose: "stand" });
   });
 
   it("프리셋에서는 무대에 아무도 없다", () => {
