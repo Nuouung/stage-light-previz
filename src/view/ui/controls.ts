@@ -9,12 +9,16 @@ export type ControlsProps = {
   currentCueId: string;
   curtains: Curtain[];
   view: ViewName;
+  /** 연기 공간 경계가 데이터에 있을 때만 버튼을 보여준다 */
+  hasActingArea: boolean;
+  showActingArea: boolean;
 };
 
 export type ControlsHandlers = {
   onCue(id: string): void;
   onToggleCurtain(id: string): void;
   onView(view: ViewName): void;
+  onToggleActingArea(): void;
 };
 
 const VIEW_LABEL: Record<ViewName, string> = { audience: "객석", top: "위", side: "옆" };
@@ -37,6 +41,7 @@ export function renderControls(root: HTMLElement, p: ControlsProps, h: ControlsH
     <section class="row"><span>막</span>${draws
       .map((c) => `<button data-curtain="${c.id}" class="${c.closed ? "on" : ""}">${c.name.split(" (")[0]} ${c.closed ? "닫힘" : "열림"}</button>`)
       .join("")}</section>
+    ${p.hasActingArea ? `<section class="row"><span>표시</span><button data-guide="acting" class="${p.showActingArea ? "on" : ""}">연기 공간 ${p.showActingArea ? "켬" : "끔"}</button></section>` : ""}
   `;
 
   root.querySelectorAll<HTMLButtonElement>("[data-cue]").forEach((b) =>
@@ -46,5 +51,6 @@ export function renderControls(root: HTMLElement, p: ControlsProps, h: ControlsH
     }),
   );
   root.querySelectorAll<HTMLButtonElement>("[data-view]").forEach((b) => b.addEventListener("click", () => h.onView(b.dataset.view as ViewName)));
+  root.querySelector<HTMLButtonElement>("[data-guide=acting]")?.addEventListener("click", () => h.onToggleActingArea());
   root.querySelectorAll<HTMLButtonElement>("[data-curtain]").forEach((b) => b.addEventListener("click", () => h.onToggleCurtain(b.dataset.curtain!)));
 }

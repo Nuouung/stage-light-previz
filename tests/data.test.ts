@@ -75,6 +75,23 @@ describe("배치 데이터", () => {
       for (const id of Object.keys(staging.curtainOverrides)) expect(curtainIds, `막 ${id}`).toContain(id);
     });
 
+    it(`${file}: 놓은 물체가 모두 연기 공간 안에 들어간다`, () => {
+      const area = staging.actingArea;
+      if (!area) return;
+      for (const p of staging.placements) {
+        const o = project?.objects.find((d) => d.id === p.objectId);
+        if (!o) continue;
+        // 위에서 본 바닥 면적. 넘어진 의자는 높이가 바닥 길이가 된다
+        const sx = o.size.x;
+        const sz = p.tipped ? o.size.y : o.size.z;
+        const r = (p.rotation * Math.PI) / 180;
+        const hx = (Math.abs(Math.cos(r)) * sx + Math.abs(Math.sin(r)) * sz) / 2;
+        const hz = (Math.abs(Math.sin(r)) * sx + Math.abs(Math.cos(r)) * sz) / 2;
+        expect(Math.abs(p.position.x) + hx, `${o.id} 가로`).toBeLessThanOrEqual(area.width / 2 + 0.01);
+        expect(p.position.z + hz, `${o.id} 깊이`).toBeLessThanOrEqual(area.depth + 0.01);
+      }
+    });
+
     it(`${file}: 큐 값이 가리키는 큐·조명·인물이 모두 존재한다`, () => {
       const cueIds = new Set(project?.cues.map((c) => c.id));
       const fixtureIds = new Set(stage?.fixtures.map((f) => f.id));

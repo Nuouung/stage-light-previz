@@ -5,6 +5,10 @@
   "curtainOverrides": {
     "draw-3": true
   },
+  "actingArea": {
+    "width": 7,
+    "depth": 5
+  },
   "placements": [
     {
       "objectId": "platform-1",
@@ -49,9 +53,9 @@
     {
       "objectId": "desk-right",
       "position": {
-        "x": 3.6,
+        "x": 2.3,
         "y": 0,
-        "z": 2.0
+        "z": 1.5
       },
       "rotation": 45,
       "tipped": false
@@ -59,9 +63,9 @@
     {
       "objectId": "chair-right-1",
       "position": {
-        "x": 3.69,
+        "x": 2.39,
         "y": 0,
-        "z": 2.76
+        "z": 2.26
       },
       "rotation": 45,
       "tipped": false
@@ -69,9 +73,9 @@
     {
       "objectId": "chair-right-2",
       "position": {
-        "x": 4.02,
+        "x": 2.72,
         "y": 0,
-        "z": 2.42
+        "z": 1.92
       },
       "rotation": 45,
       "tipped": false
@@ -79,9 +83,9 @@
     {
       "objectId": "chair-right-3",
       "position": {
-        "x": 4.36,
+        "x": 3.06,
         "y": 0,
-        "z": 2.09
+        "z": 1.59
       },
       "rotation": 45,
       "tipped": false
@@ -89,9 +93,9 @@
     {
       "objectId": "desk-left",
       "position": {
-        "x": -3.6,
+        "x": -2.3,
         "y": 0,
-        "z": 2.0
+        "z": 1.5
       },
       "rotation": -45,
       "tipped": false
@@ -99,9 +103,9 @@
     {
       "objectId": "chair-left-1",
       "position": {
-        "x": -4.02,
+        "x": -2.72,
         "y": 0,
-        "z": 2.42
+        "z": 1.92
       },
       "rotation": -45,
       "tipped": false
@@ -163,11 +167,11 @@
       ]
     }
   ],
-  "dataVersion": "2026-10-31.10",
+  "dataVersion": "2026-10-31.11",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "덧마루 한 장 두께 약 14.5cm는 사진으로 추정한 값 (1단 15cm, 2단 29cm)",
-    "단 뒤끝 = 연기 공간 끝(깊이 5m). 연기 공간 깊이 5m, 그 뒤는 조명 안 비춤",
-    "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽"
+    "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
+    "연기 공간 = 폭 7m × 깊이 5m(조명으로 비추는 영역). 책상·의자는 모두 이 안에 들어감. 두 책상 사이 가장 좁은 폭 약 3.1m"
   ]
 }

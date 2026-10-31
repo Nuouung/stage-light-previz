@@ -8,7 +8,7 @@ import type { ComposedStage } from "../../stage/compose";
  */
 export type Shape = {
   id: string;
-  group: "floor" | "wall" | "curtain" | "batten" | "object" | "character";
+  group: "floor" | "wall" | "curtain" | "batten" | "object" | "character" | "guide";
   /** table·chair·figure는 모양을 렌더러가 만든다 */
   kind: "box" | "cylinder" | "figure" | "table" | "chair";
   position: { x: number; y: number; z: number };
@@ -73,6 +73,24 @@ export function describeStage(composed: ComposedStage): Shape[] {
     else shapes.push({ ...base, kind: "box", color: "#7a5535" });
   }
   return shapes;
+}
+
+/** 바닥 테이프 굵기(m)와 색 */
+const TAPE = 0.05;
+const TAPE_COLOR = "#e0b84a";
+
+/** 연기 공간 경계를 바닥에 붙인 테이프 4줄로. 무대 중앙 기준 폭 width, 앞끝부터 깊이 depth. */
+export function describeActingArea(area: { width: number; depth: number }): Shape[] {
+  const { width: w, depth: d } = area;
+  const tape = (id: string, x: number, z: number, sx: number, sz: number): Shape => ({
+    id: `acting-${id}`, group: "guide", kind: "box", position: { x, y: 0.002, z }, size: { x: sx, y: 0.004, z: sz }, color: TAPE_COLOR,
+  });
+  return [
+    tape("front", 0, TAPE / 2, w, TAPE),
+    tape("back", 0, d - TAPE / 2, w, TAPE),
+    tape("left", -w / 2 + TAPE / 2, d / 2, TAPE, d),
+    tape("right", w / 2 - TAPE / 2, d / 2, TAPE, d),
+  ];
 }
 
 /** 바닥 위 (x, z)에 단상 같은 물체가 있으면 그 윗면 높이를 돌려준다. */

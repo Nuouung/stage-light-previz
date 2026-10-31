@@ -2,7 +2,7 @@ import { describe, expect, it } from "vitest";
 import { Project, Stage, Staging } from "../src/model";
 import { resolveCue } from "../src/player";
 import { composeStage } from "../src/stage/compose";
-import { describeCharacters, describeStage, floorHeightAt } from "../src/view/stage3d/shapes";
+import { describeActingArea, describeCharacters, describeStage, floorHeightAt } from "../src/view/stage3d/shapes";
 import bonomaru from "../data/stages/bonomaru.json";
 import bodojichim from "../data/projects/bodojichim.json";
 import bodojichimBonomaru from "../data/stagings/bodojichim-bonomaru.json";
@@ -74,5 +74,16 @@ describe("가구 그리기", () => {
     const shapes = describeStage(composed({}));
     expect(shapes.find((s) => s.id === "chair-down-left")?.tipped).toBe(true);
     expect(shapes.find((s) => s.id === "chair-judge")?.tipped).toBe(false);
+  });
+});
+
+describe("연기 공간 표시", () => {
+  it("폭 7m·깊이 5m면 테이프 4줄이 그 경계에 붙는다", () => {
+    const tapes = describeActingArea({ width: 7, depth: 5 });
+    expect(tapes).toHaveLength(4);
+    const right = tapes.find((s) => s.id === "acting-right")!;
+    expect(right.position.x + right.size.x / 2).toBeCloseTo(3.5);
+    const back = tapes.find((s) => s.id === "acting-back")!;
+    expect(back.position.z + back.size.z / 2).toBeCloseTo(5);
   });
 });
