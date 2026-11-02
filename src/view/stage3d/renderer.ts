@@ -55,7 +55,7 @@ export function createRenderer(canvas: HTMLCanvasElement) {
 
   function meshOf(s: Shape): THREE.Object3D {
     if (s.kind === "figure") {
-      const fig = buildFigure(s.size.y, s.pose ?? "stand", s.color);
+      const fig = buildFigure(s.size.y, s.pose ?? "stand", s.color, s.appearance);
       fig.position.copy(toThree(s.position.x, s.position.y, s.position.z));
       if (s.rotationY) fig.rotation.y = (-s.rotationY * Math.PI) / 180;
       fig.name = s.id;
@@ -95,7 +95,8 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     for (const child of [...layer.children]) {
       layer.remove(child);
       child.traverse((o) => {
-        if (o instanceof THREE.Mesh || o instanceof THREE.LineSegments) {
+        // 인물 메시·재질은 인물끼리 나눠 쓰고 다음 그리기에도 다시 쓴다
+        if ((o instanceof THREE.Mesh || o instanceof THREE.LineSegments) && !o.userData.shared) {
           o.geometry.dispose();
           (o.material as THREE.Material).dispose();
         }

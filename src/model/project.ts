@@ -1,4 +1,5 @@
 import { z } from "zod";
+import { Appearance } from "./appearance";
 import { Id, Vec3 } from "./common";
 
 /**
@@ -30,6 +31,8 @@ export const Character = z.object({
   height: z.number().positive().optional(),
   /** 화면 표시 색 (#rrggbb) */
   color: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
+  /** 겉모습(체형·머리·얼굴·의상). 없으면 기본 인물 */
+  appearance: Appearance.optional(),
 });
 export type Character = z.infer<typeof Character>;
 
