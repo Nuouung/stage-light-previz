@@ -1,12 +1,12 @@
 import * as THREE from "three";
 
 /**
- * 무대 블로킹용 중립 마네킹.
+ * 무대 블로킹용 단순 인체 모델.
  * 원점은 발바닥 중심, 얼굴은 -z(객석) 방향.
- * 얼굴·의상 디테일보다 신체 비율과 몸의 방향이 읽히는 데 집중한다.
+ * 관절을 구슬처럼 드러내지 않고 옷의 실루엣으로 몸의 형태를 읽게 한다.
  */
 
-function capsule(
+function capsuleBetween(
   radius: number,
   from: THREE.Vector3,
   to: THREE.Vector3,
@@ -15,7 +15,7 @@ function capsule(
   const direction = new THREE.Vector3().subVectors(to, from);
   const length = direction.length();
   const mesh = new THREE.Mesh(
-    new THREE.CapsuleGeometry(radius, Math.max(length - 2 * radius, 0.001), 5, 12),
+    new THREE.CapsuleGeometry(radius, Math.max(length - radius * 2, 0.001), 6, 14),
     material,
   );
   mesh.position.copy(from).addScaledVector(direction, 0.5);
@@ -23,92 +23,94 @@ function capsule(
   return mesh;
 }
 
-function joint(radius: number, at: THREE.Vector3, material: THREE.Material): THREE.Mesh {
-  const mesh = new THREE.Mesh(new THREE.SphereGeometry(radius, 12, 10), material);
-  mesh.position.copy(at);
-  return mesh;
-}
-
 export function buildFigure(h: number, pose: "stand" | "sit", color: string): THREE.Group {
   const group = new THREE.Group();
-  const scale = (x: number, y: number, z: number) => new THREE.Vector3(x * h, y * h, z * h);
+  const p = (x: number, y: number, z: number) => new THREE.Vector3(x * h, y * h, z * h);
 
-  // 인물별 색은 식별용 포인트로만 쓰고, 몸 전체는 무대에서 튀지 않는 중립색으로 둔다.
-  const skin = new THREE.MeshStandardMaterial({ color: "#b9b5ad", roughness: 0.82 });
-  const clothing = new THREE.MeshStandardMaterial({ color: "#777b80", roughness: 0.88 });
-  const accent = new THREE.MeshStandardMaterial({ color, roughness: 0.72 });
-  const shoe = new THREE.MeshStandardMaterial({ color: "#292a2c", roughness: 0.9 });
+  const skin = new THREE.MeshStandardMaterial({ color: "#c5b9a8", roughness: 0.9 });
+  const clothes = new THREE.MeshStandardMaterial({ color: "#555b61", roughness: 0.92 });
+  const trousers = new THREE.MeshStandardMaterial({ color: "#454a50", roughness: 0.94 });
+  const shoes = new THREE.MeshStandardMaterial({ color: "#25282b", roughness: 0.95 });
+  const marker = new THREE.MeshStandardMaterial({ color, roughness: 0.8 });
 
-  const hipY = pose === "sit" ? 0.29 : 0.51;
-  const shoulderY = pose === "sit" ? 0.62 : 0.82;
-  const headY = pose === "sit" ? 0.76 : 0.94;
+  const seated = pose === "sit";
+  const hipY = seated ? 0.29 : 0.50;
+  const shoulderY = seated ? 0.62 : 0.81;
+  const headY = seated ? 0.76 : 0.93;
 
-  // 골반과 몸통을 겹쳐 연결해 분절된 장난감 같은 인상을 줄인다.
-  group.add(new THREE.Mesh(new THREE.SphereGeometry(0.115 * h, 18, 14), clothing));
-  const torso = capsule(0.115 * h, scale(0, hipY + 0.025, 0), scale(0, shoulderY, 0), clothing);
-  torso.scale.x = 1.12;
+  // 몸통: 허리에서 어깨로 자연스럽게 넓어지는 하나의 매끄러운 실루엣.
+  const torsoProfile = [
+    new THREE.Vector2(0.075 * h, (hipY - 0.015) * h),
+    new THREE.Vector2(0.092 * h, (hipY + 0.035) * h),
+    new THREE.Vector2(0.105 * h, (hipY + 0.13) * h),
+    new THREE.Vector2(0.095 * h, (shoulderY - 0.12) * h),
+    new THREE.Vector2(0.125 * h, (shoulderY - 0.035) * h),
+    new THREE.Vector2(0.145 * h, shoulderY * h),
+    new THREE.Vector2(0.125 * h, (shoulderY + 0.035) * h),
+    new THREE.Vector2(0, (shoulderY + 0.045) * h),
+  ];
+  const torso = new THREE.Mesh(new THREE.LatheGeometry(torsoProfile, 24), clothes);
   group.add(torso);
-  group.add(capsule(0.045 * h, scale(0, shoulderY - 0.015, 0), scale(0, shoulderY + 0.045, 0), skin));
 
-  // 어깨선에 작은 색상 포인트를 두어 인물을 구분한다.
-  const chestMark = new THREE.Mesh(new THREE.SphereGeometry(0.035 * h, 12, 10), accent);
-  chestMark.position.copy(scale(0, shoulderY - 0.12, -0.105));
-  group.add(chestMark);
+  // 골반은 허리 아래에 부드럽게 겹쳐 붙인다.
+  const pelvis = new THREE.Mesh(new THREE.SphereGeometry(1, 20, 16), trousers);
+  pelvis.scale.set(0.105 * h, 0.085 * h, 0.075 * h);
+  pelvis.position.copy(p(0, hipY + 0.005, 0));
+  group.add(pelvis);
 
-  // 머리와 목
-  group.add(capsule(0.035 * h, scale(0, shoulderY + 0.015, 0), scale(0, headY - 0.065, 0), skin));
-  const head = new THREE.Mesh(new THREE.SphereGeometry(0.073 * h, 20, 16), skin);
-  head.position.copy(scale(0, headY, 0));
-  head.scale.set(0.92, 1.12, 0.96);
+  // 목과 머리
+  group.add(capsuleBetween(0.033 * h, p(0, shoulderY - 0.005, 0), p(0, headY - 0.055, 0), skin));
+  const head = new THREE.Mesh(new THREE.SphereGeometry(1, 24, 18), skin);
+  head.scale.set(0.067 * h, 0.083 * h, 0.066 * h);
+  head.position.copy(p(0, headY, 0));
   group.add(head);
 
-  // 코 대신 작은 얼굴 방향 표시. 정면에서만 은은하게 보인다.
-  const faceMark = new THREE.Mesh(
-    new THREE.SphereGeometry(0.012 * h, 8, 6),
-    new THREE.MeshStandardMaterial({ color: "#77736d", roughness: 1 }),
-  );
-  faceMark.position.copy(scale(0, headY - 0.005, -0.069));
-  group.add(faceMark);
+  // 얼굴 방향만 알아볼 수 있는 아주 작은 코 형태
+  const nose = new THREE.Mesh(new THREE.SphereGeometry(0.009 * h, 10, 8), skin);
+  nose.scale.set(0.8, 0.8, 1.4);
+  nose.position.copy(p(0, headY - 0.005, -0.064));
+  group.add(nose);
 
-  // 팔: 어깨-팔꿈치-손목이 자연스럽게 이어지는 약간 편안한 기본 자세.
+  // 배우 식별 표식은 가슴의 작은 평면 원형 마크로 제한한다.
+  const badge = new THREE.Mesh(new THREE.CircleGeometry(0.022 * h, 20), marker);
+  badge.position.copy(p(0, shoulderY - 0.13, -0.119));
+  group.add(badge);
+
+  // 팔: 상박과 하박은 같은 옷감으로 겹쳐 연결하고, 관절 구체는 노출하지 않는다.
   for (const side of [-1, 1]) {
-    const shoulder = scale(side * 0.145, shoulderY - 0.035, 0);
-    const elbow = pose === "sit"
-      ? scale(side * 0.205, shoulderY - 0.19, -0.015)
-      : scale(side * 0.205, 0.56, -0.005);
-    const wrist = pose === "sit"
-      ? scale(side * 0.19, hipY + 0.08, -0.025)
-      : scale(side * 0.18, 0.34, -0.025);
-    const hand = pose === "sit"
-      ? scale(side * 0.19, hipY + 0.025, -0.035)
-      : scale(side * 0.18, 0.29, -0.035);
+    const shoulder = p(side * 0.145, shoulderY - 0.015, 0);
+    const elbow = seated
+      ? p(side * 0.19, shoulderY - 0.19, -0.025)
+      : p(side * 0.19, 0.55, -0.015);
+    const wrist = seated
+      ? p(side * 0.18, hipY + 0.045, -0.045)
+      : p(side * 0.17, 0.31, -0.035);
 
-    group.add(joint(0.052 * h, shoulder, clothing));
-    group.add(capsule(0.043 * h, shoulder, elbow, clothing));
-    group.add(joint(0.036 * h, elbow, clothing));
-    group.add(capsule(0.032 * h, elbow, wrist, skin));
-    group.add(joint(0.034 * h, wrist, skin));
-    group.add(capsule(0.027 * h, wrist, hand, skin));
+    group.add(capsuleBetween(0.047 * h, shoulder, elbow, clothes));
+    group.add(capsuleBetween(0.035 * h, elbow, wrist, clothes));
+
+    const hand = new THREE.Mesh(new THREE.SphereGeometry(1, 14, 12), skin);
+    hand.scale.set(0.027 * h, 0.045 * h, 0.025 * h);
+    hand.position.copy(wrist).add(p(0, -0.025, -0.005));
+    group.add(hand);
   }
 
-  // 다리: 허벅지와 종아리를 분리하되 무릎을 겹쳐 연결한다.
+  // 다리: 바지 실루엣을 유지하면서 무릎에서 살짝 방향이 바뀌게 한다.
   for (const side of [-1, 1]) {
-    const hip = scale(side * 0.065, hipY, 0);
-    const knee = pose === "sit"
-      ? scale(side * 0.07, hipY - 0.015, -0.22)
-      : scale(side * 0.075, 0.28, 0.015);
-    const ankle = pose === "sit"
-      ? scale(side * 0.07, 0.055, -0.25)
-      : scale(side * 0.075, 0.035, 0.015);
+    const hip = p(side * 0.065, hipY - 0.025, 0);
+    const knee = seated
+      ? p(side * 0.07, hipY - 0.015, -0.20)
+      : p(side * 0.072, 0.27, 0.012);
+    const ankle = seated
+      ? p(side * 0.07, 0.055, -0.23)
+      : p(side * 0.072, 0.045, 0.015);
 
-    group.add(joint(0.065 * h, hip, clothing));
-    group.add(capsule(0.062 * h, hip, knee, clothing));
-    group.add(joint(0.043 * h, knee, clothing));
-    group.add(capsule(0.043 * h, knee, ankle, clothing));
+    group.add(capsuleBetween(0.061 * h, hip, knee, trousers));
+    group.add(capsuleBetween(0.043 * h, knee, ankle, trousers));
 
-    const foot = new THREE.Mesh(new THREE.SphereGeometry(0.052 * h, 12, 10), shoe);
-    foot.scale.set(0.82, 0.55, 1.45);
-    foot.position.copy(ankle).add(scale(0, -0.012, -0.045));
+    const foot = new THREE.Mesh(new THREE.SphereGeometry(1, 16, 12), shoes);
+    foot.scale.set(0.052 * h, 0.027 * h, 0.092 * h);
+    foot.position.copy(ankle).add(p(0, -0.018, -0.035));
     group.add(foot);
   }
 
