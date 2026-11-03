@@ -2,7 +2,7 @@ name: 배포 (깃허브 페이지)
 
 on:
   push:
-    branches: [main]
+    branches: [main, develop]
   workflow_dispatch:
 
 permissions:
