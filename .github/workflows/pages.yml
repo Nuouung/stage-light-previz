@@ -1,5 +1,9 @@
 name: 배포 (깃허브 페이지)
 
+# 사이트 하나에 두 브랜치를 함께 올린다.
+#   main    → /stage-light-previz/
+#   develop → /stage-light-previz/develop/
+# 배포 환경(github-pages)은 main에서만 배포를 허용하므로, develop에 올리면 main에서 이 워크플로를 다시 실행한다.
 on:
   push:
     branches: [main, develop]
@@ -7,33 +11,78 @@ on:
 
 permissions:
   contents: read
-  pages: write
-  id-token: write
 
 concurrency:
   group: pages
   cancel-in-progress: true
 
 jobs:
+  request:
+    if: github.ref_name == 'develop'
+    runs-on: ubuntu-latest
+    permissions:
+      actions: write
+    steps:
+      - name: main에서 배포 실행
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run pages.yml --repo "$GITHUB_REPOSITORY" --ref main
+
   build:
+    if: github.ref_name == 'main'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main
+      - uses: actions/checkout@v4
+        with:
+          ref: develop
+          path: develop
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
-      - run: npm ci
-      - run: npm test
-      - run: npm run build
+          cache-dependency-path: |
+            main/package-lock.json
+            develop/package-lock.json
+      - name: main 빌드
+        working-directory: main
+        run: |
+          npm ci
+          npm test
+          npm run build
+      # develop이 깨져도 main 화면은 계속 배포한다. 실패는 "검사" 워크플로에 표시된다
+      - name: develop 빌드
+        id: develop
+        continue-on-error: true
+        working-directory: develop
+        run: |
+          npm ci
+          npm test
+          npm run build
+      - name: 사이트 합치기
+        env:
+          DEVELOP_OUTCOME: ${{ steps.develop.outcome }}
+        run: |
+          cp -r main/dist site
+          if [ "$DEVELOP_OUTCOME" = "success" ]; then
+            cp -r develop/dist site/develop
+          else
+            echo "::warning::develop 빌드에 실패해 이번 배포에는 /develop/ 화면이 없습니다"
+          fi
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: site
 
   deploy:
     needs: build
     runs-on: ubuntu-latest
+    permissions:
+      pages: write
+      id-token: write
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}

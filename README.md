@@ -2,7 +2,7 @@
 
 공연장과 공연을 합성한 3D 무대에서, 장면(큐)별 조명과 인물 위치를 설계·저장·공유하는 웹 도구.
 
-**화면:** https://nuouung.github.io/stage-light-previz/
+**화면:** https://nuouung.github.io/stage-light-previz/ (main) · https://nuouung.github.io/stage-light-previz/develop/ (develop)
 
 설계·결정 기록은 드라이브 베이스캠프(`조명 시뮬레이터` 폴더)에 있다. 이 저장소에는 코드와 데이터만 둔다.
 
@@ -38,3 +38,7 @@ npm run dev        # 로컬 화면
 npm test           # 테스트 + 데이터 검사
 npm run typecheck  # 타입 검사
 ```
+
+## 브랜치와 배포
+
+작업은 `develop`에서 하고, 공유할 때 `main`에 합친다. 어느 쪽에 올려도 두 브랜치를 함께 빌드해 사이트 하나로 배포한다. `develop` 빌드나 테스트가 실패하면 그 배포에서는 `/develop/` 화면이 빠지고 `main` 화면은 그대로 올라간다.
