@@ -202,7 +202,7 @@ export function createRenderer(canvas: HTMLCanvasElement, lightCut: CutRect | nu
         scene.add(m);
         beamMeshes.set(b.id, m);
       }
-      m.visible = haze > 0 && b.level > 0;
+      m.visible = b.showBeam && haze > 0 && b.level > 0;
       if (m.visible) updateBeam(m, s.position, s.target.position, b.beamAngle, b.color, BEAM_STRENGTH * haze * b.level);
     }
   }
