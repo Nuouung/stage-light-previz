@@ -2,7 +2,7 @@
 import "./style.css";
 import { DEFAULT_AVATAR, Project, Stage, Staging } from "./model";
 import { resolveCue } from "./player";
-import { composeStage } from "./stage/compose";
+import { composeStage, moveObjects } from "./stage/compose";
 import { createStore } from "./store/store";
 import { loadAvatar } from "./view/stage3d/avatar";
 import { createRenderer, type ViewName } from "./view/stage3d/renderer";
@@ -30,8 +30,8 @@ const renderer = createRenderer(document.getElementById("stage") as HTMLCanvasEl
 const controlsRoot = document.getElementById("controls")!;
 
 function render(s: AppState) {
-  const composed = composeStage(s.stage, s.project, s.staging);
-  const look = s.cueId ? resolveCue(s.project, s.staging, s.cueId) : { lights: {}, characters: {} };
+  const look = s.cueId ? resolveCue(s.project, s.staging, s.cueId) : { lights: {}, characters: {}, objects: {} };
+  const composed = moveObjects(composeStage(s.stage, s.project, s.staging), look.objects);
   const area = s.staging.actingArea;
   const guides = s.showActingArea ? describeActingArea(area) : [];
   renderer.setWorkLight(s.showWorkLight);

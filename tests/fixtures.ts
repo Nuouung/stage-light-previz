@@ -35,9 +35,10 @@ export function tinyStaging(): Staging {
         cueId: "q1",
         lights: [{ zone: "down-left", direction: "front", intensity: 100 }, { zone: "down-right", direction: "top", intensity: 50 }],
         blocking: [{ characterId: "p", x: 0, z: 2, posture: "sit", onStage: true }],
+        objects: [],
       },
-      { cueId: "q2", lights: [{ zone: "down-right", direction: "top", intensity: 80 }], blocking: [] },
-      { cueId: "q3", lights: [{ zone: "down-left", direction: "front", intensity: 0 }], blocking: [{ characterId: "p", posture: "stand" }] },
+      { cueId: "q2", lights: [{ zone: "down-right", direction: "top", intensity: 80 }], blocking: [], objects: [{ objectId: "box", position: { x: 1, y: 0, z: 2 }, tipped: true }] },
+      { cueId: "q3", lights: [{ zone: "down-left", direction: "front", intensity: 0 }], blocking: [{ characterId: "p", posture: "stand" }], objects: [{ objectId: "box", tipped: false }] },
     ],
   };
 }

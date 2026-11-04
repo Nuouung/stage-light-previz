@@ -863,9 +863,175 @@
           "onStage": true
         }
       ]
+    },
+    {
+      "cueId": "cue-4",
+      "lights": [
+        {
+          "zone": "down-left",
+          "direction": "front",
+          "color": {
+            "cct": 7000
+          }
+        },
+        {
+          "zone": "down-left",
+          "direction": "top",
+          "color": {
+            "cct": 8000
+          }
+        },
+        {
+          "zone": "down-left",
+          "direction": "back",
+          "color": {
+            "cct": 10000
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "front",
+          "color": {
+            "cct": 7000
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "top",
+          "color": {
+            "cct": 8000
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "back",
+          "color": {
+            "cct": 10000
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "front",
+          "color": {
+            "cct": 7000
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "top",
+          "color": {
+            "cct": 8000
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "back",
+          "color": {
+            "cct": 10000
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "front",
+          "color": {
+            "cct": 7000
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "color": {
+            "cct": 8000
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "back",
+          "color": {
+            "cct": 10000
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "front",
+          "color": {
+            "cct": 7000
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "color": {
+            "cct": 8000
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "back",
+          "color": {
+            "cct": 10000
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "color": {
+            "cct": 7000
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "color": {
+            "cct": 8000
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "back",
+          "color": {
+            "cct": 10000
+          }
+        }
+      ],
+      "blocking": [
+        {
+          "characterId": "voice-1",
+          "x": -2.25,
+          "z": 4.2,
+          "facing": 0,
+          "posture": "sit",
+          "onStage": true
+        },
+        {
+          "characterId": "voice-2",
+          "x": 1.5,
+          "z": 2.75,
+          "facing": 0,
+          "posture": "sit",
+          "onStage": true
+        }
+      ],
+      "objects": [
+        {
+          "objectId": "chair-down-right",
+          "position": {
+            "x": 1.5,
+            "y": 0,
+            "z": 2.75
+          },
+          "rotation": 0,
+          "tipped": false
+        },
+        {
+          "objectId": "chair-down-left",
+          "rotation": 0,
+          "tipped": false
+        }
+      ]
     }
   ],
-  "dataVersion": "2026-11-05.11",
+  "dataVersion": "2026-11-05.12",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",

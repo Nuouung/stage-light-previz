@@ -1,4 +1,5 @@
 import type { Curtain, Project, Stage, StageObject, Staging } from "../model";
+import type { ObjectLook } from "../player/resolve";
 
 /** 무대에 실제로 놓인 물체 = 작품의 물체 정의 + 배치의 위치 */
 export type PlacedObject = StageObject & {
@@ -34,4 +35,9 @@ export function composeStage(stage: Stage, project: Project, staging: Staging): 
     if (def) objects.push({ ...def, position: p.position, rotation: p.rotation, tipped: p.tipped });
   }
   return { stage, curtains, objects };
+}
+
+/** 큐에서 옮긴 물체를 반영한 공연용 무대를 새로 만들어 돌려준다. */
+export function moveObjects(composed: ComposedStage, moves: Record<string, ObjectLook>): ComposedStage {
+  return { ...composed, objects: composed.objects.map((o) => ({ ...o, ...moves[o.id] })) };
 }

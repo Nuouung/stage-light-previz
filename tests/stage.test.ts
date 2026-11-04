@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { characterHeight, CueLight, faceHeight, Stage } from "../src/model";
-import { composeStage } from "../src/stage/compose";
+import { composeStage, moveObjects } from "../src/stage/compose";
 import bonomaru from "../data/stages/bonomaru.json";
 import { tinyProject, tinyStaging } from "./fixtures";
 
@@ -66,5 +66,14 @@ describe("큐의 조명값", () => {
 describe("공연장 파일", () => {
   it("정해지지 않은 항목을 적으면 데이터 검사에서 걸린다", () => {
     expect(Stage.safeParse({ ...bonomaru, fixtures: [] }).success).toBe(false);
+  });
+});
+
+describe("큐에서 물체 옮기기", () => {
+  it("옮긴 물체만 바뀌고 원본 무대는 그대로다", () => {
+    const composed = composeStage(Stage.parse({ ...bonomaru, id: "s" }), tinyProject(), tinyStaging());
+    const moved = moveObjects(composed, { box: { position: { x: 1, y: 0, z: 2 }, tipped: true } });
+    expect(moved.objects[0]).toMatchObject({ position: { x: 1, y: 0, z: 2 }, tipped: true });
+    expect(composed.objects[0]).toMatchObject({ position: { x: 0, y: 0, z: 3 }, tipped: false });
   });
 });

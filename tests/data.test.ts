@@ -110,12 +110,14 @@ describe("배치 데이터", () => {
       }
     });
 
-    it(`${file}: 큐 값이 가리키는 큐·인물이 모두 존재한다`, () => {
+    it(`${file}: 큐 값이 가리키는 큐·인물·물체가 모두 존재한다`, () => {
       const cueIds = new Set(project?.cues.map((c) => c.id));
       const characterIds = new Set(project?.characters.map((c) => c.id));
+      const objectIds = new Set(project?.objects.map((o) => o.id));
       for (const v of staging.cues) {
         expect(cueIds, `큐 ${v.cueId}`).toContain(v.cueId);
         for (const b of v.blocking) expect(characterIds, `${v.cueId}의 인물`).toContain(b.characterId);
+        for (const o of v.objects) expect(objectIds, `${v.cueId}의 물체`).toContain(o.objectId);
       }
     });
   }

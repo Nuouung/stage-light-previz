@@ -20,6 +20,11 @@ describe("트래킹", () => {
     expect(p).toMatchObject({ x: 0, z: 2, posture: "stand", onStage: true });
   });
 
+  it("물체의 넘어짐만 바꾸면 위치는 이전 큐에서 옮긴 그대로 남는다", () => {
+    const box = resolveCue(tinyProject(), tinyStaging(), "q3").objects.box;
+    expect(box).toEqual({ position: { x: 1, y: 0, z: 2 }, tipped: false });
+  });
+
   it("없는 큐를 부르면 에러가 난다", () => {
     expect(() => resolveCue(tinyProject(), tinyStaging(), "nope")).toThrow();
   });

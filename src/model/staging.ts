@@ -32,11 +32,21 @@ export const Blocking = z.object({
 });
 export type Blocking = z.infer<typeof Blocking>;
 
-/** 작품의 큐 하나에 대해, 이 공연장에서 바뀌는 조명값·인물 위치. 바뀐 것만 적는다. */
+/** 큐에서 세트 물체를 옮긴 것. 적지 않은 항목은 이전 값을 따른다(트래킹). */
+export const ObjectMove = z.object({
+  objectId: Id,
+  position: Vec3.optional(),
+  rotation: z.number().optional(),
+  tipped: z.boolean().optional(),
+});
+export type ObjectMove = z.infer<typeof ObjectMove>;
+
+/** 작품의 큐 하나에 대해, 이 공연장에서 바뀌는 조명값·인물 위치·물체 위치. 바뀐 것만 적는다. */
 export const CueValues = z.object({
   cueId: Id,
   lights: z.array(CueLight).default([]),
   blocking: z.array(Blocking).default([]),
+  objects: z.array(ObjectMove).default([]),
 });
 export type CueValues = z.infer<typeof CueValues>;
 
