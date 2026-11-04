@@ -19,15 +19,15 @@ export const Placement = z.object({
 });
 export type Placement = z.infer<typeof Placement>;
 
-/** 큐에서 조명 한 대의 값. 적지 않은 항목은 이전 큐 값을 따른다(트래킹). */
-export const CueState = z.object({
+/**
+ * 큐에서 조명 한 대의 값. 적지 않은 항목은 이전 큐 값을 따른다(트래킹).
+ * 겨누는 지점과 줌은 공연 중 바뀌지 않으므로 행잉에만 적는다. 없는 항목을 적으면 데이터 검사에서 걸린다.
+ */
+export const CueState = z.strictObject({
   fixtureId: Id,
   /** 밝기 0~100 */
   intensity: z.number().min(0).max(100).optional(),
   color: LightColor.optional(),
-  beamAngle: z.number().positive().optional(),
-  pan: z.number().optional(),
-  tilt: z.number().optional(),
 });
 export type CueState = z.infer<typeof CueState>;
 

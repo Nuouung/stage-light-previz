@@ -71,7 +71,7 @@ export function describeLights(composed: ComposedStage, types: FixtureType[], lo
       id: f.id,
       position: { x: f.x, y: pos.y - 0.3, z: pos.z },
       target: f.aim,
-      beamAngle: look?.beamAngle ?? f.beamAngle,
+      beamAngle: f.beamAngle,
       color: colorToHex(look?.color),
       level: (intensity / 100) * type.relativeOutput,
       soft: type.optics === "soft",
