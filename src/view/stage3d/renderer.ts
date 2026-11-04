@@ -28,7 +28,10 @@ export function createRenderer(canvas: HTMLCanvasElement) {
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color("#050608");
+  const WORK_BACKGROUND = new THREE.Color("#050608");
+  const BLACK = new THREE.Color("#000000");
+  let workLightOn = false;
+  scene.background = BLACK;
 
   const camera = new THREE.PerspectiveCamera(45, 1, 0.1, 200);
   const controls = new OrbitControls(camera, canvas);
@@ -100,6 +103,9 @@ export function createRenderer(canvas: HTMLCanvasElement) {
       if (s.rotationY) mesh.rotation.y = (-s.rotationY * Math.PI) / 180;
       if (s.outline) {
         const edges = new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry), new THREE.LineBasicMaterial({ color: "#4a4a50" }));
+        // 선은 조명과 상관없이 보이므로 작업등을 끄면 숨긴다
+        edges.visible = workLightOn;
+        edges.userData.guide = true;
         mesh.add(edges);
       }
     }
@@ -154,9 +160,16 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     invalidate();
   }
 
+  /** 끄면 무대 조명이 닿는 곳 말고는 완전히 어둡다 */
   function setWorkLight(on: boolean) {
-    hemi.intensity = on ? 0.9 : 0.04;
+    workLightOn = on;
+    hemi.intensity = on ? 0.9 : 0;
     work.intensity = on ? 0.6 : 0;
+    scene.background = on ? WORK_BACKGROUND : BLACK;
+    grid.visible = on;
+    layer.traverse((o) => {
+      if (o.userData.guide) o.visible = on;
+    });
     invalidate();
   }
 
