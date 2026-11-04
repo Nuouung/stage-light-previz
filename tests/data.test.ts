@@ -1,8 +1,9 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { FixtureType, Project, Stage, Staging } from "../src/model";
+import { AVATARS, FixtureType, Project, Stage, Staging } from "../src/model";
 import { inventoryWarnings } from "../src/stage/inventory";
+import { REQUIRED_BONES } from "../src/view/stage3d/pose";
 
 const root = join(import.meta.dirname, "..", "data");
 const load = (dir: string) =>
@@ -19,6 +20,17 @@ describe("데이터 형식", () => {
   it("모든 데이터 파일이 정해진 형식에 맞는다", () => {
     expect(types.length + stages.length + projects.length + stagings.length).toBeGreaterThan(0);
   });
+});
+
+describe("인물 모형 파일", () => {
+  for (const id of AVATARS) {
+    it(`${id}: 파일이 있고 자세에 필요한 뼈가 모두 있다`, () => {
+      const file = readFileSync(join(root, "..", "public", "avatars", `${id}.glb`));
+      const json = JSON.parse(file.subarray(20, 20 + file.readUInt32LE(12)).toString()) as { nodes: { name?: string }[] };
+      const names = new Set(json.nodes.map((n) => n.name));
+      for (const bone of REQUIRED_BONES) expect(names, bone).toContain(bone);
+    });
+  }
 });
 
 describe("공연장 데이터", () => {

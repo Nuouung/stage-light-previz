@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { Appearance } from "./appearance";
 import { Id, Vec3 } from "./common";
 
 /**
@@ -20,6 +19,13 @@ export type StageObject = z.infer<typeof StageObject>;
 /** 키가 안 적혀 있을 때 쓰는 기본값(m). */
 export const DEFAULT_CHARACTER_HEIGHT = 1.7;
 
+/** 쓸 수 있는 인물 모형. public/avatars에 같은 이름의 파일이 있다. */
+export const AVATARS = ["cappy", "retroman", "kyle", "bizdude", "kate", "erika", "shiro"] as const;
+export const Avatar = z.enum(AVATARS);
+export type Avatar = z.infer<typeof Avatar>;
+/** 모형을 안 적었을 때 쓰는 기본값. */
+export const DEFAULT_AVATAR: Avatar = "retroman";
+
 /** 인물. 배우가 아니라 인물 기준이라 더블캐스트여도 데이터는 한 벌. 실명은 넣지 않는다. */
 export const Character = z.object({
   id: Id,
@@ -31,8 +37,8 @@ export const Character = z.object({
   height: z.number().positive().optional(),
   /** 화면 표시 색 (#rrggbb) */
   color: z.string().regex(/^#[0-9a-fA-F]{6}$/).optional(),
-  /** 겉모습(체형·머리·얼굴·의상). 없으면 기본 인물 */
-  appearance: Appearance.optional(),
+  /** 인물 모형. 없으면 DEFAULT_AVATAR */
+  avatar: Avatar.optional(),
 });
 export type Character = z.infer<typeof Character>;
 

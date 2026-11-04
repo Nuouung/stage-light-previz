@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { DEFAULT_AVATAR } from "../../model";
 import { createBeam, updateBeam } from "./beams";
 import { planChanges } from "./changes";
 import { buildFigure } from "./figure";
@@ -71,7 +72,7 @@ export function createRenderer(canvas: HTMLCanvasElement) {
 
   function meshOf(s: Shape): THREE.Object3D {
     if (s.kind === "figure") {
-      const fig = buildFigure(s.size.y, s.pose ?? "stand", s.color, s.appearance);
+      const fig = buildFigure(s.size.y, s.pose ?? "stand", s.avatar ?? DEFAULT_AVATAR, invalidate);
       placeFigure(fig, s);
       fig.name = s.id;
       return fig;
@@ -108,10 +109,12 @@ export function createRenderer(canvas: HTMLCanvasElement) {
 
   function removeObject(object: THREE.Object3D) {
     layer.remove(object);
+    // 아직 불러오는 중인 인물이면 다 불러와도 붙이지 않는다
+    object.userData.removed = true;
     object.traverse((o) => {
       // 뼈대는 인물마다 따로 만들므로 메시를 나눠 써도 함께 해제한다
       if (o instanceof THREE.SkinnedMesh) o.skeleton.dispose();
-      // 인물 메시·재질은 인물끼리 나눠 쓰고 다음 그리기에도 다시 쓴다
+      // 인물 모형의 메시·재질은 같은 모형끼리 나눠 쓰고 다음 그리기에도 다시 쓴다
       if ((o instanceof THREE.Mesh || o instanceof THREE.LineSegments) && !o.userData.shared) {
         o.geometry.dispose();
         (o.material as THREE.Material).dispose();

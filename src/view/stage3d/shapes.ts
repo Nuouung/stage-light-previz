@@ -1,4 +1,4 @@
-import { characterHeight, type Appearance, type Project } from "../../model";
+import { characterHeight, DEFAULT_AVATAR, type Avatar, type Project } from "../../model";
 import type { CharacterLook } from "../../player";
 import type { ComposedStage } from "../../stage/compose";
 
@@ -18,8 +18,8 @@ export type Shape = {
   rotationY?: number;
   /** figure 전용: 서 있음 / 앉음 */
   pose?: "stand" | "sit";
-  /** figure 전용: 인물 겉모습. 없으면 기본 인물 */
-  appearance?: Appearance;
+  /** figure 전용: 인물 모형 */
+  avatar?: Avatar;
   /** chair 전용: 넘어진 상태 */
   tipped?: boolean;
   /** box 테두리 선을 그린다(검은 단의 층 구분용) */
@@ -129,7 +129,7 @@ export function describeCharacters(composed: ComposedStage, project: Project, lo
       rotationY: look.facing ?? 0,
       pose: look.posture ?? "stand",
       color: c.color ?? "#d9c2a8",
-      appearance: c.appearance,
+      avatar: c.avatar ?? DEFAULT_AVATAR,
       label: c.label,
     });
   }

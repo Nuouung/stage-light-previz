@@ -51,8 +51,8 @@ describe("이전 무대와 새 무대 비교", () => {
     expect(ids(planChanges(live(person("p")), [person("p", { color: "#00ff00" })]).replace)).toEqual(["p"]);
   });
 
-  it("인물의 겉모습이 바뀌면 새로 만든다", () => {
-    expect(ids(planChanges(live(person("p")), [person("p", { appearance: { top: { color: "#112233" } } })]).replace)).toEqual(["p"]);
+  it("인물 모형이 바뀌면 새로 만든다", () => {
+    expect(ids(planChanges(live(person("p", { avatar: "kate" })), [person("p", { avatar: "erika" })]).replace)).toEqual(["p"]);
   });
 
   it("인물이 아닌 물체는 위치가 바뀌어도 새로 만든다", () => {
