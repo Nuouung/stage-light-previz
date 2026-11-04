@@ -1029,9 +1029,141 @@
           "tipped": false
         }
       ]
+    },
+    {
+      "cueId": "cue-5",
+      "lights": [
+        {
+          "zone": "down-center",
+          "direction": "front",
+          "intensity": 55
+        },
+        {
+          "zone": "down-center",
+          "direction": "top",
+          "intensity": 30
+        },
+        {
+          "zone": "down-center",
+          "direction": "back",
+          "intensity": 45,
+          "color": {
+            "cct": 3000
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "front",
+          "intensity": 38
+        },
+        {
+          "zone": "down-right",
+          "direction": "top",
+          "intensity": 20
+        },
+        {
+          "zone": "down-right",
+          "direction": "back",
+          "intensity": 32,
+          "color": {
+            "cct": 3000
+          }
+        },
+        {
+          "zone": "down-left",
+          "direction": "front",
+          "intensity": 5
+        },
+        {
+          "zone": "down-left",
+          "direction": "top",
+          "intensity": 5
+        },
+        {
+          "zone": "down-left",
+          "direction": "back",
+          "intensity": 10,
+          "color": {
+            "cct": 3000
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "front",
+          "intensity": 3
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "intensity": 3
+        },
+        {
+          "zone": "up-left",
+          "direction": "back",
+          "intensity": 12,
+          "color": {
+            "cct": 3000
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "front",
+          "intensity": 4
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "intensity": 4
+        },
+        {
+          "zone": "up-center",
+          "direction": "back",
+          "intensity": 18,
+          "color": {
+            "cct": 3000
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "intensity": 3
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "intensity": 3
+        },
+        {
+          "zone": "up-right",
+          "direction": "back",
+          "intensity": 12,
+          "color": {
+            "cct": 3000
+          }
+        }
+      ],
+      "blocking": [
+        {
+          "characterId": "dongyeol",
+          "x": 0.6,
+          "z": 1.0,
+          "facing": -60,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "voice-1",
+          "onStage": false
+        },
+        {
+          "characterId": "voice-2",
+          "onStage": false
+        }
+      ],
+      "objects": []
     }
   ],
-  "dataVersion": "2026-11-05.12",
+  "dataVersion": "2026-11-05.13",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
