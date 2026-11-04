@@ -33,6 +33,16 @@ export function createRenderer(canvas: HTMLCanvasElement) {
   const controls = new OrbitControls(camera, canvas);
   controls.enableDamping = true;
 
+  // 화면이 멈춰 있으면 그리지 않는다. 무언가 바뀌면 이 표시를 켠다
+  let needsRender = true;
+  const invalidate = () => {
+    needsRender = true;
+  };
+  // 카메라가 움직이는 동안(손을 뗀 뒤 멈출 때까지 포함) 계속 발생한다
+  controls.addEventListener("change", invalidate);
+  // 다른 탭에 다녀오면 화면 내용이 지워질 수 있다
+  document.addEventListener("visibilitychange", invalidate);
+
   // 작업등: 무대 구조를 보기 위한 전체 조명. 끄면 아주 희미한 빛만 남아 윤곽만 보인다
   const hemi = new THREE.HemisphereLight("#ffffff", "#202020", 0.9);
   scene.add(hemi);
@@ -138,11 +148,13 @@ export function createRenderer(canvas: HTMLCanvasElement) {
       placeFigure(liveObjects.get(s.id)!, s);
       liveShapes.set(s.id, s);
     }
+    invalidate();
   }
 
   function setWorkLight(on: boolean) {
     hemi.intensity = on ? 0.9 : 0.04;
     work.intensity = on ? 0.6 : 0;
+    invalidate();
   }
 
   // 조명기 하나 = SpotLight 하나. id로 재사용하고, 목록에서 빠진 건 끈다
@@ -154,6 +166,7 @@ export function createRenderer(canvas: HTMLCanvasElement) {
   /** 밝기 100%인 기준 조명기의 광도(cd). 화면에서 보기 좋게 맞춘 값 */
   const CANDELA = 650;
   function setLights(beams: LightBeam[]) {
+    invalidate();
     const live = new Set(beams.map((b) => b.id));
     for (const [id, s] of spots) {
       if (!live.has(id)) s.visible = false;
@@ -202,6 +215,7 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     camera.position.copy(toThree(...v.eye));
     controls.target.copy(toThree(...v.target));
     controls.update();
+    invalidate();
   }
 
   function resize() {
@@ -213,6 +227,7 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     const hfov = (70 * Math.PI) / 180;
     camera.fov = Math.max(45, (2 * Math.atan(Math.tan(hfov / 2) / camera.aspect) * 180) / Math.PI);
     camera.updateProjectionMatrix();
+    invalidate();
   }
 
   window.addEventListener("resize", resize);
@@ -220,6 +235,8 @@ export function createRenderer(canvas: HTMLCanvasElement) {
   setView("audience");
   renderer.setAnimationLoop(() => {
     controls.update();
+    if (!needsRender) return;
+    needsRender = false;
     renderer.render(scene, camera);
   });
 
