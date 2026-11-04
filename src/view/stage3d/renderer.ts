@@ -95,6 +95,8 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     for (const child of [...layer.children]) {
       layer.remove(child);
       child.traverse((o) => {
+        // 뼈대는 인물마다 따로 만들므로 메시를 나눠 써도 함께 해제한다
+        if (o instanceof THREE.SkinnedMesh) o.skeleton.dispose();
         // 인물 메시·재질은 인물끼리 나눠 쓰고 다음 그리기에도 다시 쓴다
         if ((o instanceof THREE.Mesh || o instanceof THREE.LineSegments) && !o.userData.shared) {
           o.geometry.dispose();
