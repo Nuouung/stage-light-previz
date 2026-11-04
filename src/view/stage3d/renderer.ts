@@ -90,7 +90,8 @@ export function createRenderer(canvas: HTMLCanvasElement, lightCut: CutRect | nu
       model.name = s.id;
       return model;
     }
-    const mat = new THREE.MeshStandardMaterial({ color: s.color, roughness: s.group === "floor" ? 0.35 : 0.85 });
+    // 반사가 없는 재질. 보는 각도와 상관없이 빛을 받은 만큼만 밝아서, 빛이 어디에 떨어지는지 그대로 보인다
+    const mat = new THREE.MeshLambertMaterial({ color: s.color });
     let mesh: THREE.Mesh;
     if (s.kind === "cylinder" && s.group === "batten") {
       mesh = new THREE.Mesh(new THREE.CylinderGeometry(s.size.y / 2, s.size.y / 2, s.size.x, 8), mat);
