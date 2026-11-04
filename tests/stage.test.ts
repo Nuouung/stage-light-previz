@@ -2,6 +2,7 @@ import { describe, expect, it } from "vitest";
 import { characterHeight, CueState, faceHeight, Stage } from "../src/model";
 import { composeStage } from "../src/stage/compose";
 import bonomaru from "../data/stages/bonomaru.json";
+import { inventoryWarnings } from "../src/stage/inventory";
 import { tinyProject, tinyStaging } from "./fixtures";
 
 describe("공연용 무대 합성", () => {
@@ -59,5 +60,28 @@ describe("큐의 조명값", () => {
   it("줌이나 겨누는 값을 큐에 적으면 데이터 검사에서 걸린다", () => {
     expect(CueState.safeParse({ fixtureId: "a", beamAngle: 30 }).success).toBe(false);
     expect(CueState.safeParse({ fixtureId: "a", pan: 10 }).success).toBe(false);
+  });
+});
+
+describe("보유 장비", () => {
+  const stage = Stage.parse({ ...bonomaru, id: "s", inventory: [{ typeId: "lamp", count: 1 }] });
+  const light = (id: string, typeId: string, channelNo: number) => ({ id, typeId, positionId: "p", x: 0, channelNo, aim: { x: 0, y: 0, z: 0 }, beamAngle: 30 });
+
+  it("보유 수량 안에서 걸면 경고가 없다", () => {
+    expect(inventoryWarnings(stage, { ...tinyStaging(), hanging: [light("a", "lamp", 1)] })).toEqual([]);
+  });
+
+  it("보유 수량을 넘겨 걸면 경고한다", () => {
+    const warnings = inventoryWarnings(stage, { ...tinyStaging(), hanging: [light("a", "lamp", 1), light("b", "lamp", 2)] });
+    expect(warnings).toHaveLength(1);
+    expect(warnings[0]).toContain("2대");
+  });
+
+  it("보유 목록에 없는 기종을 걸면 경고한다", () => {
+    expect(inventoryWarnings(stage, { ...tinyStaging(), hanging: [light("a", "rented", 1)] })).toHaveLength(1);
+  });
+
+  it("공연장 파일에 걸린 조명을 적으면 데이터 검사에서 걸린다", () => {
+    expect(Stage.safeParse({ ...bonomaru, fixtures: [] }).success).toBe(false);
   });
 });

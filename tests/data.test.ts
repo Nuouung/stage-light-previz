@@ -2,6 +2,7 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { FixtureType, Project, Stage, Staging } from "../src/model";
+import { inventoryWarnings } from "../src/stage/inventory";
 
 const root = join(import.meta.dirname, "..", "data");
 const load = (dir: string) =>
@@ -18,6 +19,16 @@ describe("데이터 형식", () => {
   it("모든 데이터 파일이 정해진 형식에 맞는다", () => {
     expect(types.length + stages.length + projects.length + stagings.length).toBeGreaterThan(0);
   });
+});
+
+describe("공연장 데이터", () => {
+  for (const { file, data: stage } of stages) {
+    it(`${file}: 보유 장비는 모두 있는 종류를 가리키고 겹치지 않는다`, () => {
+      const typeIds = new Set(types.map((t) => t.data.id));
+      for (const i of stage.inventory) expect(typeIds, `보유 장비 ${i.typeId}`).toContain(i.typeId);
+      expect(new Set(stage.inventory.map((i) => i.typeId)).size).toBe(stage.inventory.length);
+    });
+  }
 });
 
 describe("작품 데이터", () => {
@@ -96,6 +107,11 @@ describe("배치 데이터", () => {
         expect(f.x, `${f.id} 좌우 위치`).toBeGreaterThanOrEqual(p.xRange[0]);
         expect(f.x, `${f.id} 좌우 위치`).toBeLessThanOrEqual(p.xRange[1]);
       }
+    });
+
+    it(`${file}: 보유 수량을 넘겨 걸면 경고를 남긴다`, () => {
+      // 대여 장비가 있을 수 있어 실패로 처리하지 않는다
+      if (stage) inventoryWarnings(stage, staging).forEach((w) => console.warn(`${file}: ${w}`));
     });
 
     it(`${file}: 기본 줌은 조명 종류의 범위 안에 있다`, () => {

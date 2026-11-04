@@ -26,11 +26,18 @@ export const Position = z.object({
 });
 export type Position = z.infer<typeof Position>;
 
+/** 공연장이 가진 장비. 어디에 걸지는 정하지 않는다. */
+export const InventoryItem = z.strictObject({
+  typeId: Id,
+  count: z.number().int().nonnegative(),
+});
+export type InventoryItem = z.infer<typeof InventoryItem>;
+
 /**
  * 공연장. 어떤 공연(Project)에도 속하지 않는다.
  * 여러 공연이 같은 공연장을 골라 쓸 수 있다. 건물과 설비만 적고, 조명을 어떻게 걸지는 배치(Staging)에 적는다.
  */
-export const Stage = z.object({
+export const Stage = z.strictObject({
   id: Id,
   venue: z.string(),
   /** 연기 공간 폭(m) */
@@ -43,6 +50,8 @@ export const Stage = z.object({
   floorColor: z.string().regex(/^#[0-9a-fA-F]{6}$/),
   curtains: z.array(Curtain),
   positions: z.array(Position),
+  /** 보유 장비(기종·수량) */
+  inventory: z.array(InventoryItem).default([]),
   /** 아직 실측·확인 안 된 값에 대한 메모 */
   notes: z.array(z.string()).default([]),
 });

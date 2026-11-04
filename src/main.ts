@@ -3,6 +3,7 @@ import "./style.css";
 import { FixtureType, Project, Stage, Staging } from "./model";
 import { resolveCue } from "./player";
 import { composeStage } from "./stage/compose";
+import { inventoryWarnings } from "./stage/inventory";
 import { createStore } from "./store/store";
 import { createRenderer, type ViewName } from "./view/stage3d/renderer";
 import { describeLights } from "./view/stage3d/lights";
@@ -20,6 +21,8 @@ type AppState = { project: Project; stage: Stage; staging: Staging; cueId: strin
 const project = Project.parse(projectJson);
 const stage = Stage.parse(stageJson);
 const staging = Staging.parse(stagingJson);
+
+inventoryWarnings(stage, staging).forEach((w) => console.warn(w));
 
 const store = createStore<AppState>({ project, stage, staging, cueId: project.cues[0]?.id ?? "", view: "audience", showActingArea: true, showWorkLight: false, haze: true });
 
