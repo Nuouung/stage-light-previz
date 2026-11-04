@@ -1191,9 +1191,213 @@
         }
       ],
       "objects": []
+    },
+    {
+      "cueId": "cue-6",
+      "lights": [
+        {
+          "zone": "down-center",
+          "direction": "front",
+          "intensity": 85,
+          "color": {
+            "cct": 3200
+          },
+          "spread": 1,
+          "at": null
+        },
+        {
+          "zone": "down-center",
+          "direction": "top",
+          "intensity": 45,
+          "color": {
+            "cct": 3200
+          },
+          "spread": 1,
+          "at": null
+        },
+        {
+          "zone": "down-center",
+          "direction": "back",
+          "intensity": 40,
+          "color": {
+            "cct": 3200
+          },
+          "spread": 1,
+          "at": null
+        },
+        {
+          "zone": "down-left",
+          "direction": "front",
+          "intensity": 60,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-left",
+          "direction": "top",
+          "intensity": 30,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-left",
+          "direction": "back",
+          "intensity": 25,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "front",
+          "intensity": 60,
+          "color": {
+            "cct": 3200
+          },
+          "spread": 1,
+          "at": null
+        },
+        {
+          "zone": "down-right",
+          "direction": "top",
+          "intensity": 30,
+          "color": {
+            "cct": 3200
+          },
+          "spread": 1,
+          "at": null
+        },
+        {
+          "zone": "down-right",
+          "direction": "back",
+          "intensity": 25,
+          "color": {
+            "cct": 3200
+          },
+          "spread": 1,
+          "at": null
+        },
+        {
+          "zone": "up-left",
+          "direction": "front",
+          "intensity": 0,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "intensity": 0,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "back",
+          "intensity": 0,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "front",
+          "intensity": 0,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "intensity": 0,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "back",
+          "intensity": 0,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "intensity": 0,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "intensity": 0,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "back",
+          "intensity": 0,
+          "color": {
+            "cct": 3200
+          }
+        }
+      ],
+      "blocking": [
+        {
+          "characterId": "dongyeol",
+          "x": -1.2,
+          "z": 1.8,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "jeongbae",
+          "x": -0.4,
+          "z": 1.8,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "seunguk",
+          "x": 0.4,
+          "z": 1.8,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "juhyuk",
+          "x": 1.2,
+          "z": 1.8,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "voice-1",
+          "x": -2.1,
+          "z": 1.2,
+          "facing": -110,
+          "posture": "stand",
+          "onStage": true
+        }
+      ],
+      "objects": []
     }
   ],
-  "dataVersion": "2026-11-05.15",
+  "dataVersion": "2026-11-05.16",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
