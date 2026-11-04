@@ -892,9 +892,112 @@
           "onStage": true
         }
       ]
+    },
+    {
+      "cueId": "cue-2",
+      "lights": [
+        {
+          "fixtureId": "front-key-1",
+          "intensity": 55
+        },
+        {
+          "fixtureId": "front-key-2",
+          "intensity": 55
+        },
+        {
+          "fixtureId": "front-key-3",
+          "intensity": 55
+        },
+        {
+          "fixtureId": "front-fill-1",
+          "intensity": 40
+        },
+        {
+          "fixtureId": "front-fill-2",
+          "intensity": 40
+        },
+        {
+          "fixtureId": "front-fill-3",
+          "intensity": 40
+        },
+        {
+          "fixtureId": "front-up-1",
+          "intensity": 12
+        },
+        {
+          "fixtureId": "front-up-2",
+          "intensity": 12
+        },
+        {
+          "fixtureId": "front-up-3",
+          "intensity": 12
+        },
+        {
+          "fixtureId": "top-down-1",
+          "intensity": 40
+        },
+        {
+          "fixtureId": "top-down-2",
+          "intensity": 40
+        },
+        {
+          "fixtureId": "top-down-3",
+          "intensity": 40
+        },
+        {
+          "fixtureId": "top-up-1",
+          "intensity": 14
+        },
+        {
+          "fixtureId": "top-up-2",
+          "intensity": 14
+        },
+        {
+          "fixtureId": "top-up-3",
+          "intensity": 14
+        },
+        {
+          "fixtureId": "back-1",
+          "intensity": 30
+        },
+        {
+          "fixtureId": "back-2",
+          "intensity": 30
+        },
+        {
+          "fixtureId": "back-3",
+          "intensity": 30
+        }
+      ],
+      "blocking": [
+        {
+          "characterId": "juhyuk",
+          "onStage": false
+        },
+        {
+          "characterId": "jeongbae",
+          "onStage": false
+        },
+        {
+          "characterId": "voice-1",
+          "x": -1.9,
+          "z": 0.8,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "voice-2",
+          "x": 1.9,
+          "z": 0.8,
+          "facing": 0,
+          "posture": "stand",
+          "onStage": true
+        }
+      ]
     }
   ],
-  "dataVersion": "2026-11-05.6",
+  "dataVersion": "2026-11-05.7",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
