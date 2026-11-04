@@ -4,6 +4,20 @@ import type { Avatar } from "../../model";
 import { loadAvatar } from "./avatar";
 import { applyPose, POSES, type PoseName } from "./pose";
 
+/**
+ * 모형별 폭 배율(좌우·앞뒤). 키는 그대로 두고 몸만 좁힌다.
+ * 원본이 만화풍이라 굵어서 사람 체형에 가깝게 맞춘 값이다. 1이면 원본 그대로.
+ */
+const AVATAR_WIDTH: Record<Avatar, number> = {
+  cappy: 0.82,
+  retroman: 0.95,
+  kyle: 0.84,
+  bizdude: 0.95,
+  kate: 0.9,
+  erika: 0.94,
+  shiro: 0.86,
+};
+
 /** 파일을 못 받았을 때 대신 세우는 단순한 모양. 키가 1인 기둥. */
 function placeholder(): THREE.Mesh {
   const mesh = new THREE.Mesh(new THREE.CapsuleGeometry(0.1, 0.8, 4, 12), new THREE.MeshStandardMaterial({ color: "#8a8a8a" }));
@@ -30,8 +44,10 @@ export function buildFigure(height: number, pose: PoseName, avatar: Avatar, onRe
         }
       });
       applyPose(model, POSES[pose]);
-      model.scale.setScalar(height / asset.height);
-      model.position.y *= height / asset.height;
+      const scale = height / asset.height;
+      const width = scale * AVATAR_WIDTH[avatar];
+      model.scale.set(width, scale, width);
+      model.position.y *= scale;
       group.add(model);
       onReady();
     })
