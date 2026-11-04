@@ -1,9 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { characterHeight, FixtureType, Project, Stage, Staging } from "../src/model";
-import fresnel from "../data/fixture-types/generic-fresnel.json";
+import { characterHeight, DIRECTIONS, Project, Stage, Staging, ZONES } from "../src/model";
 import { resolveCue } from "../src/player";
 import { composeStage } from "../src/stage/compose";
-import { cctToRgb, describeLights } from "../src/view/stage3d/lights";
+import { cctToRgb, describeLights, zoneCenter } from "../src/view/stage3d/lights";
 import { describeActingArea, describeCharacters, describeStage, floorHeightAt } from "../src/view/stage3d/shapes";
 import bonomaru from "../data/stages/bonomaru.json";
 import bodojichim from "../data/projects/bodojichim.json";
@@ -12,7 +11,6 @@ import bodojichimBonomaru from "../data/stagings/bodojichim-bonomaru.json";
 const stage = Stage.parse(bonomaru);
 const project = Project.parse(bodojichim);
 const staging = Staging.parse(bodojichimBonomaru);
-const types = [FixtureType.parse(fresnel)];
 const composed = (overrides: Record<string, boolean>) => composeStage(stage, project, { ...staging, curtainOverrides: overrides });
 
 describe("무대 그리기 목록", () => {
@@ -26,11 +24,6 @@ describe("무대 그리기 목록", () => {
     const shapes = describeStage(composed({ "draw-2": false }));
     expect(shapes.find((s) => s.id === "draw-2")).toBeUndefined();
     expect(shapes.filter((s) => s.id.startsWith("draw-2-"))).toHaveLength(2);
-  });
-
-  it("배튼마다 막대가 하나씩 그려진다", () => {
-    const battens = describeStage(composed({})).filter((s) => s.group === "batten");
-    expect(battens).toHaveLength(stage.positions.length);
   });
 
   it("바닥은 공연장에 적힌 바닥 색으로 그려진다", () => {
@@ -69,8 +62,8 @@ describe("인물 그리기", () => {
 describe("그릴 것 목록의 id", () => {
   it("물체마다 id가 달라 이전 무대와 비교할 수 있다", () => {
     const c = composed({ "draw-2": true });
-    const look = resolveCue(project, staging, "cue-test-row");
-    const shapes = [...describeStage(c), ...describeActingArea(staging.actingArea!), ...describeCharacters(c, project, look.characters)];
+    const look = resolveCue(project, staging, "cue-1");
+    const shapes = [...describeStage(c), ...describeActingArea(staging.actingArea), ...describeCharacters(c, project, look.characters)];
     expect(new Set(shapes.map((s) => s.id)).size).toBe(shapes.length);
   });
 });
@@ -108,13 +101,47 @@ describe("조명", () => {
     expect(r2 - b2).toBeLessThan(5);
   });
 
-  it("프리셋에서는 걸린 조명이 모두 켜진다", () => {
-    const look = resolveCue(project, staging, "cue-0");
-    expect(describeLights(composed({}), types, look.lights)).toHaveLength(staging.hanging.length);
+  const area = { width: 8, depth: 5 };
+
+  it("구역과 방향마다 빛이 하나씩 있다", () => {
+    expect(describeLights(composed({}), area, {})).toHaveLength(ZONES.length * DIRECTIONS.length);
   });
 
-  it("밝기 0인 조명은 켜지 않는다", () => {
-    const id = staging.hanging[0]!.id;
-    expect(describeLights(composed({}), types, { [id]: { intensity: 0 } })).toHaveLength(0);
+  it("적은 밝기가 그 구역 그 방향의 빛에만 들어간다", () => {
+    const beams = describeLights(composed({}), area, { "down-center/front": { intensity: 50 } });
+    expect(beams.find((b) => b.id === "down-center/front")?.level).toBe(0.5);
+    expect(beams.filter((b) => b.level > 0)).toHaveLength(1);
+  });
+
+  it("폭 배율을 적은 빛만 좁아진다", () => {
+    const beams = describeLights(composed({}), area, { "down-center/front": { spread: 0.5 } });
+    const base = describeLights(composed({}), area, {});
+    const angle = (list: typeof beams, id: string) => list.find((b) => b.id === id)!.beamAngle;
+    expect(angle(beams, "down-center/front")).toBeLessThan(angle(base, "down-center/front"));
+    expect(angle(beams, "down-left/front")).toBe(angle(base, "down-left/front"));
+  });
+
+  it("겨눌 지점을 적은 빛만 그 지점을 비춘다", () => {
+    const beams = describeLights(composed({}), area, { "down-center/top": { at: { x: 1, z: 2 } } });
+    expect(beams.find((b) => b.id === "down-center/top")?.target).toMatchObject({ x: 1, z: 2 });
+    expect(beams.find((b) => b.id === "down-center/back")?.target.x).toBe(zoneCenter("down-center", area).x);
+  });
+
+  it("왼쪽 구역은 객석에서 볼 때 왼쪽(-x), 앞줄은 객석 쪽이다", () => {
+    expect(zoneCenter("down-left", area).x).toBeLessThan(0);
+    expect(zoneCenter("up-right", area).x).toBeGreaterThan(0);
+    expect(zoneCenter("down-center", area).z).toBeLessThan(zoneCenter("up-center", area).z);
+  });
+
+  it("프런트는 객석 쪽, 백은 무대 안쪽에서 비춘다", () => {
+    const beams = describeLights(composed({}), area, {});
+    const center = zoneCenter("down-center", area);
+    expect(beams.find((b) => b.id === "down-center/front")!.position.z).toBeLessThan(center.z);
+    expect(beams.find((b) => b.id === "down-center/back")!.position.z).toBeGreaterThan(center.z);
+  });
+
+  it("단이 있는 구역은 단 윗면을 겨눈다", () => {
+    const beam = describeLights(composed({}), area, {}).find((b) => b.id === "up-center/top")!;
+    expect(beam.target.y).toBeCloseTo(0.58);
   });
 });

@@ -3,21 +3,26 @@ import { interpolate, nextCueId, prevCueId, resolveCue } from "../src/player";
 import { tinyProject, tinyStaging } from "./fixtures";
 
 describe("트래킹", () => {
-  it("2번 큐에 적지 않은 조명은 1번 큐 밝기를 유지한다", () => {
+  it("2번 큐에 적지 않은 빛은 1번 큐 밝기를 유지한다", () => {
     const look = resolveCue(tinyProject(), tinyStaging(), "q2");
-    expect(look.lights.a?.intensity).toBe(100);
-    expect(look.lights.b?.intensity).toBe(80);
+    expect(look.lights["down-left/front"]?.intensity).toBe(100);
+    expect(look.lights["down-right/top"]?.intensity).toBe(80);
   });
 
-  it("3번 큐에서 바꾼 조명만 바뀌고 나머지는 직전 값을 따라간다", () => {
+  it("3번 큐에서 바꾼 빛만 바뀌고 나머지는 직전 값을 따라간다", () => {
     const look = resolveCue(tinyProject(), tinyStaging(), "q3");
-    expect(look.lights.a?.intensity).toBe(0);
-    expect(look.lights.b?.intensity).toBe(80);
+    expect(look.lights["down-left/front"]?.intensity).toBe(0);
+    expect(look.lights["down-right/top"]?.intensity).toBe(80);
   });
 
   it("인물 자세만 바꾸면 위치는 이전 큐 그대로 남는다", () => {
     const p = resolveCue(tinyProject(), tinyStaging(), "q3").characters.p;
     expect(p).toMatchObject({ x: 0, z: 2, posture: "stand", onStage: true });
+  });
+
+  it("물체의 넘어짐만 바꾸면 위치는 이전 큐에서 옮긴 그대로 남는다", () => {
+    const box = resolveCue(tinyProject(), tinyStaging(), "q3").objects.box;
+    expect(box).toEqual({ position: { x: 1, y: 0, z: 2 }, tipped: false });
   });
 
   it("없는 큐를 부르면 에러가 난다", () => {
@@ -48,7 +53,7 @@ describe("페이드", () => {
   const q3 = resolveCue(p, tinyStaging(), "q3");
 
   it("페이드 절반 지점에서 밝기는 두 큐의 중간값이다", () => {
-    expect(interpolate(q1, q3, 0.5).lights.a?.intensity).toBe(50);
+    expect(interpolate(q1, q3, 0.5).lights["down-left/front"]?.intensity).toBe(50);
   });
 
   it("인물 위치·자세는 페이드가 끝나는 순간에 바뀐다", () => {

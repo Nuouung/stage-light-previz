@@ -1,14 +1,17 @@
-import type { Blocking, CueState, Project, Staging } from "../model";
+import { lightKey, type Blocking, type CueLight, type ObjectMove, type Project, type Staging } from "../model";
 
-/** 화면에 그릴 조명 한 대의 최종 값 (fixtureId 제외) */
-export type LightLook = Omit<CueState, "fixtureId">;
+/** 화면에 그릴 빛 하나의 최종 값 */
+export type LightLook = Omit<CueLight, "zone" | "direction">;
 /** 화면에 그릴 인물 한 명의 최종 값 (characterId 제외) */
 export type CharacterLook = Omit<Blocking, "characterId">;
+/** 큐에서 옮긴 물체 하나의 최종 값 (objectId 제외). 옮긴 적 없는 물체는 없다 */
+export type ObjectLook = Omit<ObjectMove, "objectId">;
 
 /** 어느 큐 시점의 무대 전체 상태 */
 export type Look = {
   lights: Record<string, LightLook>;
   characters: Record<string, CharacterLook>;
+  objects: Record<string, ObjectLook>;
 };
 
 /** 적힌 값만 덮어쓴다. undefined는 "안 적음"이라 이전 값을 유지한다. */
@@ -29,15 +32,19 @@ export function resolveCue(project: Project, staging: Staging, cueId: string): L
   if (index < 0) throw new Error(`큐 '${cueId}'가 없음`);
 
   const valuesByCue = new Map(staging.cues.map((v) => [v.cueId, v]));
-  const look: Look = { lights: {}, characters: {} };
+  const look: Look = { lights: {}, characters: {}, objects: {} };
   for (const cue of project.cues.slice(0, index + 1)) {
     const values = valuesByCue.get(cue.id);
     if (!values) continue;
-    for (const { fixtureId, ...rest } of values.lights) {
-      look.lights[fixtureId] = merge(look.lights[fixtureId], rest);
+    for (const { zone, direction, ...rest } of values.lights) {
+      const key = lightKey(zone, direction);
+      look.lights[key] = merge(look.lights[key], rest);
     }
     for (const { characterId, ...rest } of values.blocking) {
       look.characters[characterId] = merge(look.characters[characterId], rest);
+    }
+    for (const { objectId, ...rest } of values.objects) {
+      look.objects[objectId] = merge(look.objects[objectId], rest);
     }
   }
   return look;

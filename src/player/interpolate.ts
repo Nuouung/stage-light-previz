@@ -20,17 +20,18 @@ function lerpLight(a: LightLook | undefined, b: LightLook | undefined, t: number
     ...to,
     intensity: lerp(from.intensity ?? 0, to.intensity ?? 0, t),
     color: lerpColor(from.color, to.color, t),
+    spread: lerp(from.spread ?? 1, to.spread ?? 1, t),
   };
 }
 
 /**
  * 페이드 중간 상태. t = 0이면 from, t = 1이면 to.
- * 조명 밝기·색은 서서히 바뀌고, 인물 위치는 t = 1에서 한 번에 바뀐다.
+ * 조명 밝기·색은 서서히 바뀌고, 인물과 물체 위치는 t = 1에서 한 번에 바뀐다.
  */
 export function interpolate(from: Look, to: Look, t: number): Look {
   const k = Math.min(1, Math.max(0, t));
   const ids = new Set([...Object.keys(from.lights), ...Object.keys(to.lights)]);
   const lights: Look["lights"] = {};
   for (const id of ids) lights[id] = lerpLight(from.lights[id], to.lights[id], k);
-  return { lights, characters: k < 1 ? from.characters : to.characters };
+  return { lights, characters: k < 1 ? from.characters : to.characters, objects: k < 1 ? from.objects : to.objects };
 }

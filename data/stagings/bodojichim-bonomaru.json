@@ -5,27 +5,242 @@
   "curtainOverrides": {
     "draw-3": true
   },
+  "hiddenCurtains": [
+    "draw-1",
+    "border-head"
+  ],
   "actingArea": {
     "width": 8,
     "depth": 5
   },
+  "cutLightsToActingArea": true,
   "placements": [
     {
-      "objectId": "platform-1",
+      "objectId": "deck-1-01",
       "position": {
-        "x": 0,
-        "y": 0,
-        "z": 4.1
+        "x": -2.727,
+        "y": 0.0,
+        "z": 4.09
       },
       "rotation": 0,
       "tipped": false
     },
     {
-      "objectId": "platform-2",
+      "objectId": "deck-1-02",
       "position": {
-        "x": 0,
-        "y": 0.15,
-        "z": 4.1
+        "x": -2.121,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-03",
+      "position": {
+        "x": -1.515,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-04",
+      "position": {
+        "x": -0.909,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-05",
+      "position": {
+        "x": -0.303,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-06",
+      "position": {
+        "x": 0.1515,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-07",
+      "position": {
+        "x": 0.606,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-08",
+      "position": {
+        "x": 1.0605,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-09",
+      "position": {
+        "x": 1.515,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-10",
+      "position": {
+        "x": 2.121,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-11",
+      "position": {
+        "x": 2.727,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-2-01",
+      "position": {
+        "x": -0.757,
+        "y": 0.145,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-2-02",
+      "position": {
+        "x": 0.153,
+        "y": 0.145,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-2-03",
+      "position": {
+        "x": 1.063,
+        "y": 0.145,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-2-04",
+      "position": {
+        "x": 1.973,
+        "y": 0.145,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-3-01",
+      "position": {
+        "x": -1.0605,
+        "y": 0.29,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-3-02",
+      "position": {
+        "x": -0.454,
+        "y": 0.29,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-3-03",
+      "position": {
+        "x": 0.456,
+        "y": 0.29,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-3-04",
+      "position": {
+        "x": 1.366,
+        "y": 0.29,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-4-01",
+      "position": {
+        "x": -0.757,
+        "y": 0.435,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-4-02",
+      "position": {
+        "x": 0.153,
+        "y": 0.435,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-4-03",
+      "position": {
+        "x": 0.7595,
+        "y": 0.435,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-4-04",
+      "position": {
+        "x": 1.0625,
+        "y": 0.435,
+        "z": 4.09
       },
       "rotation": 0,
       "tipped": false
@@ -34,8 +249,8 @@
       "objectId": "desk-judge",
       "position": {
         "x": 0,
-        "y": 0.29,
-        "z": 4.1
+        "y": 0.58,
+        "z": 4.09
       },
       "rotation": 0,
       "tipped": false
@@ -44,8 +259,8 @@
       "objectId": "chair-judge",
       "position": {
         "x": 0,
-        "y": 0.29,
-        "z": 4.75
+        "y": 0.58,
+        "z": 4.73
       },
       "rotation": 0,
       "tipped": false
@@ -114,7 +329,7 @@
       "objectId": "chair-down-left",
       "position": {
         "x": -2.25,
-        "y": 0.15,
+        "y": 0.145,
         "z": 4.2
       },
       "rotation": -25,
@@ -123,266 +338,12 @@
     {
       "objectId": "chair-down-right",
       "position": {
-        "x": 2.25,
-        "y": 0.15,
+        "x": 3.45,
+        "y": 0,
         "z": 4.2
       },
       "rotation": 25,
       "tipped": true
-    }
-  ],
-  "hanging": [
-    {
-      "id": "front-key-1",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": -5,
-      "channelNo": 1,
-      "aim": {
-        "x": -2.67,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 25,
-      "note": "프런트 키(하수 쪽에서) · 앞줄 하수"
-    },
-    {
-      "id": "front-key-2",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": -2.5,
-      "channelNo": 2,
-      "aim": {
-        "x": 0,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 25,
-      "note": "프런트 키(하수 쪽에서) · 앞줄 가운데"
-    },
-    {
-      "id": "front-key-3",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": 0.17,
-      "channelNo": 3,
-      "aim": {
-        "x": 2.67,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 25,
-      "note": "프런트 키(하수 쪽에서) · 앞줄 상수"
-    },
-    {
-      "id": "front-fill-1",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": -0.17,
-      "channelNo": 4,
-      "aim": {
-        "x": -2.67,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 25,
-      "note": "프런트 필(상수 쪽에서) · 앞줄 하수"
-    },
-    {
-      "id": "front-fill-2",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": 2.5,
-      "channelNo": 5,
-      "aim": {
-        "x": 0,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 25,
-      "note": "프런트 필(상수 쪽에서) · 앞줄 가운데"
-    },
-    {
-      "id": "front-fill-3",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": 5,
-      "channelNo": 6,
-      "aim": {
-        "x": 2.67,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 25,
-      "note": "프런트 필(상수 쪽에서) · 앞줄 상수"
-    },
-    {
-      "id": "front-up-1",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": -2.67,
-      "channelNo": 7,
-      "aim": {
-        "x": -2.67,
-        "y": 0.29,
-        "z": 3.9
-      },
-      "beamAngle": 22,
-      "note": "프런트 · 단 하수"
-    },
-    {
-      "id": "front-up-2",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": 0,
-      "channelNo": 8,
-      "aim": {
-        "x": 0,
-        "y": 0.29,
-        "z": 3.9
-      },
-      "beamAngle": 22,
-      "note": "프런트 · 단 가운데"
-    },
-    {
-      "id": "front-up-3",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": 2.67,
-      "channelNo": 9,
-      "aim": {
-        "x": 2.67,
-        "y": 0.29,
-        "z": 3.9
-      },
-      "beamAngle": 22,
-      "note": "프런트 · 단 상수"
-    },
-    {
-      "id": "top-down-1",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-1",
-      "x": -2.67,
-      "channelNo": 11,
-      "aim": {
-        "x": -2.67,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 36,
-      "note": "탑 · 앞줄 하수"
-    },
-    {
-      "id": "top-down-2",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-1",
-      "x": 0,
-      "channelNo": 12,
-      "aim": {
-        "x": 0,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 36,
-      "note": "탑 · 앞줄 가운데"
-    },
-    {
-      "id": "top-down-3",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-1",
-      "x": 2.67,
-      "channelNo": 13,
-      "aim": {
-        "x": 2.67,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 36,
-      "note": "탑 · 앞줄 상수"
-    },
-    {
-      "id": "top-up-1",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-2",
-      "x": -2.67,
-      "channelNo": 14,
-      "aim": {
-        "x": -2.67,
-        "y": 0.29,
-        "z": 4.0
-      },
-      "beamAngle": 36,
-      "note": "탑 · 단 하수"
-    },
-    {
-      "id": "top-up-2",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-2",
-      "x": 0,
-      "channelNo": 15,
-      "aim": {
-        "x": 0,
-        "y": 0.29,
-        "z": 4.0
-      },
-      "beamAngle": 36,
-      "note": "탑 · 단 가운데"
-    },
-    {
-      "id": "top-up-3",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-2",
-      "x": 2.67,
-      "channelNo": 16,
-      "aim": {
-        "x": 2.67,
-        "y": 0.29,
-        "z": 4.0
-      },
-      "beamAngle": 36,
-      "note": "탑 · 단 상수"
-    },
-    {
-      "id": "back-1",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-3",
-      "x": -2.67,
-      "channelNo": 21,
-      "aim": {
-        "x": -2.67,
-        "y": 0,
-        "z": 2.6
-      },
-      "beamAngle": 45,
-      "note": "백 · 하수"
-    },
-    {
-      "id": "back-2",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-3",
-      "x": 0,
-      "channelNo": 22,
-      "aim": {
-        "x": 0,
-        "y": 0,
-        "z": 2.6
-      },
-      "beamAngle": 45,
-      "note": "백 · 가운데"
-    },
-    {
-      "id": "back-3",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-3",
-      "x": 2.67,
-      "channelNo": 23,
-      "aim": {
-        "x": 2.67,
-        "y": 0,
-        "z": 2.6
-      },
-      "beamAngle": 45,
-      "note": "백 · 상수"
     }
   ],
   "cues": [
@@ -390,127 +351,145 @@
       "cueId": "cue-0",
       "lights": [
         {
-          "fixtureId": "front-key-1",
+          "zone": "down-left",
+          "direction": "front",
           "intensity": 60,
           "color": {
             "cct": 3200
           }
         },
         {
-          "fixtureId": "front-key-2",
-          "intensity": 60,
+          "zone": "down-left",
+          "direction": "top",
+          "intensity": 24,
           "color": {
             "cct": 3200
           }
         },
         {
-          "fixtureId": "front-key-3",
-          "intensity": 60,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-fill-1",
-          "intensity": 45,
-          "color": {
-            "cct": 4300
-          }
-        },
-        {
-          "fixtureId": "front-fill-2",
-          "intensity": 45,
-          "color": {
-            "cct": 4300
-          }
-        },
-        {
-          "fixtureId": "front-fill-3",
-          "intensity": 45,
-          "color": {
-            "cct": 4300
-          }
-        },
-        {
-          "fixtureId": "front-up-1",
-          "intensity": 60,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-up-2",
-          "intensity": 60,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-up-3",
-          "intensity": 60,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "top-down-1",
-          "intensity": 40,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "top-down-2",
-          "intensity": 40,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "top-down-3",
-          "intensity": 40,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "top-up-1",
-          "intensity": 40,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "top-up-2",
-          "intensity": 40,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "top-up-3",
-          "intensity": 40,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "back-1",
-          "intensity": 35,
+          "zone": "down-left",
+          "direction": "back",
+          "intensity": 21,
           "color": {
             "cct": 4000
           }
         },
         {
-          "fixtureId": "back-2",
-          "intensity": 35,
+          "zone": "up-left",
+          "direction": "front",
+          "intensity": 36,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "intensity": 24,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "back",
+          "intensity": 15,
           "color": {
             "cct": 4000
           }
         },
         {
-          "fixtureId": "back-3",
-          "intensity": 35,
+          "zone": "down-center",
+          "direction": "front",
+          "intensity": 60,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "top",
+          "intensity": 24,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "back",
+          "intensity": 21,
+          "color": {
+            "cct": 4000
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "front",
+          "intensity": 36,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "intensity": 24,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "back",
+          "intensity": 15,
+          "color": {
+            "cct": 4000
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "front",
+          "intensity": 60,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "top",
+          "intensity": 24,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "back",
+          "intensity": 21,
+          "color": {
+            "cct": 4000
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "intensity": 36,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "intensity": 24,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "back",
+          "intensity": 15,
           "color": {
             "cct": 4000
           }
@@ -548,75 +527,680 @@
       ]
     },
     {
-      "cueId": "cue-test-row",
-      "lights": [],
+      "cueId": "cue-1",
+      "lights": [
+        {
+          "zone": "down-left",
+          "direction": "front",
+          "intensity": 18,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-left",
+          "direction": "top",
+          "intensity": 10,
+          "color": {
+            "cct": 4500
+          }
+        },
+        {
+          "zone": "down-left",
+          "direction": "back",
+          "intensity": 12,
+          "color": {
+            "cct": 6500
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "front",
+          "intensity": 0
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "intensity": 0
+        },
+        {
+          "zone": "up-left",
+          "direction": "back",
+          "intensity": 0
+        },
+        {
+          "zone": "down-center",
+          "direction": "front",
+          "intensity": 85,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "top",
+          "intensity": 45,
+          "color": {
+            "cct": 4500
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "back",
+          "intensity": 40,
+          "color": {
+            "cct": 6500
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "front",
+          "intensity": 0
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "intensity": 0
+        },
+        {
+          "zone": "up-center",
+          "direction": "back",
+          "intensity": 0
+        },
+        {
+          "zone": "down-right",
+          "direction": "front",
+          "intensity": 18,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "top",
+          "intensity": 10,
+          "color": {
+            "cct": 4500
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "back",
+          "intensity": 12,
+          "color": {
+            "cct": 6500
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "intensity": 0
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "intensity": 0
+        },
+        {
+          "zone": "up-right",
+          "direction": "back",
+          "intensity": 0
+        }
+      ],
       "blocking": [
         {
           "characterId": "juhyuk",
-          "x": -2.1,
-          "z": 0.6,
+          "x": -0.9,
+          "z": 1.0,
           "facing": 0,
           "posture": "stand",
           "onStage": true
         },
         {
           "characterId": "jeongbae",
-          "x": -1.4,
-          "z": 0.6,
+          "x": 0.9,
+          "z": 1.0,
           "facing": 0,
           "posture": "stand",
           "onStage": true
+        }
+      ]
+    },
+    {
+      "cueId": "cue-2",
+      "lights": [
+        {
+          "zone": "down-left",
+          "direction": "front",
+          "intensity": 70
         },
         {
-          "characterId": "seunguk",
-          "x": -0.7,
-          "z": 0.6,
-          "facing": 0,
-          "posture": "stand",
-          "onStage": true
+          "zone": "down-left",
+          "direction": "top",
+          "intensity": 40
         },
         {
-          "characterId": "dongyeol",
-          "x": 0,
-          "z": 0.6,
-          "facing": 0,
-          "posture": "stand",
-          "onStage": true
+          "zone": "down-left",
+          "direction": "back",
+          "intensity": 30
         },
         {
-          "characterId": "wondal",
-          "x": 0.7,
-          "z": 0.6,
-          "facing": 0,
-          "posture": "stand",
-          "onStage": true
+          "zone": "up-left",
+          "direction": "front",
+          "intensity": 12
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "intensity": 14
+        },
+        {
+          "zone": "down-center",
+          "direction": "front",
+          "intensity": 70
+        },
+        {
+          "zone": "down-center",
+          "direction": "top",
+          "intensity": 40
+        },
+        {
+          "zone": "down-center",
+          "direction": "back",
+          "intensity": 30
+        },
+        {
+          "zone": "up-center",
+          "direction": "front",
+          "intensity": 12
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "intensity": 14
+        },
+        {
+          "zone": "down-right",
+          "direction": "front",
+          "intensity": 70
+        },
+        {
+          "zone": "down-right",
+          "direction": "top",
+          "intensity": 40
+        },
+        {
+          "zone": "down-right",
+          "direction": "back",
+          "intensity": 30
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "intensity": 12
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "intensity": 14
+        }
+      ],
+      "blocking": [
+        {
+          "characterId": "juhyuk",
+          "onStage": false
+        },
+        {
+          "characterId": "jeongbae",
+          "onStage": false
         },
         {
           "characterId": "voice-1",
-          "x": 1.4,
-          "z": 0.6,
+          "x": -1.9,
+          "z": 0.8,
           "facing": 0,
           "posture": "stand",
           "onStage": true
         },
         {
           "characterId": "voice-2",
-          "x": 2.1,
-          "z": 0.6,
+          "x": 1.9,
+          "z": 0.8,
           "facing": 0,
           "posture": "stand",
           "onStage": true
         }
       ]
+    },
+    {
+      "cueId": "cue-3",
+      "lights": [
+        {
+          "zone": "up-left",
+          "direction": "front",
+          "intensity": 70
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "intensity": 40
+        },
+        {
+          "zone": "up-left",
+          "direction": "back",
+          "intensity": 30
+        },
+        {
+          "zone": "up-center",
+          "direction": "front",
+          "intensity": 70
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "intensity": 40
+        },
+        {
+          "zone": "up-center",
+          "direction": "back",
+          "intensity": 30
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "intensity": 70
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "intensity": 40
+        },
+        {
+          "zone": "up-right",
+          "direction": "back",
+          "intensity": 30
+        }
+      ],
+      "blocking": [
+        {
+          "characterId": "dongyeol",
+          "x": -3.22,
+          "z": 1.92,
+          "facing": -45,
+          "posture": "sit",
+          "onStage": true
+        },
+        {
+          "characterId": "juhyuk",
+          "x": 2.89,
+          "z": 2.26,
+          "facing": 45,
+          "posture": "sit",
+          "onStage": true
+        },
+        {
+          "characterId": "jeongbae",
+          "x": 3.22,
+          "z": 1.92,
+          "facing": 45,
+          "posture": "sit",
+          "onStage": true
+        },
+        {
+          "characterId": "seunguk",
+          "x": 3.56,
+          "z": 1.59,
+          "facing": 45,
+          "posture": "sit",
+          "onStage": true
+        },
+        {
+          "characterId": "wondal",
+          "x": 0,
+          "z": 4.73,
+          "facing": 0,
+          "posture": "sit",
+          "onStage": true
+        }
+      ]
+    },
+    {
+      "cueId": "cue-4",
+      "lights": [
+        {
+          "zone": "down-left",
+          "direction": "front",
+          "color": {
+            "cct": 7000
+          }
+        },
+        {
+          "zone": "down-left",
+          "direction": "top",
+          "color": {
+            "cct": 8000
+          }
+        },
+        {
+          "zone": "down-left",
+          "direction": "back",
+          "color": {
+            "cct": 10000
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "front",
+          "color": {
+            "cct": 7000
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "top",
+          "color": {
+            "cct": 8000
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "back",
+          "color": {
+            "cct": 10000
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "front",
+          "color": {
+            "cct": 7000
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "top",
+          "color": {
+            "cct": 8000
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "back",
+          "color": {
+            "cct": 10000
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "front",
+          "color": {
+            "cct": 7000
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "color": {
+            "cct": 8000
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "back",
+          "color": {
+            "cct": 10000
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "front",
+          "color": {
+            "cct": 7000
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "color": {
+            "cct": 8000
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "back",
+          "color": {
+            "cct": 10000
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "color": {
+            "cct": 7000
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "color": {
+            "cct": 8000
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "back",
+          "color": {
+            "cct": 10000
+          }
+        }
+      ],
+      "blocking": [
+        {
+          "characterId": "voice-1",
+          "x": -2.25,
+          "z": 4.2,
+          "facing": 0,
+          "posture": "sit",
+          "onStage": true
+        },
+        {
+          "characterId": "voice-2",
+          "x": 1.5,
+          "z": 2.75,
+          "facing": 0,
+          "posture": "sit",
+          "onStage": true
+        }
+      ],
+      "objects": [
+        {
+          "objectId": "chair-down-right",
+          "position": {
+            "x": 1.5,
+            "y": 0,
+            "z": 2.75
+          },
+          "rotation": 0,
+          "tipped": false
+        },
+        {
+          "objectId": "chair-down-left",
+          "rotation": 0,
+          "tipped": false
+        }
+      ]
+    },
+    {
+      "cueId": "cue-5",
+      "lights": [
+        {
+          "zone": "down-center",
+          "direction": "front",
+          "intensity": 55,
+          "spread": 0.6,
+          "at": {
+            "x": 0.6,
+            "z": 1.0
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "top",
+          "intensity": 30,
+          "spread": 0.6,
+          "at": {
+            "x": 0.6,
+            "z": 1.0
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "back",
+          "intensity": 45,
+          "color": {
+            "cct": 3000
+          },
+          "spread": 0.6,
+          "at": {
+            "x": 0.6,
+            "z": 1.0
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "front",
+          "intensity": 38,
+          "spread": 0.6,
+          "at": {
+            "x": 2.89,
+            "z": 2.26
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "top",
+          "intensity": 20,
+          "spread": 0.6,
+          "at": {
+            "x": 2.89,
+            "z": 2.26
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "back",
+          "intensity": 32,
+          "color": {
+            "cct": 3000
+          },
+          "spread": 0.6,
+          "at": {
+            "x": 2.89,
+            "z": 2.26
+          }
+        },
+        {
+          "zone": "down-left",
+          "direction": "front",
+          "intensity": 5
+        },
+        {
+          "zone": "down-left",
+          "direction": "top",
+          "intensity": 5
+        },
+        {
+          "zone": "down-left",
+          "direction": "back",
+          "intensity": 10,
+          "color": {
+            "cct": 3000
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "front",
+          "intensity": 3
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "intensity": 3
+        },
+        {
+          "zone": "up-left",
+          "direction": "back",
+          "intensity": 12,
+          "color": {
+            "cct": 3000
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "front",
+          "intensity": 4
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "intensity": 4
+        },
+        {
+          "zone": "up-center",
+          "direction": "back",
+          "intensity": 18,
+          "color": {
+            "cct": 3000
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "intensity": 3
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "intensity": 3
+        },
+        {
+          "zone": "up-right",
+          "direction": "back",
+          "intensity": 12,
+          "color": {
+            "cct": 3000
+          }
+        }
+      ],
+      "blocking": [
+        {
+          "characterId": "dongyeol",
+          "x": 0.6,
+          "z": 1.0,
+          "facing": -60,
+          "posture": "stand",
+          "onStage": true
+        },
+        {
+          "characterId": "voice-1",
+          "onStage": false
+        },
+        {
+          "characterId": "voice-2",
+          "onStage": false
+        }
+      ],
+      "objects": []
     }
   ],
-  "dataVersion": "2026-11-04.2",
+  "dataVersion": "2026-11-05.15",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
-    "덧마루 한 장 두께 약 14.5cm는 사진으로 추정한 값 (1단 15cm, 2단 29cm)",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
     "연기 공간 = 폭 8m × 깊이 5m(조명으로 비추는 영역). 책상·의자는 모두 이 안. 두 책상 사이 가장 좁은 폭 약 4.1m",
-    "조명기 배치는 행잉도 없이 장비목록(LED 프레넬 22대)으로 추정. 18대 사용, 4대 여분. 프로파일 3대·무빙 워시 6대는 아직 안 걸음",
-    "제너럴 워시: 연기 공간 8×5m를 가로 3 × 세로 2 = 6존. 아래 무대 3존은 프런트 2대씩 좌우 교차(키 3200K·필 4300K), 단 3존은 프런트 1대씩. 탑(Sus 1 앞줄, Sus 2 단) 6 · 백(Sus 3) 3"
+    "덧마루 한 장 두께 약 14.5cm는 사진으로 추정한 값 (4층 윗면 58cm)",
+    "단 시안: 4층 계단형. 1층 폭 6.06m는 무대 중앙에 대칭, 2~4층 왼쪽 끝은 1층 왼쪽 끝에서 1.82m 지점의 기준선에 맞춤. 3×6 = 0.91m, 2×6 = 0.606m, 1×6 = 0.303m, 깊이 1.82m",
+    "엎어진 의자(상수)는 단 위 빈 폭이 좁아 단 옆 바닥으로 옮김. 판사 책상·의자는 4층 위.",
+    "조명은 실제 행잉이 아니라 구역(앞뒤 2줄 × 좌우 3칸) × 방향(프런트·탑·백)으로 적는 계획용 값. 정밀한 설계는 Capture에서 한다"
   ]
 }

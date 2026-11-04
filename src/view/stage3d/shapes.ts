@@ -8,11 +8,11 @@ import type { ComposedStage } from "../../stage/compose";
  */
 export type Shape = {
   id: string;
-  group: "floor" | "wall" | "curtain" | "batten" | "fixture" | "object" | "character" | "guide";
+  group: "floor" | "wall" | "curtain" | "object" | "character" | "guide";
   /** table·chair·figure는 모양을 렌더러가 만든다 */
-  kind: "box" | "cylinder" | "figure" | "table" | "chair";
+  kind: "box" | "figure" | "table" | "chair";
   position: { x: number; y: number; z: number };
-  /** box: 폭(x)·높이(y)·깊이(z). cylinder: 지름(x)·높이(y). 배튼(가로 원기둥)은 x가 길이. figure: y = 키 */
+  /** box: 폭(x)·높이(y)·깊이(z). figure: y = 키 */
   size: { x: number; y: number; z: number };
   /** 바라보는 방향(도). 0 = 객석 정면 */
   rotationY?: number;
@@ -37,9 +37,9 @@ const WALNUT = "#6b4128";
 /** 열린 막이 양옆에 모여 있는 폭(m) */
 const GATHERED = 1.0;
 
-/** 공연용 무대(바닥·벽·막·배튼·물체)를 그릴 것 목록으로 바꾼다. */
+/** 공연용 무대(바닥·벽·막·물체)를 그릴 것 목록으로 바꾼다. */
 export function describeStage(composed: ComposedStage): Shape[] {
-  const { stage, curtains, objects, fixtures } = composed;
+  const { stage, curtains, objects } = composed;
   const W = stage.width;
   const D = stage.depth;
   const shapes: Shape[] = [];
@@ -62,23 +62,11 @@ export function describeStage(composed: ComposedStage): Shape[] {
     }
   }
 
-  for (const p of stage.positions) {
-    const [x0, x1] = p.xRange;
-    shapes.push({ id: p.id, group: "batten", kind: "cylinder", position: { x: (x0 + x1) / 2, y: p.y, z: p.z }, size: { x: x1 - x0, y: 0.05, z: 0.05 }, color: p.kind === "set" ? "#555555" : "#8a8a8a", label: p.name });
-  }
-
-  // 걸린 조명기 몸체: 배튼 아래 작은 상자
-  for (const f of fixtures) {
-    const p = stage.positions.find((q) => q.id === f.positionId);
-    if (!p) continue;
-    shapes.push({ id: `fixture-${f.id}`, group: "fixture", kind: "box", position: { x: f.x, y: p.y - 0.42, z: p.z }, size: { x: 0.22, y: 0.3, z: 0.22 }, color: "#2b2b2e", label: f.note });
-  }
-
   for (const o of objects) {
     const base = { id: o.id, group: "object" as const, position: o.position, size: o.size, rotationY: o.rotation, label: o.name };
     if (o.kind === "desk") shapes.push({ ...base, kind: "table", color: WALNUT });
     else if (o.kind === "chair") shapes.push({ ...base, kind: "chair", color: WALNUT, tipped: o.tipped });
-    else if (o.kind === "platform") shapes.push({ ...base, kind: "box", color: "#1c1c1e", outline: true });
+    else if (o.kind === "platform") shapes.push({ ...base, kind: "box", color: "#4a4a4e", outline: true });
     else shapes.push({ ...base, kind: "box", color: "#7a5535" });
   }
   return shapes;
