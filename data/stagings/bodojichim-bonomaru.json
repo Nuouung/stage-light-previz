@@ -763,61 +763,21 @@
       ]
     },
     {
-      "cueId": "cue-test-row",
+      "cueId": "cue-1",
       "lights": [],
       "blocking": [
         {
           "characterId": "juhyuk",
-          "x": -2.1,
-          "z": 0.6,
+          "x": -0.45,
+          "z": 1.8,
           "facing": 0,
           "posture": "stand",
           "onStage": true
         },
         {
           "characterId": "jeongbae",
-          "x": -1.4,
-          "z": 0.6,
-          "facing": 0,
-          "posture": "stand",
-          "onStage": true
-        },
-        {
-          "characterId": "seunguk",
-          "x": -0.7,
-          "z": 0.6,
-          "facing": 0,
-          "posture": "stand",
-          "onStage": true
-        },
-        {
-          "characterId": "dongyeol",
-          "x": 0,
-          "z": 0.6,
-          "facing": 0,
-          "posture": "stand",
-          "onStage": true
-        },
-        {
-          "characterId": "wondal",
-          "x": 0.7,
-          "z": 0.6,
-          "facing": 0,
-          "posture": "stand",
-          "onStage": true
-        },
-        {
-          "characterId": "voice-1",
-          "x": 1.4,
-          "z": 0.6,
-          "facing": 0,
-          "posture": "stand",
-          "onStage": true
-        },
-        {
-          "characterId": "voice-2",
-          "x": 2.1,
-          "z": 0.6,
+          "x": 0.45,
+          "z": 1.8,
           "facing": 0,
           "posture": "stand",
           "onStage": true
@@ -825,7 +785,7 @@
       ]
     }
   ],
-  "dataVersion": "2026-11-05.3",
+  "dataVersion": "2026-11-05.4",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",

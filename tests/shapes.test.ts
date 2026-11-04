@@ -69,7 +69,7 @@ describe("인물 그리기", () => {
 describe("그릴 것 목록의 id", () => {
   it("물체마다 id가 달라 이전 무대와 비교할 수 있다", () => {
     const c = composed({ "draw-2": true });
-    const look = resolveCue(project, staging, "cue-test-row");
+    const look = resolveCue(project, staging, "cue-1");
     const shapes = [...describeStage(c), ...describeActingArea(staging.actingArea!), ...describeCharacters(c, project, look.characters)];
     expect(new Set(shapes.map((s) => s.id)).size).toBe(shapes.length);
   });
