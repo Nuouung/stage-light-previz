@@ -33,7 +33,7 @@ function render(s: AppState) {
   const guides = area && s.showActingArea ? describeActingArea(area) : [];
   renderer.setWorkLight(s.showWorkLight);
   renderer.setHaze(s.haze ? 1 : 0);
-  renderer.setLights(describeLights(s.stage, fixtureTypes, look.lights));
+  renderer.setLights(describeLights(composed, fixtureTypes, look.lights));
   renderer.draw([...describeStage(composed), ...guides, ...describeCharacters(composed, s.project, look.characters)]);
   renderControls(
     controlsRoot,

@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { Id, LightColor, Vec3 } from "./common";
+import { Fixture } from "./fixture";
 
 /**
  * 배치(Staging): "이 작품을 이 공연장에서" 할 때만 의미 있는 것.
@@ -61,6 +62,8 @@ export const Staging = z.object({
   actingArea: z.object({ width: z.number().positive(), depth: z.number().positive() }).optional(),
   /** 놓지 않은 물체는 무대에 나오지 않는다 */
   placements: z.array(Placement),
+  /** 행잉: 이 공연에 건 조명과 기본 포커스. 극장 기본 행잉이 있어도 여기에 옮겨 적는다 */
+  hanging: z.array(Fixture).default([]),
   /** 큐마다 바뀌는 값. 아무것도 안 바뀌는 큐는 빠져도 된다 */
   cues: z.array(CueValues).default([]),
   /** 아직 현장에서 확인 안 된 값에 대한 메모 */

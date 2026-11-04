@@ -101,11 +101,11 @@ describe("조명", () => {
 
   it("프리셋에서는 걸린 조명이 모두 켜진다", () => {
     const look = resolveCue(project, staging, "cue-0");
-    expect(describeLights(stage, types, look.lights)).toHaveLength(stage.fixtures.length);
+    expect(describeLights(composed({}), types, look.lights)).toHaveLength(staging.hanging.length);
   });
 
   it("밝기 0인 조명은 켜지 않는다", () => {
-    const id = stage.fixtures[0]!.id;
-    expect(describeLights(stage, types, { [id]: { intensity: 0 } })).toHaveLength(0);
+    const id = staging.hanging[0]!.id;
+    expect(describeLights(composed({}), types, { [id]: { intensity: 0 } })).toHaveLength(0);
   });
 });

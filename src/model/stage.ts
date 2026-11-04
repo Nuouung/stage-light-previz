@@ -1,6 +1,5 @@
 import { z } from "zod";
 import { Id } from "./common";
-import { Fixture } from "./fixture";
 
 /** 막. z = 무대 앞끝에서의 깊이(m). closed = 공연장 기본 상태. */
 export const Curtain = z.object({
@@ -29,7 +28,7 @@ export type Position = z.infer<typeof Position>;
 
 /**
  * 공연장. 어떤 공연(Project)에도 속하지 않는다.
- * 여러 공연이 같은 공연장을 골라 쓸 수 있다.
+ * 여러 공연이 같은 공연장을 골라 쓸 수 있다. 건물과 설비만 적고, 조명을 어떻게 걸지는 배치(Staging)에 적는다.
  */
 export const Stage = z.object({
   id: Id,
@@ -44,7 +43,6 @@ export const Stage = z.object({
   floorColor: z.string().regex(/^#[0-9a-fA-F]{6}$/),
   curtains: z.array(Curtain),
   positions: z.array(Position),
-  fixtures: z.array(Fixture),
   /** 아직 실측·확인 안 된 값에 대한 메모 */
   notes: z.array(z.string()).default([]),
 });

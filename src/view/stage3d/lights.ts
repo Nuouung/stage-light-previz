@@ -1,5 +1,6 @@
-import type { FixtureType, LightColor, Stage } from "../../model";
+import type { FixtureType, LightColor } from "../../model";
 import type { LightLook } from "../../player";
+import type { ComposedStage } from "../../stage/compose";
 
 /**
  * 렌더러에 넘기는 "켤 조명" 목록과, 배튼에 매달린 조명기 몸체 목록.
@@ -57,14 +58,14 @@ export function colorToHex(c: LightColor | undefined): string {
 }
 
 /** 큐 시점의 조명값을 켤 조명 목록으로. 밝기 0이거나 값이 없는 조명은 빼고 돌려준다. */
-export function describeLights(stage: Stage, types: FixtureType[], looks: Record<string, LightLook>): LightBeam[] {
+export function describeLights(composed: ComposedStage, types: FixtureType[], looks: Record<string, LightLook>): LightBeam[] {
   const beams: LightBeam[] = [];
-  for (const f of stage.fixtures) {
+  for (const f of composed.fixtures) {
     const look = looks[f.id];
     const intensity = look?.intensity ?? 0;
     if (intensity <= 0) continue;
     const type = types.find((t) => t.id === f.typeId);
-    const pos = stage.positions.find((p) => p.id === f.positionId);
+    const pos = composed.stage.positions.find((p) => p.id === f.positionId);
     if (!type || !pos) continue;
     beams.push({
       id: f.id,

@@ -1,4 +1,4 @@
-import type { Curtain, Project, Stage, StageObject, Staging } from "../model";
+import type { Curtain, Fixture, Project, Stage, StageObject, Staging } from "../model";
 
 /** 무대에 실제로 놓인 물체 = 작품의 물체 정의 + 배치의 위치 */
 export type PlacedObject = StageObject & {
@@ -7,11 +7,13 @@ export type PlacedObject = StageObject & {
   tipped: boolean;
 };
 
-/** 공연용 무대 = 공연장 + 작품의 세트 + 배치(위치·막 설정). 저장하지 않고 매번 합성한다. */
+/** 공연용 무대 = 공연장 + 작품의 세트 + 배치(위치·막 설정·행잉). 저장하지 않고 매번 합성한다. */
 export type ComposedStage = {
   stage: Stage;
   curtains: Curtain[];
   objects: PlacedObject[];
+  /** 이 공연에 걸린 조명 */
+  fixtures: Fixture[];
 };
 
 /** 원본(공연장·작품)은 건드리지 않고 공연용 무대를 새로 만들어 돌려준다. */
@@ -31,5 +33,5 @@ export function composeStage(stage: Stage, project: Project, staging: Staging): 
     const def = project.objects.find((o) => o.id === p.objectId);
     if (def) objects.push({ ...def, position: p.position, rotation: p.rotation, tipped: p.tipped });
   }
-  return { stage, curtains, objects };
+  return { stage, curtains, objects, fixtures: staging.hanging };
 }

@@ -39,7 +39,7 @@ const GATHERED = 1.0;
 
 /** 공연용 무대(바닥·벽·막·배튼·물체)를 그릴 것 목록으로 바꾼다. */
 export function describeStage(composed: ComposedStage): Shape[] {
-  const { stage, curtains, objects } = composed;
+  const { stage, curtains, objects, fixtures } = composed;
   const W = stage.width;
   const D = stage.depth;
   const shapes: Shape[] = [];
@@ -68,10 +68,10 @@ export function describeStage(composed: ComposedStage): Shape[] {
   }
 
   // 걸린 조명기 몸체: 배튼 아래 작은 상자
-  for (const f of stage.fixtures) {
+  for (const f of fixtures) {
     const p = stage.positions.find((q) => q.id === f.positionId);
     if (!p) continue;
-    shapes.push({ id: `fixture-${f.id}`, group: "fixture", kind: "box", position: { x: f.x, y: p.y - 0.42, z: p.z }, size: { x: 0.22, y: 0.3, z: 0.22 }, color: "#2b2b2e", label: f.role });
+    shapes.push({ id: `fixture-${f.id}`, group: "fixture", kind: "box", position: { x: f.x, y: p.y - 0.42, z: p.z }, size: { x: 0.22, y: 0.3, z: 0.22 }, color: "#2b2b2e", label: f.note });
   }
 
   for (const o of objects) {

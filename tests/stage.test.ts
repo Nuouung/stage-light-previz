@@ -28,6 +28,12 @@ describe("공연용 무대 합성", () => {
     expect(composeStage(stage, tinyProject(), staging).objects).toHaveLength(0);
   });
 
+  it("걸린 조명은 공연장이 아니라 배치의 행잉에서 온다", () => {
+    const fixture = { id: "f", typeId: "t", positionId: "p", x: 0, channelNo: 1, aim: { x: 0, y: 0, z: 0 }, beamAngle: 30 };
+    const composed = composeStage(stage, tinyProject(), { ...tinyStaging(), hanging: [fixture] });
+    expect(composed.fixtures).toEqual([fixture]);
+  });
+
   it("다른 공연장이나 다른 작품용 배치를 넣으면 에러가 난다", () => {
     expect(() => composeStage(stage, tinyProject(), { ...tinyStaging(), stageId: "other" })).toThrow();
     expect(() => composeStage(stage, tinyProject(), { ...tinyStaging(), projectId: "other" })).toThrow();
