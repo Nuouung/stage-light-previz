@@ -177,7 +177,7 @@ export function createRenderer(canvas: HTMLCanvasElement, lightCut: CutRect | nu
   /** 밝기 100%인 빛의 세기. 거리와 상관없이 같은 값으로, 화면에서 보기 좋게 맞춘 값이다 */
   const LIGHT_POWER = 6;
   /** 빛줄기 진하기. 조명 계획에서 빛줄기가 잘 보이도록 맞춘 값이다 */
-  const BEAM_STRENGTH = 0.55;
+  const BEAM_STRENGTH = 1.1;
   function setLights(beams: LightBeam[]) {
     invalidate();
     lastBeams = beams;
@@ -203,7 +203,7 @@ export function createRenderer(canvas: HTMLCanvasElement, lightCut: CutRect | nu
         beamMeshes.set(b.id, m);
       }
       m.visible = haze > 0 && b.level > 0;
-      if (m.visible) updateBeam(m, s.position, s.target.position, b.beamAngle, b.color, BEAM_STRENGTH * haze * Math.sqrt(b.level));
+      if (m.visible) updateBeam(m, s.position, s.target.position, b.beamAngle, b.color, BEAM_STRENGTH * haze * b.level);
     }
   }
 
