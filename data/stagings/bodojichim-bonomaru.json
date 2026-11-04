@@ -1203,7 +1203,10 @@
             "cct": 3200
           },
           "spread": 1,
-          "at": null
+          "at": {
+            "x": -0.3,
+            "z": 1.7
+          }
         },
         {
           "zone": "down-center",
@@ -1213,7 +1216,10 @@
             "cct": 3200
           },
           "spread": 1,
-          "at": null
+          "at": {
+            "x": -0.3,
+            "z": 1.7
+          }
         },
         {
           "zone": "down-center",
@@ -1223,12 +1229,15 @@
             "cct": 3200
           },
           "spread": 1,
-          "at": null
+          "at": {
+            "x": -0.3,
+            "z": 1.7
+          }
         },
         {
           "zone": "down-left",
           "direction": "front",
-          "intensity": 60,
+          "intensity": 0,
           "color": {
             "cct": 3200
           }
@@ -1236,7 +1245,7 @@
         {
           "zone": "down-left",
           "direction": "top",
-          "intensity": 30,
+          "intensity": 0,
           "color": {
             "cct": 3200
           }
@@ -1244,7 +1253,7 @@
         {
           "zone": "down-left",
           "direction": "back",
-          "intensity": 25,
+          "intensity": 0,
           "color": {
             "cct": 3200
           }
@@ -1252,7 +1261,7 @@
         {
           "zone": "down-right",
           "direction": "front",
-          "intensity": 60,
+          "intensity": 0,
           "color": {
             "cct": 3200
           },
@@ -1262,7 +1271,7 @@
         {
           "zone": "down-right",
           "direction": "top",
-          "intensity": 30,
+          "intensity": 0,
           "color": {
             "cct": 3200
           },
@@ -1272,7 +1281,7 @@
         {
           "zone": "down-right",
           "direction": "back",
-          "intensity": 25,
+          "intensity": 0,
           "color": {
             "cct": 3200
           },
@@ -1387,17 +1396,21 @@
         },
         {
           "characterId": "voice-1",
-          "x": -2.1,
-          "z": 1.2,
+          "x": -1.8,
+          "z": 1.5,
           "facing": -110,
           "posture": "stand",
           "onStage": true
+        },
+        {
+          "characterId": "wondal",
+          "onStage": false
         }
       ],
       "objects": []
     }
   ],
-  "dataVersion": "2026-11-05.16",
+  "dataVersion": "2026-11-05.17",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
