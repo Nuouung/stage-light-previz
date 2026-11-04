@@ -39,7 +39,7 @@ const fragment = /* glsl */ `
     float edge = pow(abs(dot(vNormal, vView)), mix(0.8, 2.0, uSoft));
     // 조명기 쪽이 진하고 멀어질수록 옅어진다
     float fall = pow(1.0 - clamp(vAlong, 0.0, 1.0), 1.4);
-    float a = uStrength * edge * fall * lightCutCoverage(uLightPos, vWorld, uCut);
+    float a = uStrength * edge * fall * lightCutCoverage(uLightPos, vWorld, uCut, uSoft);
     // 더하기 방식(source × alpha + 배경)이라 색은 그대로, 진하기는 alpha로만 준다
     gl_FragColor = vec4(uColor, a);
   }
@@ -47,7 +47,7 @@ const fragment = /* glsl */ `
 
 /** 빛줄기 하나. 위치·방향·크기는 update로 바꾼다. */
 export function createBeam(cut: CutRect | null): THREE.Mesh<THREE.ConeGeometry, THREE.ShaderMaterial> {
-  // 자르지 않을 때는 아주 넓은 직사각형으로 둔다
+  // 자르지 않을 때는 아주 넓은 직사각형으로 둔다. 넓어서 경계 번짐이 닿지 않는다
   const rect = cut ? new THREE.Vector4(cut.xMin, cut.xMax, cut.zMin, cut.zMax) : new THREE.Vector4(-1e4, 1e4, -1e4, 1e4);
   const material = new THREE.ShaderMaterial({
     uniforms: { uColor: { value: new THREE.Color() }, uStrength: { value: 0 }, uSoft: { value: 1 }, uHeight: { value: 1 }, uLightPos: { value: new THREE.Vector3() }, uCut: { value: rect } },
