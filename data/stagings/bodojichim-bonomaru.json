@@ -774,7 +774,53 @@
     },
     {
       "cueId": "cue-3",
-      "lights": [],
+      "lights": [
+        {
+          "zone": "up-left",
+          "direction": "front",
+          "intensity": 70
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "intensity": 40
+        },
+        {
+          "zone": "up-left",
+          "direction": "back",
+          "intensity": 30
+        },
+        {
+          "zone": "up-center",
+          "direction": "front",
+          "intensity": 70
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "intensity": 40
+        },
+        {
+          "zone": "up-center",
+          "direction": "back",
+          "intensity": 30
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "intensity": 70
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "intensity": 40
+        },
+        {
+          "zone": "up-right",
+          "direction": "back",
+          "intensity": 30
+        }
+      ],
       "blocking": [
         {
           "characterId": "dongyeol",
@@ -827,7 +873,7 @@
       ]
     }
   ],
-  "dataVersion": "2026-11-05.9",
+  "dataVersion": "2026-11-05.10",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
