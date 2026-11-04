@@ -4,6 +4,7 @@ import { DEFAULT_AVATAR } from "../../model";
 import { createBeam, updateBeam } from "./beams";
 import { planChanges } from "./changes";
 import { buildFigure } from "./figure";
+import { installLightCut, type CutRect } from "./lightCut";
 import { buildChair, buildTable, tipOver } from "./furniture";
 import type { LightBeam } from "./lights";
 import type { Shape } from "./shapes";
@@ -24,7 +25,8 @@ const VIEWS: Record<ViewName, { eye: [number, number, number]; target: [number, 
 };
 
 /** 그릴 것 목록(Shape[])을 받아 화면에 그리기만 한다. 무엇을 그릴지는 정하지 않는다. */
-export function createRenderer(canvas: HTMLCanvasElement) {
+export function createRenderer(canvas: HTMLCanvasElement, lightCut: CutRect | null = null) {
+  if (lightCut) installLightCut(lightCut);
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   const scene = new THREE.Scene();
@@ -210,7 +212,7 @@ export function createRenderer(canvas: HTMLCanvasElement) {
       if (haze > 0) {
         let m = beamMeshes.get(b.id);
         if (!m) {
-          m = createBeam();
+          m = createBeam(lightCut);
           scene.add(m);
           beamMeshes.set(b.id, m);
         }

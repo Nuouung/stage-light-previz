@@ -62,6 +62,8 @@ export const Staging = z.object({
   hiddenCurtains: z.array(Id).default([]),
   /** 연기 공간(조명으로 비추는 영역). 무대 중앙 기준 폭, 무대 앞끝부터의 깊이(m) */
   actingArea: z.object({ width: z.number().positive(), depth: z.number().positive() }).optional(),
+  /** 모든 조명을 연기 공간까지로 잘라서 보여준다. 실제로 가능한지와 별개로 느낌을 보기 위한 가시화 */
+  cutLightsToActingArea: z.boolean().default(false),
   /** 놓지 않은 물체는 무대에 나오지 않는다 */
   placements: z.array(Placement),
   /** 행잉: 이 공연에 건 조명과 기본 포커스. 극장 기본 행잉이 있어도 여기에 옮겨 적는다 */

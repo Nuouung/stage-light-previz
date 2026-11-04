@@ -30,7 +30,9 @@ project.characters.forEach((c) => void loadAvatar(c.avatar ?? DEFAULT_AVATAR).ca
 
 const store = createStore<AppState>({ project, stage, staging, cueId: project.cues[0]?.id ?? "", view: "audience", showActingArea: true, showWorkLight: false, haze: true });
 
-const renderer = createRenderer(document.getElementById("stage") as HTMLCanvasElement);
+const area = staging.actingArea;
+const lightCut = staging.cutLightsToActingArea && area ? { xMin: -area.width / 2, xMax: area.width / 2, zMin: 0, zMax: area.depth } : null;
+const renderer = createRenderer(document.getElementById("stage") as HTMLCanvasElement, lightCut);
 const controlsRoot = document.getElementById("controls")!;
 
 function render(s: AppState) {

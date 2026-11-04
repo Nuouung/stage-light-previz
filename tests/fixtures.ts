@@ -25,6 +25,7 @@ export function tinyStaging(): Staging {
     stageId: "s",
     curtainOverrides: {},
     hiddenCurtains: [],
+    cutLightsToActingArea: false,
     notes: [],
     placements: [{ objectId: "box", position: { x: 0, y: 0, z: 3 }, rotation: 0, tipped: false }],
     hanging: [],
