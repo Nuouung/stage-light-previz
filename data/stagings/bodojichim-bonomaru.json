@@ -346,386 +346,150 @@
       "tipped": true
     }
   ],
-  "hanging": [
-    {
-      "id": "front-key-1",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": -5,
-      "channelNo": 1,
-      "aim": {
-        "x": -2.67,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 25,
-      "note": "프런트 키(하수 쪽에서) · 앞줄 하수"
-    },
-    {
-      "id": "front-key-2",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": -2.5,
-      "channelNo": 2,
-      "aim": {
-        "x": 0,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 25,
-      "note": "프런트 키(하수 쪽에서) · 앞줄 가운데"
-    },
-    {
-      "id": "front-key-3",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": 0.17,
-      "channelNo": 3,
-      "aim": {
-        "x": 2.67,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 25,
-      "note": "프런트 키(하수 쪽에서) · 앞줄 상수"
-    },
-    {
-      "id": "front-fill-1",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": -0.17,
-      "channelNo": 4,
-      "aim": {
-        "x": -2.67,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 25,
-      "note": "프런트 필(상수 쪽에서) · 앞줄 하수"
-    },
-    {
-      "id": "front-fill-2",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": 2.5,
-      "channelNo": 5,
-      "aim": {
-        "x": 0,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 25,
-      "note": "프런트 필(상수 쪽에서) · 앞줄 가운데"
-    },
-    {
-      "id": "front-fill-3",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": 5,
-      "channelNo": 6,
-      "aim": {
-        "x": 2.67,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 25,
-      "note": "프런트 필(상수 쪽에서) · 앞줄 상수"
-    },
-    {
-      "id": "front-up-1",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": -2.67,
-      "channelNo": 7,
-      "aim": {
-        "x": -2.67,
-        "y": 0.145,
-        "z": 3.9
-      },
-      "beamAngle": 22,
-      "note": "프런트 · 단 하수"
-    },
-    {
-      "id": "front-up-2",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": 0,
-      "channelNo": 8,
-      "aim": {
-        "x": 0,
-        "y": 0.58,
-        "z": 3.9
-      },
-      "beamAngle": 22,
-      "note": "프런트 · 단 가운데"
-    },
-    {
-      "id": "front-up-3",
-      "typeId": "generic-fresnel",
-      "positionId": "foh-front",
-      "x": 2.67,
-      "channelNo": 9,
-      "aim": {
-        "x": 2.67,
-        "y": 0.145,
-        "z": 3.9
-      },
-      "beamAngle": 22,
-      "note": "프런트 · 단 상수"
-    },
-    {
-      "id": "top-down-1",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-1",
-      "x": -2.67,
-      "channelNo": 11,
-      "aim": {
-        "x": -2.67,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 36,
-      "note": "탑 · 앞줄 하수"
-    },
-    {
-      "id": "top-down-2",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-1",
-      "x": 0,
-      "channelNo": 12,
-      "aim": {
-        "x": 0,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 36,
-      "note": "탑 · 앞줄 가운데"
-    },
-    {
-      "id": "top-down-3",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-1",
-      "x": 2.67,
-      "channelNo": 13,
-      "aim": {
-        "x": 2.67,
-        "y": 0,
-        "z": 1.4
-      },
-      "beamAngle": 36,
-      "note": "탑 · 앞줄 상수"
-    },
-    {
-      "id": "top-up-1",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-2",
-      "x": -2.67,
-      "channelNo": 14,
-      "aim": {
-        "x": -2.67,
-        "y": 0.145,
-        "z": 4.0
-      },
-      "beamAngle": 36,
-      "note": "탑 · 단 하수"
-    },
-    {
-      "id": "top-up-2",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-2",
-      "x": 0,
-      "channelNo": 15,
-      "aim": {
-        "x": 0,
-        "y": 0.58,
-        "z": 4.0
-      },
-      "beamAngle": 36,
-      "note": "탑 · 단 가운데"
-    },
-    {
-      "id": "top-up-3",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-2",
-      "x": 2.67,
-      "channelNo": 16,
-      "aim": {
-        "x": 2.67,
-        "y": 0.145,
-        "z": 4.0
-      },
-      "beamAngle": 36,
-      "note": "탑 · 단 상수"
-    },
-    {
-      "id": "back-1",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-3",
-      "x": -2.67,
-      "channelNo": 21,
-      "aim": {
-        "x": -2.67,
-        "y": 0,
-        "z": 2.6
-      },
-      "beamAngle": 45,
-      "note": "백 · 하수"
-    },
-    {
-      "id": "back-2",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-3",
-      "x": 0,
-      "channelNo": 22,
-      "aim": {
-        "x": 0,
-        "y": 0,
-        "z": 2.6
-      },
-      "beamAngle": 45,
-      "note": "백 · 가운데"
-    },
-    {
-      "id": "back-3",
-      "typeId": "generic-fresnel",
-      "positionId": "sus-3",
-      "x": 2.67,
-      "channelNo": 23,
-      "aim": {
-        "x": 2.67,
-        "y": 0,
-        "z": 2.6
-      },
-      "beamAngle": 45,
-      "note": "백 · 상수"
-    }
-  ],
   "cues": [
     {
       "cueId": "cue-0",
       "lights": [
         {
-          "fixtureId": "front-key-1",
-          "intensity": 36,
+          "zone": "down-left",
+          "direction": "front",
+          "intensity": 60,
           "color": {
             "cct": 3200
           }
         },
         {
-          "fixtureId": "front-key-2",
-          "intensity": 36,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-key-3",
-          "intensity": 36,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-fill-1",
-          "intensity": 27,
-          "color": {
-            "cct": 4300
-          }
-        },
-        {
-          "fixtureId": "front-fill-2",
-          "intensity": 27,
-          "color": {
-            "cct": 4300
-          }
-        },
-        {
-          "fixtureId": "front-fill-3",
-          "intensity": 27,
-          "color": {
-            "cct": 4300
-          }
-        },
-        {
-          "fixtureId": "front-up-1",
-          "intensity": 36,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-up-2",
-          "intensity": 36,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-up-3",
-          "intensity": 36,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "top-down-1",
+          "zone": "down-left",
+          "direction": "top",
           "intensity": 24,
           "color": {
             "cct": 3200
           }
         },
         {
-          "fixtureId": "top-down-2",
-          "intensity": 24,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "top-down-3",
-          "intensity": 24,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "top-up-1",
-          "intensity": 24,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "top-up-2",
-          "intensity": 24,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "top-up-3",
-          "intensity": 24,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "back-1",
+          "zone": "down-left",
+          "direction": "back",
           "intensity": 21,
           "color": {
             "cct": 4000
           }
         },
         {
-          "fixtureId": "back-2",
+          "zone": "up-left",
+          "direction": "front",
+          "intensity": 36,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "intensity": 24,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "back",
+          "intensity": 15,
+          "color": {
+            "cct": 4000
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "front",
+          "intensity": 60,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "top",
+          "intensity": 24,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "back",
           "intensity": 21,
           "color": {
             "cct": 4000
           }
         },
         {
-          "fixtureId": "back-3",
+          "zone": "up-center",
+          "direction": "front",
+          "intensity": 36,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "intensity": 24,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-center",
+          "direction": "back",
+          "intensity": 15,
+          "color": {
+            "cct": 4000
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "front",
+          "intensity": 60,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "top",
+          "intensity": 24,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "back",
           "intensity": 21,
+          "color": {
+            "cct": 4000
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "intensity": 36,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "intensity": 24,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "up-right",
+          "direction": "back",
+          "intensity": 15,
           "color": {
             "cct": 4000
           }
@@ -766,112 +530,121 @@
       "cueId": "cue-1",
       "lights": [
         {
-          "fixtureId": "front-key-1",
-          "intensity": 14,
+          "zone": "down-left",
+          "direction": "front",
+          "intensity": 18,
           "color": {
             "cct": 3200
           }
         },
         {
-          "fixtureId": "front-key-2",
-          "intensity": 70,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-key-3",
-          "intensity": 14,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-fill-1",
-          "intensity": 11,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-fill-2",
-          "intensity": 55,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-fill-3",
-          "intensity": 11,
-          "color": {
-            "cct": 3200
-          }
-        },
-        {
-          "fixtureId": "front-up-1",
-          "intensity": 0
-        },
-        {
-          "fixtureId": "front-up-2",
-          "intensity": 0
-        },
-        {
-          "fixtureId": "front-up-3",
-          "intensity": 0
-        },
-        {
-          "fixtureId": "top-down-1",
-          "intensity": 12,
+          "zone": "down-left",
+          "direction": "top",
+          "intensity": 10,
           "color": {
             "cct": 4500
           }
         },
         {
-          "fixtureId": "top-down-2",
+          "zone": "down-left",
+          "direction": "back",
+          "intensity": 12,
+          "color": {
+            "cct": 6500
+          }
+        },
+        {
+          "zone": "up-left",
+          "direction": "front",
+          "intensity": 0
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "intensity": 0
+        },
+        {
+          "zone": "up-left",
+          "direction": "back",
+          "intensity": 0
+        },
+        {
+          "zone": "down-center",
+          "direction": "front",
+          "intensity": 85,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-center",
+          "direction": "top",
           "intensity": 45,
           "color": {
             "cct": 4500
           }
         },
         {
-          "fixtureId": "top-down-3",
-          "intensity": 12,
-          "color": {
-            "cct": 4500
-          }
-        },
-        {
-          "fixtureId": "top-up-1",
-          "intensity": 0
-        },
-        {
-          "fixtureId": "top-up-2",
-          "intensity": 0
-        },
-        {
-          "fixtureId": "top-up-3",
-          "intensity": 0
-        },
-        {
-          "fixtureId": "back-1",
-          "intensity": 15,
-          "color": {
-            "cct": 6500
-          }
-        },
-        {
-          "fixtureId": "back-2",
+          "zone": "down-center",
+          "direction": "back",
           "intensity": 40,
           "color": {
             "cct": 6500
           }
         },
         {
-          "fixtureId": "back-3",
-          "intensity": 15,
+          "zone": "up-center",
+          "direction": "front",
+          "intensity": 0
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "intensity": 0
+        },
+        {
+          "zone": "up-center",
+          "direction": "back",
+          "intensity": 0
+        },
+        {
+          "zone": "down-right",
+          "direction": "front",
+          "intensity": 18,
+          "color": {
+            "cct": 3200
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "top",
+          "intensity": 10,
+          "color": {
+            "cct": 4500
+          }
+        },
+        {
+          "zone": "down-right",
+          "direction": "back",
+          "intensity": 12,
           "color": {
             "cct": 6500
           }
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "intensity": 0
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "intensity": 0
+        },
+        {
+          "zone": "up-right",
+          "direction": "back",
+          "intensity": 0
         }
       ],
       "blocking": [
@@ -897,76 +670,79 @@
       "cueId": "cue-2",
       "lights": [
         {
-          "fixtureId": "front-key-1",
-          "intensity": 55
+          "zone": "down-left",
+          "direction": "front",
+          "intensity": 70
         },
         {
-          "fixtureId": "front-key-2",
-          "intensity": 55
-        },
-        {
-          "fixtureId": "front-key-3",
-          "intensity": 55
-        },
-        {
-          "fixtureId": "front-fill-1",
+          "zone": "down-left",
+          "direction": "top",
           "intensity": 40
         },
         {
-          "fixtureId": "front-fill-2",
-          "intensity": 40
-        },
-        {
-          "fixtureId": "front-fill-3",
-          "intensity": 40
-        },
-        {
-          "fixtureId": "front-up-1",
-          "intensity": 12
-        },
-        {
-          "fixtureId": "front-up-2",
-          "intensity": 12
-        },
-        {
-          "fixtureId": "front-up-3",
-          "intensity": 12
-        },
-        {
-          "fixtureId": "top-down-1",
-          "intensity": 40
-        },
-        {
-          "fixtureId": "top-down-2",
-          "intensity": 40
-        },
-        {
-          "fixtureId": "top-down-3",
-          "intensity": 40
-        },
-        {
-          "fixtureId": "top-up-1",
-          "intensity": 14
-        },
-        {
-          "fixtureId": "top-up-2",
-          "intensity": 14
-        },
-        {
-          "fixtureId": "top-up-3",
-          "intensity": 14
-        },
-        {
-          "fixtureId": "back-1",
+          "zone": "down-left",
+          "direction": "back",
           "intensity": 30
         },
         {
-          "fixtureId": "back-2",
+          "zone": "up-left",
+          "direction": "front",
+          "intensity": 12
+        },
+        {
+          "zone": "up-left",
+          "direction": "top",
+          "intensity": 14
+        },
+        {
+          "zone": "down-center",
+          "direction": "front",
+          "intensity": 70
+        },
+        {
+          "zone": "down-center",
+          "direction": "top",
+          "intensity": 40
+        },
+        {
+          "zone": "down-center",
+          "direction": "back",
           "intensity": 30
         },
         {
-          "fixtureId": "back-3",
+          "zone": "up-center",
+          "direction": "front",
+          "intensity": 12
+        },
+        {
+          "zone": "up-center",
+          "direction": "top",
+          "intensity": 14
+        },
+        {
+          "zone": "down-right",
+          "direction": "front",
+          "intensity": 70
+        },
+        {
+          "zone": "down-right",
+          "direction": "top",
+          "intensity": 40
+        },
+        {
+          "zone": "down-right",
+          "direction": "back",
           "intensity": 30
+        },
+        {
+          "zone": "up-right",
+          "direction": "front",
+          "intensity": 12
+        },
+        {
+          "zone": "up-right",
+          "direction": "top",
+          "intensity": 14
         }
       ],
       "blocking": [
@@ -997,16 +773,14 @@
       ]
     }
   ],
-  "dataVersion": "2026-11-05.7",
+  "dataVersion": "2026-11-05.8",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
     "연기 공간 = 폭 8m × 깊이 5m(조명으로 비추는 영역). 책상·의자는 모두 이 안. 두 책상 사이 가장 좁은 폭 약 4.1m",
-    "조명기 배치는 행잉도 없이 장비목록(LED 프레넬 22대)으로 추정. 18대 사용, 4대 여분. 프로파일 3대·무빙 워시 6대는 아직 안 걸음",
-    "제너럴 워시: 연기 공간 8×5m를 가로 3 × 세로 2 = 6존. 아래 무대 3존은 프런트 2대씩 좌우 교차(키 3200K·필 4300K), 단 3존은 프런트 1대씩. 탑(Sus 1 앞줄, Sus 2 단) 6 · 백(Sus 3) 3",
     "덧마루 한 장 두께 약 14.5cm는 사진으로 추정한 값 (4층 윗면 58cm)",
     "단 시안: 4층 계단형. 1층 폭 6.06m는 무대 중앙에 대칭, 2~4층 왼쪽 끝은 1층 왼쪽 끝에서 1.82m 지점의 기준선에 맞춤. 3×6 = 0.91m, 2×6 = 0.606m, 1×6 = 0.303m, 깊이 1.82m",
-    "엎어진 의자(상수)는 단 위 빈 폭이 좁아 단 옆 바닥으로 옮김. 판사 책상·의자는 4층 위. 단을 겨누는 조명의 높이는 겨누는 곳의 단 윗면에 맞춤",
-    "조명 자르기는 프레넬을 반도어로 막았을 때를 흉내 낸 가시화. 경계 번짐과 새는 빛의 양은 측정값이 아니라 눈으로 맞춘 값이고, 반사광은 계산하지 않음. 현장 검토 필요"
+    "엎어진 의자(상수)는 단 위 빈 폭이 좁아 단 옆 바닥으로 옮김. 판사 책상·의자는 4층 위.",
+    "조명은 실제 행잉이 아니라 구역(앞뒤 2줄 × 좌우 3칸) × 방향(프런트·탑·백)으로 적는 계획용 값. 정밀한 설계는 Capture에서 한다"
   ]
 }

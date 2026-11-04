@@ -28,6 +28,8 @@ const VIEWS: Record<ViewName, { eye: [number, number, number]; target: [number, 
 export function createRenderer(canvas: HTMLCanvasElement, lightCut: CutRect | null = null) {
   if (lightCut) installLightCut(lightCut);
   const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+  // 빛을 받은 곳과 어두운 곳의 차이가 잘 보이도록 밝은 쪽을 부드럽게 눌러 준다
+  renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
   const scene = new THREE.Scene();
   const WORK_BACKGROUND = new THREE.Color("#050608");
@@ -92,25 +94,15 @@ export function createRenderer(canvas: HTMLCanvasElement, lightCut: CutRect | nu
     }
     // 반사가 없는 재질. 보는 각도와 상관없이 빛을 받은 만큼만 밝아서, 빛이 어디에 떨어지는지 그대로 보인다
     const mat = new THREE.MeshLambertMaterial({ color: s.color });
-    let mesh: THREE.Mesh;
-    if (s.kind === "cylinder" && s.group === "batten") {
-      mesh = new THREE.Mesh(new THREE.CylinderGeometry(s.size.y / 2, s.size.y / 2, s.size.x, 8), mat);
-      mesh.rotation.z = Math.PI / 2;
-      mesh.position.copy(toThree(s.position.x, s.position.y, s.position.z));
-    } else if (s.kind === "cylinder") {
-      mesh = new THREE.Mesh(new THREE.CylinderGeometry(s.size.x / 2, s.size.x / 2, s.size.y, 16), mat);
-      mesh.position.copy(toThree(s.position.x, s.position.y + s.size.y / 2, s.position.z));
-    } else {
-      mesh = new THREE.Mesh(new THREE.BoxGeometry(s.size.x, s.size.y, s.size.z), mat);
-      mesh.position.copy(toThree(s.position.x, s.position.y + s.size.y / 2, s.position.z));
-      if (s.rotationY) mesh.rotation.y = (-s.rotationY * Math.PI) / 180;
-      if (s.outline) {
-        const edges = new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry), new THREE.LineBasicMaterial({ color: "#4a4a50" }));
-        // 선은 조명과 상관없이 보이므로 작업등을 끄면 숨긴다
-        edges.visible = workLightOn;
-        edges.userData.guide = true;
-        mesh.add(edges);
-      }
+    const mesh = new THREE.Mesh(new THREE.BoxGeometry(s.size.x, s.size.y, s.size.z), mat);
+    mesh.position.copy(toThree(s.position.x, s.position.y + s.size.y / 2, s.position.z));
+    if (s.rotationY) mesh.rotation.y = (-s.rotationY * Math.PI) / 180;
+    if (s.outline) {
+      const edges = new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry), new THREE.LineBasicMaterial({ color: "#4a4a50" }));
+      // 선은 조명과 상관없이 보이므로 작업등을 끄면 숨긴다
+      edges.visible = workLightOn;
+      edges.userData.guide = true;
+      mesh.add(edges);
     }
     mesh.name = s.id;
     return mesh;
@@ -176,50 +168,42 @@ export function createRenderer(canvas: HTMLCanvasElement, lightCut: CutRect | nu
     invalidate();
   }
 
-  // 조명기 하나 = SpotLight 하나. id로 재사용하고, 목록에서 빠진 건 끈다
+  // 빛 하나 = SpotLight 하나. id로 재사용하고, 꺼진 빛은 밝기만 0으로 둔다
   const spots = new Map<string, THREE.SpotLight>();
   const beamMeshes = new Map<string, ReturnType<typeof createBeam>>();
   /** 헤이즈 농도 0~1. 0이면 빛줄기를 그리지 않는다 */
   let haze = 0;
   let lastBeams: LightBeam[] = [];
-  /** 밝기 100%인 기준 조명기의 광도(cd). 화면에서 보기 좋게 맞춘 값 */
-  const CANDELA = 650;
+  /** 밝기 100%인 빛의 세기. 거리와 상관없이 같은 값으로, 화면에서 보기 좋게 맞춘 값이다 */
+  const LIGHT_POWER = 6;
+  /** 빛줄기 진하기. 조명 계획에서 빛줄기가 잘 보이도록 맞춘 값이다 */
+  const BEAM_STRENGTH = 0.55;
   function setLights(beams: LightBeam[]) {
     invalidate();
-    const live = new Set(beams.map((b) => b.id));
-    for (const [id, s] of spots) {
-      if (!live.has(id)) s.visible = false;
-    }
-    for (const [id, m] of beamMeshes) {
-      if (!live.has(id) || haze <= 0) m.visible = false;
-    }
     lastBeams = beams;
     for (const b of beams) {
       let s = spots.get(b.id);
       if (!s) {
         s = new THREE.SpotLight();
-        s.decay = 2;
+        s.decay = 0;
+        s.penumbra = 0.7;
         scene.add(s, s.target);
         spots.set(b.id, s);
       }
-      s.visible = true;
       s.color.set(b.color);
-      s.intensity = CANDELA * b.level;
+      s.intensity = LIGHT_POWER * b.level;
       s.angle = ((b.beamAngle / 2) * Math.PI) / 180;
-      s.penumbra = b.soft ? 0.7 : 0.15;
       s.position.copy(toThree(b.position.x, b.position.y, b.position.z));
       s.target.position.copy(toThree(b.target.x, b.target.y, b.target.z));
 
-      if (haze > 0) {
-        let m = beamMeshes.get(b.id);
-        if (!m) {
-          m = createBeam(lightCut);
-          scene.add(m);
-          beamMeshes.set(b.id, m);
-        }
-        m.visible = true;
-        updateBeam(m, s.position, s.target.position, b.beamAngle, b.color, 0.35 * haze * b.level, b.soft);
+      let m = beamMeshes.get(b.id);
+      if (!m) {
+        m = createBeam(lightCut);
+        scene.add(m);
+        beamMeshes.set(b.id, m);
       }
+      m.visible = haze > 0 && b.level > 0;
+      if (m.visible) updateBeam(m, s.position, s.target.position, b.beamAngle, b.color, BEAM_STRENGTH * haze * Math.sqrt(b.level));
     }
   }
 

@@ -39,7 +39,7 @@ const fragment = /* glsl */ `
     float edge = pow(abs(dot(vNormal, vView)), mix(0.8, 2.0, uSoft));
     // 조명기 쪽이 진하고 멀어질수록 옅어진다
     float fall = pow(1.0 - clamp(vAlong, 0.0, 1.0), 1.4);
-    float a = uStrength * edge * fall * lightCutCoverage(uLightPos, vWorld, uCut, uSoft);
+    float a = uStrength * edge * fall * lightCutCoverage(uLightPos, vWorld, uCut);
     // 더하기 방식(source × alpha + 배경)이라 색은 그대로, 진하기는 alpha로만 준다
     gl_FragColor = vec4(uColor, a);
   }
@@ -71,7 +71,6 @@ export function updateBeam(
   angleDeg: number,
   color: string,
   strength: number,
-  soft: boolean,
 ) {
   const dir = new THREE.Vector3().subVectors(from, to);
   const length = dir.length();
@@ -83,7 +82,6 @@ export function updateBeam(
   const u = mesh.material.uniforms;
   u.uColor!.value.set(color);
   u.uStrength!.value = strength;
-  u.uSoft!.value = soft ? 1 : 0;
   u.uHeight!.value = 1;
   u.uLightPos!.value.copy(from);
 }

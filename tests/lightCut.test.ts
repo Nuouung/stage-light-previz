@@ -8,7 +8,6 @@ describe("조명 자르기", () => {
   it("지금 쓰는 three.js의 스포트라이트 계산에 자르기가 들어간다", () => {
     const patched = patchSpotLightChunk(ShaderChunk.lights_pars_begin, rect);
     expect(patched).toContain("lightCutCoverage(viewToWorld(spotLight.position)");
-    expect(patched).toContain("spotSoftness(spotLight)");
     expect(patched).toContain("vec4(-4.0000, 4.0000, 0.0000, 5.0000)");
   });
 

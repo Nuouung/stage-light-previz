@@ -1,9 +1,8 @@
 import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
-import { AVATARS, FixtureType, Project, Stage, Staging } from "../src/model";
+import { AVATARS, Project, Stage, Staging } from "../src/model";
 import { composeStage } from "../src/stage/compose";
-import { inventoryWarnings } from "../src/stage/inventory";
 import { floorHeightAt } from "../src/view/stage3d/shapes";
 import { REQUIRED_BONES } from "../src/view/stage3d/pose";
 
@@ -13,14 +12,13 @@ const load = (dir: string) =>
     .filter((f) => f.endsWith(".json"))
     .map((f) => ({ file: `${dir}/${f}`, json: JSON.parse(readFileSync(join(root, dir, f), "utf8")) }));
 
-const types = load("fixture-types").map(({ file, json }) => ({ file, data: FixtureType.parse(json) }));
 const stages = load("stages").map(({ file, json }) => ({ file, data: Stage.parse(json) }));
 const projects = load("projects").map(({ file, json }) => ({ file, data: Project.parse(json) }));
 const stagings = load("stagings").map(({ file, json }) => ({ file, data: Staging.parse(json) }));
 
 describe("데이터 형식", () => {
   it("모든 데이터 파일이 정해진 형식에 맞는다", () => {
-    expect(types.length + stages.length + projects.length + stagings.length).toBeGreaterThan(0);
+    expect(stages.length + projects.length + stagings.length).toBeGreaterThan(0);
   });
 });
 
@@ -31,16 +29,6 @@ describe("인물 모형 파일", () => {
       const json = JSON.parse(file.subarray(20, 20 + file.readUInt32LE(12)).toString()) as { nodes: { name?: string }[] };
       const names = new Set(json.nodes.map((n) => n.name));
       for (const bone of REQUIRED_BONES) expect(names, bone).toContain(bone);
-    });
-  }
-});
-
-describe("공연장 데이터", () => {
-  for (const { file, data: stage } of stages) {
-    it(`${file}: 보유 장비는 모두 있는 종류를 가리키고 겹치지 않는다`, () => {
-      const typeIds = new Set(types.map((t) => t.data.id));
-      for (const i of stage.inventory) expect(typeIds, `보유 장비 ${i.typeId}`).toContain(i.typeId);
-      expect(new Set(stage.inventory.map((i) => i.typeId)).size).toBe(stage.inventory.length);
     });
   }
 });
@@ -108,7 +96,6 @@ describe("배치 데이터", () => {
 
     it(`${file}: 놓은 물체가 모두 연기 공간 안에 들어간다`, () => {
       const area = staging.actingArea;
-      if (!area) return;
       for (const p of staging.placements) {
         const o = project?.objects.find((d) => d.id === p.objectId);
         if (!o) continue;
@@ -123,52 +110,11 @@ describe("배치 데이터", () => {
       }
     });
 
-    it(`${file}: 걸린 조명은 모두 있는 종류와 이 공연장의 배튼을 가리킨다`, () => {
-      const typeIds = new Set(types.map((t) => t.data.id));
-      const positionIds = new Set(stage?.positions.map((p) => p.id));
-      for (const f of staging.hanging) {
-        expect(typeIds, `${f.id}의 종류`).toContain(f.typeId);
-        expect(positionIds, `${f.id}의 배튼`).toContain(f.positionId);
-      }
-    });
-
-    it(`${file}: 걸린 조명의 id와 채널 번호가 겹치지 않는다`, () => {
-      const ids = staging.hanging.map((f) => f.id);
-      const nums = staging.hanging.map((f) => f.channelNo);
-      expect(new Set(ids).size).toBe(ids.length);
-      expect(new Set(nums).size).toBe(nums.length);
-    });
-
-    it(`${file}: 걸린 조명은 배튼 길이 안에 있다`, () => {
-      for (const f of staging.hanging) {
-        const p = stage?.positions.find((q) => q.id === f.positionId);
-        if (!p) continue;
-        expect(f.x, `${f.id} 좌우 위치`).toBeGreaterThanOrEqual(p.xRange[0]);
-        expect(f.x, `${f.id} 좌우 위치`).toBeLessThanOrEqual(p.xRange[1]);
-      }
-    });
-
-    it(`${file}: 보유 수량을 넘겨 걸면 경고를 남긴다`, () => {
-      // 대여 장비가 있을 수 있어 실패로 처리하지 않는다
-      if (stage) inventoryWarnings(stage, staging).forEach((w) => console.warn(`${file}: ${w}`));
-    });
-
-    it(`${file}: 기본 줌은 조명 종류의 범위 안에 있다`, () => {
-      for (const f of staging.hanging) {
-        const t = types.find((d) => d.data.id === f.typeId)?.data;
-        if (!t) continue;
-        expect(f.beamAngle, `${f.id} 줌`).toBeGreaterThanOrEqual(t.beamAngle[0]);
-        expect(f.beamAngle, `${f.id} 줌`).toBeLessThanOrEqual(t.beamAngle[1]);
-      }
-    });
-
-    it(`${file}: 큐 값이 가리키는 큐·조명·인물이 모두 존재한다`, () => {
+    it(`${file}: 큐 값이 가리키는 큐·인물이 모두 존재한다`, () => {
       const cueIds = new Set(project?.cues.map((c) => c.id));
-      const fixtureIds = new Set(staging.hanging.map((f) => f.id));
       const characterIds = new Set(project?.characters.map((c) => c.id));
       for (const v of staging.cues) {
         expect(cueIds, `큐 ${v.cueId}`).toContain(v.cueId);
-        for (const l of v.lights) expect(fixtureIds, `${v.cueId}의 조명`).toContain(l.fixtureId);
         for (const b of v.blocking) expect(characterIds, `${v.cueId}의 인물`).toContain(b.characterId);
       }
     });
