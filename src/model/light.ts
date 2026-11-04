@@ -22,6 +22,10 @@ export const CueLight = z.strictObject({
   /** 밝기 0~100 */
   intensity: z.number().min(0).max(100).optional(),
   color: LightColor.optional(),
+  /** 바닥 빛 폭의 배율. 1이 기본, 작을수록 좁다 */
+  spread: z.number().positive().max(1).optional(),
+  /** 구역 가운데 대신 겨눌 바닥 지점. 사람 한 명을 따로 비출 때 쓴다. null이면 구역 가운데로 돌아간다 */
+  at: z.object({ x: z.number(), z: z.number() }).nullable().optional(),
 });
 export type CueLight = z.infer<typeof CueLight>;
 

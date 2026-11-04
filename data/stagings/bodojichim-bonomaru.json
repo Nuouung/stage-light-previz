@@ -1036,12 +1036,22 @@
         {
           "zone": "down-center",
           "direction": "front",
-          "intensity": 55
+          "intensity": 55,
+          "spread": 0.6,
+          "at": {
+            "x": 0.6,
+            "z": 1.0
+          }
         },
         {
           "zone": "down-center",
           "direction": "top",
-          "intensity": 30
+          "intensity": 30,
+          "spread": 0.6,
+          "at": {
+            "x": 0.6,
+            "z": 1.0
+          }
         },
         {
           "zone": "down-center",
@@ -1049,17 +1059,32 @@
           "intensity": 45,
           "color": {
             "cct": 3000
+          },
+          "spread": 0.6,
+          "at": {
+            "x": 0.6,
+            "z": 1.0
           }
         },
         {
           "zone": "down-right",
           "direction": "front",
-          "intensity": 38
+          "intensity": 38,
+          "spread": 0.6,
+          "at": {
+            "x": 2.89,
+            "z": 2.26
+          }
         },
         {
           "zone": "down-right",
           "direction": "top",
-          "intensity": 20
+          "intensity": 20,
+          "spread": 0.6,
+          "at": {
+            "x": 2.89,
+            "z": 2.26
+          }
         },
         {
           "zone": "down-right",
@@ -1067,6 +1092,11 @@
           "intensity": 32,
           "color": {
             "cct": 3000
+          },
+          "spread": 0.6,
+          "at": {
+            "x": 2.89,
+            "z": 2.26
           }
         },
         {
@@ -1163,7 +1193,7 @@
       "objects": []
     }
   ],
-  "dataVersion": "2026-11-05.13",
+  "dataVersion": "2026-11-05.15",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",

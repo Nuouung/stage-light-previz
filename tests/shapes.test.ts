@@ -113,6 +113,20 @@ describe("조명", () => {
     expect(beams.filter((b) => b.level > 0)).toHaveLength(1);
   });
 
+  it("폭 배율을 적은 빛만 좁아진다", () => {
+    const beams = describeLights(composed({}), area, { "down-center/front": { spread: 0.5 } });
+    const base = describeLights(composed({}), area, {});
+    const angle = (list: typeof beams, id: string) => list.find((b) => b.id === id)!.beamAngle;
+    expect(angle(beams, "down-center/front")).toBeLessThan(angle(base, "down-center/front"));
+    expect(angle(beams, "down-left/front")).toBe(angle(base, "down-left/front"));
+  });
+
+  it("겨눌 지점을 적은 빛만 그 지점을 비춘다", () => {
+    const beams = describeLights(composed({}), area, { "down-center/top": { at: { x: 1, z: 2 } } });
+    expect(beams.find((b) => b.id === "down-center/top")?.target).toMatchObject({ x: 1, z: 2 });
+    expect(beams.find((b) => b.id === "down-center/back")?.target.x).toBe(zoneCenter("down-center", area).x);
+  });
+
   it("왼쪽 구역은 객석에서 볼 때 왼쪽(-x), 앞줄은 객석 쪽이다", () => {
     expect(zoneCenter("down-left", area).x).toBeLessThan(0);
     expect(zoneCenter("up-right", area).x).toBeGreaterThan(0);

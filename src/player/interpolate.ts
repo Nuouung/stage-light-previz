@@ -20,6 +20,7 @@ function lerpLight(a: LightLook | undefined, b: LightLook | undefined, t: number
     ...to,
     intensity: lerp(from.intensity ?? 0, to.intensity ?? 0, t),
     color: lerpColor(from.color, to.color, t),
+    spread: lerp(from.spread ?? 1, to.spread ?? 1, t),
   };
 }
 

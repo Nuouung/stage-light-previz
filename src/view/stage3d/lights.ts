@@ -77,6 +77,9 @@ const sourceOf = (direction: Direction, x: number, z: number) =>
     back: { x, y: SOURCE.backY, z: z + SOURCE.backOffset },
   })[direction];
 
+/** 사람을 겨눈 프런트 빛의 높이(m). 바닥을 겨누면 빛이 좁을 때 얼굴이 빛 밖으로 벗어난다 */
+const PERSON_AIM_HEIGHT = 1.2;
+
 /**
  * 구역 × 방향의 빛 전부를 돌려준다. 꺼진 빛도 밝기 0으로 포함한다.
  * 빛의 개수가 큐마다 달라지면 화면이 조명 계산을 다시 준비해서 끊길 수 있어서 항상 같은 개수로 둔다.
@@ -84,18 +87,20 @@ const sourceOf = (direction: Direction, x: number, z: number) =>
 export function describeLights(composed: ComposedStage, area: { width: number; depth: number }, looks: Record<string, LightLook>): LightBeam[] {
   const beams: LightBeam[] = [];
   for (const zone of ZONES) {
-    const { x, z } = zoneCenter(zone, area);
-    const target = { x, y: floorHeightAt(composed, x, z), z };
+    const center = zoneCenter(zone, area);
     for (const direction of DIRECTIONS) {
       const key = lightKey(zone, direction);
       const look = looks[key];
+      const { x, z } = look?.at ?? center;
+      const lift = look?.at && direction === "front" ? PERSON_AIM_HEIGHT : 0;
+      const target = { x, y: floorHeightAt(composed, x, z) + lift, z };
       const position = sourceOf(direction, x, z);
       const distance = Math.hypot(position.x - target.x, position.y - target.y, position.z - target.z);
       beams.push({
         id: key,
         position,
         target,
-        beamAngle: (2 * Math.atan(POOL_RADIUS[direction] / distance) * 180) / Math.PI,
+        beamAngle: (2 * Math.atan((POOL_RADIUS[direction] * (look?.spread ?? 1)) / distance) * 180) / Math.PI,
         color: colorToHex(look?.color),
         level: (look?.intensity ?? 0) / 100,
       });
