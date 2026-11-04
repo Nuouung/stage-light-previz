@@ -767,27 +767,45 @@
       "lights": [
         {
           "fixtureId": "front-key-1",
-          "intensity": 14
+          "intensity": 14,
+          "color": {
+            "cct": 3200
+          }
         },
         {
           "fixtureId": "front-key-2",
-          "intensity": 70
+          "intensity": 70,
+          "color": {
+            "cct": 3200
+          }
         },
         {
           "fixtureId": "front-key-3",
-          "intensity": 14
+          "intensity": 14,
+          "color": {
+            "cct": 3200
+          }
         },
         {
           "fixtureId": "front-fill-1",
-          "intensity": 11
+          "intensity": 11,
+          "color": {
+            "cct": 3200
+          }
         },
         {
           "fixtureId": "front-fill-2",
-          "intensity": 55
+          "intensity": 55,
+          "color": {
+            "cct": 3200
+          }
         },
         {
           "fixtureId": "front-fill-3",
-          "intensity": 11
+          "intensity": 11,
+          "color": {
+            "cct": 3200
+          }
         },
         {
           "fixtureId": "front-up-1",
@@ -803,15 +821,24 @@
         },
         {
           "fixtureId": "top-down-1",
-          "intensity": 12
+          "intensity": 12,
+          "color": {
+            "cct": 4500
+          }
         },
         {
           "fixtureId": "top-down-2",
-          "intensity": 45
+          "intensity": 45,
+          "color": {
+            "cct": 4500
+          }
         },
         {
           "fixtureId": "top-down-3",
-          "intensity": 12
+          "intensity": 12,
+          "color": {
+            "cct": 4500
+          }
         },
         {
           "fixtureId": "top-up-1",
@@ -827,15 +854,24 @@
         },
         {
           "fixtureId": "back-1",
-          "intensity": 15
+          "intensity": 15,
+          "color": {
+            "cct": 6500
+          }
         },
         {
           "fixtureId": "back-2",
-          "intensity": 40
+          "intensity": 40,
+          "color": {
+            "cct": 6500
+          }
         },
         {
           "fixtureId": "back-3",
-          "intensity": 15
+          "intensity": 15,
+          "color": {
+            "cct": 6500
+          }
         }
       ],
       "blocking": [
@@ -858,7 +894,7 @@
       ]
     }
   ],
-  "dataVersion": "2026-11-05.5",
+  "dataVersion": "2026-11-05.6",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
