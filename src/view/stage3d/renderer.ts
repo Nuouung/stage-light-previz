@@ -1,6 +1,8 @@
 import * as THREE from "three";
 import { OrbitControls } from "three/addons/controls/OrbitControls.js";
+import { DEFAULT_AVATAR } from "../../model";
 import { createBeam, updateBeam } from "./beams";
+import { planChanges } from "./changes";
 import { buildFigure } from "./figure";
 import { buildChair, buildTable, tipOver } from "./furniture";
 import type { LightBeam } from "./lights";
@@ -32,6 +34,16 @@ export function createRenderer(canvas: HTMLCanvasElement) {
   const controls = new OrbitControls(camera, canvas);
   controls.enableDamping = true;
 
+  // 화면이 멈춰 있으면 그리지 않는다. 무언가 바뀌면 이 표시를 켠다
+  let needsRender = true;
+  const invalidate = () => {
+    needsRender = true;
+  };
+  // 카메라가 움직이는 동안(손을 뗀 뒤 멈출 때까지 포함) 계속 발생한다
+  controls.addEventListener("change", invalidate);
+  // 다른 탭에 다녀오면 화면 내용이 지워질 수 있다
+  document.addEventListener("visibilitychange", invalidate);
+
   // 작업등: 무대 구조를 보기 위한 전체 조명. 끄면 아주 희미한 빛만 남아 윤곽만 보인다
   const hemi = new THREE.HemisphereLight("#ffffff", "#202020", 0.9);
   scene.add(hemi);
@@ -53,11 +65,15 @@ export function createRenderer(canvas: HTMLCanvasElement) {
   const layer = new THREE.Group();
   scene.add(layer);
 
+  function placeFigure(fig: THREE.Object3D, s: Shape) {
+    fig.position.copy(toThree(s.position.x, s.position.y, s.position.z));
+    fig.rotation.y = (-(s.rotationY ?? 0) * Math.PI) / 180;
+  }
+
   function meshOf(s: Shape): THREE.Object3D {
     if (s.kind === "figure") {
-      const fig = buildFigure(s.size.y, s.pose ?? "stand", s.color, s.appearance);
-      fig.position.copy(toThree(s.position.x, s.position.y, s.position.z));
-      if (s.rotationY) fig.rotation.y = (-s.rotationY * Math.PI) / 180;
+      const fig = buildFigure(s.size.y, s.pose ?? "stand", s.avatar ?? DEFAULT_AVATAR, invalidate);
+      placeFigure(fig, s);
       fig.name = s.id;
       return fig;
     }
@@ -91,23 +107,57 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     return mesh;
   }
 
+  function removeObject(object: THREE.Object3D) {
+    layer.remove(object);
+    // 아직 불러오는 중인 인물이면 다 불러와도 붙이지 않는다
+    object.userData.removed = true;
+    object.traverse((o) => {
+      // 뼈대는 인물마다 따로 만들므로 메시를 나눠 써도 함께 해제한다
+      if (o instanceof THREE.SkinnedMesh) o.skeleton.dispose();
+      // 인물 모형의 메시·재질은 같은 모형끼리 나눠 쓰고 다음 그리기에도 다시 쓴다
+      if ((o instanceof THREE.Mesh || o instanceof THREE.LineSegments) && !o.userData.shared) {
+        o.geometry.dispose();
+        (o.material as THREE.Material).dispose();
+      }
+    });
+  }
+
+  /** 지금 무대에 있는 물체. 다음 목록과 비교해 바뀐 것만 고친다 */
+  const liveShapes = new Map<string, Shape>();
+  const liveObjects = new Map<string, THREE.Object3D>();
+
+  function addShape(s: Shape) {
+    const object = meshOf(s);
+    layer.add(object);
+    liveShapes.set(s.id, s);
+    liveObjects.set(s.id, object);
+  }
+
+  function dropShape(id: string) {
+    removeObject(liveObjects.get(id)!);
+    liveShapes.delete(id);
+    liveObjects.delete(id);
+  }
+
   function draw(shapes: Shape[]) {
-    for (const child of [...layer.children]) {
-      layer.remove(child);
-      child.traverse((o) => {
-        // 인물 메시·재질은 인물끼리 나눠 쓰고 다음 그리기에도 다시 쓴다
-        if ((o instanceof THREE.Mesh || o instanceof THREE.LineSegments) && !o.userData.shared) {
-          o.geometry.dispose();
-          (o.material as THREE.Material).dispose();
-        }
-      });
+    const { add, remove, replace, move } = planChanges(liveShapes, shapes);
+    for (const id of remove) dropShape(id);
+    for (const s of replace) {
+      dropShape(s.id);
+      addShape(s);
     }
-    for (const s of shapes) layer.add(meshOf(s));
+    for (const s of add) addShape(s);
+    for (const s of move) {
+      placeFigure(liveObjects.get(s.id)!, s);
+      liveShapes.set(s.id, s);
+    }
+    invalidate();
   }
 
   function setWorkLight(on: boolean) {
     hemi.intensity = on ? 0.9 : 0.04;
     work.intensity = on ? 0.6 : 0;
+    invalidate();
   }
 
   // 조명기 하나 = SpotLight 하나. id로 재사용하고, 목록에서 빠진 건 끈다
@@ -119,6 +169,7 @@ export function createRenderer(canvas: HTMLCanvasElement) {
   /** 밝기 100%인 기준 조명기의 광도(cd). 화면에서 보기 좋게 맞춘 값 */
   const CANDELA = 650;
   function setLights(beams: LightBeam[]) {
+    invalidate();
     const live = new Set(beams.map((b) => b.id));
     for (const [id, s] of spots) {
       if (!live.has(id)) s.visible = false;
@@ -167,6 +218,7 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     camera.position.copy(toThree(...v.eye));
     controls.target.copy(toThree(...v.target));
     controls.update();
+    invalidate();
   }
 
   function resize() {
@@ -178,6 +230,7 @@ export function createRenderer(canvas: HTMLCanvasElement) {
     const hfov = (70 * Math.PI) / 180;
     camera.fov = Math.max(45, (2 * Math.atan(Math.tan(hfov / 2) / camera.aspect) * 180) / Math.PI);
     camera.updateProjectionMatrix();
+    invalidate();
   }
 
   window.addEventListener("resize", resize);
@@ -185,6 +238,8 @@ export function createRenderer(canvas: HTMLCanvasElement) {
   setView("audience");
   renderer.setAnimationLoop(() => {
     controls.update();
+    if (!needsRender) return;
+    needsRender = false;
     renderer.render(scene, camera);
   });
 

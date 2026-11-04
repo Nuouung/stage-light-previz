@@ -26,6 +26,7 @@ export function tinyStaging(): Staging {
     curtainOverrides: {},
     notes: [],
     placements: [{ objectId: "box", position: { x: 0, y: 0, z: 3 }, rotation: 0, tipped: false }],
+    hanging: [],
     dataVersion: "test",
     cues: [
       {

@@ -66,6 +66,15 @@ describe("인물 그리기", () => {
   });
 });
 
+describe("그릴 것 목록의 id", () => {
+  it("물체마다 id가 달라 이전 무대와 비교할 수 있다", () => {
+    const c = composed({ "draw-2": true });
+    const look = resolveCue(project, staging, "cue-test-row");
+    const shapes = [...describeStage(c), ...describeActingArea(staging.actingArea!), ...describeCharacters(c, project, look.characters)];
+    expect(new Set(shapes.map((s) => s.id)).size).toBe(shapes.length);
+  });
+});
+
 describe("가구 그리기", () => {
   it("책상은 테이블 모형, 의자는 의자 모형으로 그려진다", () => {
     const shapes = describeStage(composed({}));
@@ -101,11 +110,11 @@ describe("조명", () => {
 
   it("프리셋에서는 걸린 조명이 모두 켜진다", () => {
     const look = resolveCue(project, staging, "cue-0");
-    expect(describeLights(stage, types, look.lights)).toHaveLength(stage.fixtures.length);
+    expect(describeLights(composed({}), types, look.lights)).toHaveLength(staging.hanging.length);
   });
 
   it("밝기 0인 조명은 켜지 않는다", () => {
-    const id = stage.fixtures[0]!.id;
-    expect(describeLights(stage, types, { [id]: { intensity: 0 } })).toHaveLength(0);
+    const id = staging.hanging[0]!.id;
+    expect(describeLights(composed({}), types, { [id]: { intensity: 0 } })).toHaveLength(0);
   });
 });

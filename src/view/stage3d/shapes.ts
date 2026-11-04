@@ -1,4 +1,4 @@
-import { characterHeight, type Appearance, type Project } from "../../model";
+import { characterHeight, DEFAULT_AVATAR, type Avatar, type Project } from "../../model";
 import type { CharacterLook } from "../../player";
 import type { ComposedStage } from "../../stage/compose";
 
@@ -18,8 +18,8 @@ export type Shape = {
   rotationY?: number;
   /** figure 전용: 서 있음 / 앉음 */
   pose?: "stand" | "sit";
-  /** figure 전용: 인물 겉모습. 없으면 기본 인물 */
-  appearance?: Appearance;
+  /** figure 전용: 인물 모형 */
+  avatar?: Avatar;
   /** chair 전용: 넘어진 상태 */
   tipped?: boolean;
   /** box 테두리 선을 그린다(검은 단의 층 구분용) */
@@ -39,7 +39,7 @@ const GATHERED = 1.0;
 
 /** 공연용 무대(바닥·벽·막·배튼·물체)를 그릴 것 목록으로 바꾼다. */
 export function describeStage(composed: ComposedStage): Shape[] {
-  const { stage, curtains, objects } = composed;
+  const { stage, curtains, objects, fixtures } = composed;
   const W = stage.width;
   const D = stage.depth;
   const shapes: Shape[] = [];
@@ -68,10 +68,10 @@ export function describeStage(composed: ComposedStage): Shape[] {
   }
 
   // 걸린 조명기 몸체: 배튼 아래 작은 상자
-  for (const f of stage.fixtures) {
+  for (const f of fixtures) {
     const p = stage.positions.find((q) => q.id === f.positionId);
     if (!p) continue;
-    shapes.push({ id: `fixture-${f.id}`, group: "fixture", kind: "box", position: { x: f.x, y: p.y - 0.42, z: p.z }, size: { x: 0.22, y: 0.3, z: 0.22 }, color: "#2b2b2e", label: f.role });
+    shapes.push({ id: `fixture-${f.id}`, group: "fixture", kind: "box", position: { x: f.x, y: p.y - 0.42, z: p.z }, size: { x: 0.22, y: 0.3, z: 0.22 }, color: "#2b2b2e", label: f.note });
   }
 
   for (const o of objects) {
@@ -129,7 +129,7 @@ export function describeCharacters(composed: ComposedStage, project: Project, lo
       rotationY: look.facing ?? 0,
       pose: look.posture ?? "stand",
       color: c.color ?? "#d9c2a8",
-      appearance: c.appearance,
+      avatar: c.avatar ?? DEFAULT_AVATAR,
       label: c.label,
     });
   }

@@ -1,9 +1,11 @@
 // 연결 코드만 둔다: 데이터 읽기(공연장·작품·배치) → store → (store 구독) → 도형 목록 → 렌더러·조작부
 import "./style.css";
-import { FixtureType, Project, Stage, Staging } from "./model";
+import { DEFAULT_AVATAR, FixtureType, Project, Stage, Staging } from "./model";
 import { resolveCue } from "./player";
 import { composeStage } from "./stage/compose";
+import { inventoryWarnings } from "./stage/inventory";
 import { createStore } from "./store/store";
+import { loadAvatar } from "./view/stage3d/avatar";
 import { createRenderer, type ViewName } from "./view/stage3d/renderer";
 import { describeLights } from "./view/stage3d/lights";
 import { describeActingArea, describeCharacters, describeStage } from "./view/stage3d/shapes";
@@ -21,6 +23,11 @@ const project = Project.parse(projectJson);
 const stage = Stage.parse(stageJson);
 const staging = Staging.parse(stagingJson);
 
+inventoryWarnings(stage, staging).forEach((w) => console.warn(w));
+
+// 인물이 등장하는 순간 기다리지 않도록 미리 받아 둔다
+project.characters.forEach((c) => void loadAvatar(c.avatar ?? DEFAULT_AVATAR).catch(() => {}));
+
 const store = createStore<AppState>({ project, stage, staging, cueId: project.cues[0]?.id ?? "", view: "audience", showActingArea: true, showWorkLight: false, haze: true });
 
 const renderer = createRenderer(document.getElementById("stage") as HTMLCanvasElement);
@@ -33,7 +40,7 @@ function render(s: AppState) {
   const guides = area && s.showActingArea ? describeActingArea(area) : [];
   renderer.setWorkLight(s.showWorkLight);
   renderer.setHaze(s.haze ? 1 : 0);
-  renderer.setLights(describeLights(s.stage, fixtureTypes, look.lights));
+  renderer.setLights(describeLights(composed, fixtureTypes, look.lights));
   renderer.draw([...describeStage(composed), ...guides, ...describeCharacters(composed, s.project, look.characters)]);
   renderControls(
     controlsRoot,

@@ -1,5 +1,4 @@
 export * from "./common";
-export * from "./appearance";
 export * from "./fixture";
 export * from "./stage";
 export * from "./project";

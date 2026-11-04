@@ -20,7 +20,10 @@ export const FixtureType = z.object({
 });
 export type FixtureType = z.infer<typeof FixtureType>;
 
-/** 공연장에 실제로 걸린 조명 한 대. */
+/**
+ * 이 공연에 걸린 조명 한 대. 배치(Staging)의 행잉에 속한다.
+ * 어느 배튼에 걸고, 몇 번 채널로 부르고, 어디를 겨누는지는 공연마다 다르다.
+ */
 export const Fixture = z.object({
   id: Id,
   typeId: Id,
@@ -29,11 +32,11 @@ export const Fixture = z.object({
   x: z.number(),
   /** 콘솔에서 부르는 채널 번호 */
   channelNo: z.number().int().positive(),
-  /** 기본으로 겨누는 지점 */
+  /** 기본 포커스: 겨누는 지점 */
   aim: Vec3,
-  /** 기본 줌(도) */
+  /** 기본 포커스: 줌(도) */
   beamAngle: z.number().positive(),
-  /** 역할 메모. 예: "하수 프론트 · A1" */
-  role: z.string().optional(),
+  /** 자유 메모. 프로그램이 해석하지 않는다. 예: "프런트 키 · 앞줄 하수" */
+  note: z.string().optional(),
 });
 export type Fixture = z.infer<typeof Fixture>;
