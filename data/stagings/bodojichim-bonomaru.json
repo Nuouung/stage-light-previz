@@ -6,7 +6,8 @@
     "draw-3": true
   },
   "hiddenCurtains": [
-    "draw-1"
+    "draw-1",
+    "border-head"
   ],
   "actingArea": {
     "width": 8,
@@ -824,7 +825,7 @@
       ]
     }
   ],
-  "dataVersion": "2026-11-05.2",
+  "dataVersion": "2026-11-05.3",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
