@@ -15,6 +15,8 @@ export type LightBeam = {
   target: { x: number; y: number; z: number };
   /** 빔 각도(도) */
   beamAngle: number;
+  /** 헤이즈 속 빛줄기를 그릴지. 프런트 줄기는 인물 앞을 뿌옇게 덮어서 그리지 않는다 */
+  showBeam: boolean;
   /** #rrggbb */
   color: string;
   /** 0~1. 0이면 꺼진 빛 */
@@ -101,6 +103,7 @@ export function describeLights(composed: ComposedStage, area: { width: number; d
         position,
         target,
         beamAngle: (2 * Math.atan((POOL_RADIUS[direction] * (look?.spread ?? 1)) / distance) * 180) / Math.PI,
+        showBeam: direction !== "front",
         color: colorToHex(look?.color),
         level: (look?.intensity ?? 0) / 100,
       });

@@ -1213,7 +1213,7 @@
           "direction": "top",
           "intensity": 45,
           "color": {
-            "cct": 3200
+            "cct": 2400
           },
           "spread": 1,
           "at": {
@@ -1226,7 +1226,9 @@
           "direction": "back",
           "intensity": 40,
           "color": {
-            "cct": 3200
+            "r": 170,
+            "g": 150,
+            "b": 255
           },
           "spread": 1,
           "at": {
@@ -1247,7 +1249,7 @@
           "direction": "top",
           "intensity": 0,
           "color": {
-            "cct": 3200
+            "cct": 2400
           }
         },
         {
@@ -1255,7 +1257,9 @@
           "direction": "back",
           "intensity": 0,
           "color": {
-            "cct": 3200
+            "r": 170,
+            "g": 150,
+            "b": 255
           }
         },
         {
@@ -1273,7 +1277,7 @@
           "direction": "top",
           "intensity": 0,
           "color": {
-            "cct": 3200
+            "cct": 2400
           },
           "spread": 1,
           "at": null
@@ -1283,7 +1287,9 @@
           "direction": "back",
           "intensity": 0,
           "color": {
-            "cct": 3200
+            "r": 170,
+            "g": 150,
+            "b": 255
           },
           "spread": 1,
           "at": null
@@ -1301,7 +1307,7 @@
           "direction": "top",
           "intensity": 0,
           "color": {
-            "cct": 3200
+            "cct": 2400
           }
         },
         {
@@ -1309,7 +1315,9 @@
           "direction": "back",
           "intensity": 0,
           "color": {
-            "cct": 3200
+            "r": 170,
+            "g": 150,
+            "b": 255
           }
         },
         {
@@ -1325,7 +1333,7 @@
           "direction": "top",
           "intensity": 0,
           "color": {
-            "cct": 3200
+            "cct": 2400
           }
         },
         {
@@ -1333,7 +1341,9 @@
           "direction": "back",
           "intensity": 0,
           "color": {
-            "cct": 3200
+            "r": 170,
+            "g": 150,
+            "b": 255
           }
         },
         {
@@ -1349,7 +1359,7 @@
           "direction": "top",
           "intensity": 0,
           "color": {
-            "cct": 3200
+            "cct": 2400
           }
         },
         {
@@ -1357,7 +1367,9 @@
           "direction": "back",
           "intensity": 0,
           "color": {
-            "cct": 3200
+            "r": 170,
+            "g": 150,
+            "b": 255
           }
         }
       ],
@@ -1410,7 +1422,7 @@
       "objects": []
     }
   ],
-  "dataVersion": "2026-11-05.17",
+  "dataVersion": "2026-11-05.18",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
