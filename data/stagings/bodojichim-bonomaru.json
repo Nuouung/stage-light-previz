@@ -11,21 +11,231 @@
   },
   "placements": [
     {
-      "objectId": "platform-1",
+      "objectId": "deck-1-01",
       "position": {
-        "x": 0,
-        "y": 0,
-        "z": 4.1
+        "x": -2.727,
+        "y": 0.0,
+        "z": 4.09
       },
       "rotation": 0,
       "tipped": false
     },
     {
-      "objectId": "platform-2",
+      "objectId": "deck-1-02",
       "position": {
-        "x": 0,
-        "y": 0.15,
-        "z": 4.1
+        "x": -2.121,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-03",
+      "position": {
+        "x": -1.515,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-04",
+      "position": {
+        "x": -0.909,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-05",
+      "position": {
+        "x": -0.303,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-06",
+      "position": {
+        "x": 0.1515,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-07",
+      "position": {
+        "x": 0.606,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-08",
+      "position": {
+        "x": 1.0605,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-09",
+      "position": {
+        "x": 1.515,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-10",
+      "position": {
+        "x": 2.121,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-1-11",
+      "position": {
+        "x": 2.727,
+        "y": 0.0,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-2-01",
+      "position": {
+        "x": -0.757,
+        "y": 0.145,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-2-02",
+      "position": {
+        "x": 0.153,
+        "y": 0.145,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-2-03",
+      "position": {
+        "x": 1.063,
+        "y": 0.145,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-2-04",
+      "position": {
+        "x": 1.973,
+        "y": 0.145,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-3-01",
+      "position": {
+        "x": -1.0605,
+        "y": 0.29,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-3-02",
+      "position": {
+        "x": -0.454,
+        "y": 0.29,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-3-03",
+      "position": {
+        "x": 0.456,
+        "y": 0.29,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-3-04",
+      "position": {
+        "x": 1.366,
+        "y": 0.29,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-4-01",
+      "position": {
+        "x": -0.757,
+        "y": 0.435,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-4-02",
+      "position": {
+        "x": 0.153,
+        "y": 0.435,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-4-03",
+      "position": {
+        "x": 0.7595,
+        "y": 0.435,
+        "z": 4.09
+      },
+      "rotation": 0,
+      "tipped": false
+    },
+    {
+      "objectId": "deck-4-04",
+      "position": {
+        "x": 1.0625,
+        "y": 0.435,
+        "z": 4.09
       },
       "rotation": 0,
       "tipped": false
@@ -34,8 +244,8 @@
       "objectId": "desk-judge",
       "position": {
         "x": 0,
-        "y": 0.29,
-        "z": 4.1
+        "y": 0.58,
+        "z": 4.09
       },
       "rotation": 0,
       "tipped": false
@@ -44,8 +254,8 @@
       "objectId": "chair-judge",
       "position": {
         "x": 0,
-        "y": 0.29,
-        "z": 4.75
+        "y": 0.58,
+        "z": 4.73
       },
       "rotation": 0,
       "tipped": false
@@ -114,7 +324,7 @@
       "objectId": "chair-down-left",
       "position": {
         "x": -2.25,
-        "y": 0.15,
+        "y": 0.145,
         "z": 4.2
       },
       "rotation": -25,
@@ -123,8 +333,8 @@
     {
       "objectId": "chair-down-right",
       "position": {
-        "x": 2.25,
-        "y": 0.15,
+        "x": 3.45,
+        "y": 0,
         "z": 4.2
       },
       "rotation": 25,
@@ -224,7 +434,7 @@
       "channelNo": 7,
       "aim": {
         "x": -2.67,
-        "y": 0.29,
+        "y": 0.145,
         "z": 3.9
       },
       "beamAngle": 22,
@@ -238,7 +448,7 @@
       "channelNo": 8,
       "aim": {
         "x": 0,
-        "y": 0.29,
+        "y": 0.58,
         "z": 3.9
       },
       "beamAngle": 22,
@@ -252,7 +462,7 @@
       "channelNo": 9,
       "aim": {
         "x": 2.67,
-        "y": 0.29,
+        "y": 0.145,
         "z": 3.9
       },
       "beamAngle": 22,
@@ -308,7 +518,7 @@
       "channelNo": 14,
       "aim": {
         "x": -2.67,
-        "y": 0.29,
+        "y": 0.145,
         "z": 4.0
       },
       "beamAngle": 36,
@@ -322,7 +532,7 @@
       "channelNo": 15,
       "aim": {
         "x": 0,
-        "y": 0.29,
+        "y": 0.58,
         "z": 4.0
       },
       "beamAngle": 36,
@@ -336,7 +546,7 @@
       "channelNo": 16,
       "aim": {
         "x": 2.67,
-        "y": 0.29,
+        "y": 0.145,
         "z": 4.0
       },
       "beamAngle": 36,
@@ -610,13 +820,15 @@
       ]
     }
   ],
-  "dataVersion": "2026-11-04.2",
+  "dataVersion": "2026-11-05.1",
   "notes": [
     "단·책상·의자 위치는 공연장 방문 전 가정. 현장에서 바뀔 가능성 큼",
-    "덧마루 한 장 두께 약 14.5cm는 사진으로 추정한 값 (1단 15cm, 2단 29cm)",
     "상수·하수 책상은 서로 마주 보되 객석 쪽으로 45도 열림. 의자는 책상 바깥쪽",
     "연기 공간 = 폭 8m × 깊이 5m(조명으로 비추는 영역). 책상·의자는 모두 이 안. 두 책상 사이 가장 좁은 폭 약 4.1m",
     "조명기 배치는 행잉도 없이 장비목록(LED 프레넬 22대)으로 추정. 18대 사용, 4대 여분. 프로파일 3대·무빙 워시 6대는 아직 안 걸음",
-    "제너럴 워시: 연기 공간 8×5m를 가로 3 × 세로 2 = 6존. 아래 무대 3존은 프런트 2대씩 좌우 교차(키 3200K·필 4300K), 단 3존은 프런트 1대씩. 탑(Sus 1 앞줄, Sus 2 단) 6 · 백(Sus 3) 3"
+    "제너럴 워시: 연기 공간 8×5m를 가로 3 × 세로 2 = 6존. 아래 무대 3존은 프런트 2대씩 좌우 교차(키 3200K·필 4300K), 단 3존은 프런트 1대씩. 탑(Sus 1 앞줄, Sus 2 단) 6 · 백(Sus 3) 3",
+    "덧마루 한 장 두께 약 14.5cm는 사진으로 추정한 값 (4층 윗면 58cm)",
+    "단 시안: 4층 계단형. 1층 폭 6.06m는 무대 중앙에 대칭, 2~4층 왼쪽 끝은 1층 왼쪽 끝에서 1.82m 지점의 기준선에 맞춤. 3×6 = 0.91m, 2×6 = 0.606m, 1×6 = 0.303m, 깊이 1.82m",
+    "엎어진 의자(상수)는 단 위 빈 폭이 좁아 단 옆 바닥으로 옮김. 판사 책상·의자는 4층 위. 단을 겨누는 조명의 높이는 겨누는 곳의 단 윗면에 맞춤"
   ]
 }

@@ -2,7 +2,9 @@ import { readdirSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { describe, expect, it } from "vitest";
 import { AVATARS, FixtureType, Project, Stage, Staging } from "../src/model";
+import { composeStage } from "../src/stage/compose";
 import { inventoryWarnings } from "../src/stage/inventory";
+import { floorHeightAt } from "../src/view/stage3d/shapes";
 import { REQUIRED_BONES } from "../src/view/stage3d/pose";
 
 const root = join(import.meta.dirname, "..", "data");
@@ -77,6 +79,30 @@ describe("배치 데이터", () => {
       const curtainIds = new Set(stage?.curtains.map((c) => c.id));
       for (const p of staging.placements) expect(objectIds, `물체 ${p.objectId}`).toContain(p.objectId);
       for (const id of Object.keys(staging.curtainOverrides)) expect(curtainIds, `막 ${id}`).toContain(id);
+    });
+
+    it(`${file}: 단은 바닥이나 아래층 단 위에 놓여 공중에 뜨지 않는다`, () => {
+      if (!stage || !project) return;
+      const objects = composeStage(stage, project, staging).objects.filter((o) => o.kind === "platform");
+      for (const o of objects) {
+        if (o.position.y === 0) continue;
+        const below = composeStage(stage, project, { ...staging, placements: staging.placements.filter((p) => p.position.y < o.position.y && objects.some((d) => d.id === p.objectId)) });
+        // 판 네 귀퉁이 바로 안쪽의 아래층 높이가 이 판의 바닥과 같아야 한다
+        for (const [dx, dz] of [[-1, -1], [-1, 1], [1, -1], [1, 1]] as const) {
+          const x = o.position.x + dx * (o.size.x / 2 - 0.001);
+          const z = o.position.z + dz * (o.size.z / 2 - 0.001);
+          expect(floorHeightAt(below, x, z), `${o.id} (${dx}, ${dz})`).toBeCloseTo(o.position.y, 3);
+        }
+      }
+    });
+
+    it(`${file}: 가구는 놓인 자리의 바닥이나 단 윗면 높이에 있다`, () => {
+      if (!stage || !project) return;
+      const composed = composeStage(stage, project, staging);
+      for (const o of composed.objects) {
+        if (o.kind === "platform") continue;
+        expect(o.position.y, o.id).toBeCloseTo(floorHeightAt(composed, o.position.x, o.position.z), 3);
+      }
     });
 
     it(`${file}: 놓은 물체가 모두 연기 공간 안에 들어간다`, () => {
