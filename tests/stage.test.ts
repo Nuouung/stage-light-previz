@@ -19,6 +19,12 @@ describe("공연용 무대 합성", () => {
     expect(stage.curtains.find((c) => c.id === "draw-2")?.closed).toBe(false);
   });
 
+  it("배치에서 숨긴 막은 합성된 무대에 없다", () => {
+    const composed = composeStage(stage, tinyProject(), { ...tinyStaging(), hiddenCurtains: ["draw-1"] });
+    expect(composed.curtains.map((c) => c.id)).not.toContain("draw-1");
+    expect(composed.curtains.map((c) => c.id)).toContain("draw-2");
+  });
+
   it("물체는 작품의 크기와 배치의 위치를 합쳐서 놓인다", () => {
     const box = composeStage(stage, tinyProject(), tinyStaging()).objects[0];
     expect(box).toMatchObject({ id: "box", size: { y: 0.4 }, position: { z: 3 } });

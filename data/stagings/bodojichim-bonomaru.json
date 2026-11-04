@@ -5,6 +5,9 @@
   "curtainOverrides": {
     "draw-3": true
   },
+  "hiddenCurtains": [
+    "draw-1"
+  ],
   "actingArea": {
     "width": 8,
     "depth": 5

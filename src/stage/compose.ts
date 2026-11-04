@@ -24,10 +24,12 @@ export function composeStage(stage: Stage, project: Project, staging: Staging): 
   if (staging.projectId !== project.id) {
     throw new Error(`배치 '${staging.id}'는 작품 '${staging.projectId}'용인데 '${project.id}'가 들어옴`);
   }
-  const curtains = stage.curtains.map((c) => ({
-    ...c,
-    closed: staging.curtainOverrides[c.id] ?? c.closed,
-  }));
+  const curtains = stage.curtains
+    .filter((c) => !staging.hiddenCurtains.includes(c.id))
+    .map((c) => ({
+      ...c,
+      closed: staging.curtainOverrides[c.id] ?? c.closed,
+    }));
   const objects: PlacedObject[] = [];
   for (const p of staging.placements) {
     const def = project.objects.find((o) => o.id === p.objectId);

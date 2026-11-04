@@ -79,6 +79,7 @@ describe("배치 데이터", () => {
       const curtainIds = new Set(stage?.curtains.map((c) => c.id));
       for (const p of staging.placements) expect(objectIds, `물체 ${p.objectId}`).toContain(p.objectId);
       for (const id of Object.keys(staging.curtainOverrides)) expect(curtainIds, `막 ${id}`).toContain(id);
+      for (const id of staging.hiddenCurtains) expect(curtainIds, `숨긴 막 ${id}`).toContain(id);
     });
 
     it(`${file}: 단은 바닥이나 아래층 단 위에 놓여 공중에 뜨지 않는다`, () => {

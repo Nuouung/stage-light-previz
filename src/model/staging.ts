@@ -58,6 +58,8 @@ export const Staging = z.object({
   stageId: Id,
   /** 이 배치에서만 바꾸는 막 상태. 예: { "draw-2": true } = 2번 막 닫음 */
   curtainOverrides: z.record(z.string(), z.boolean()).default({}),
+  /** 이 배치에서 쓰지 않는 막. 화면과 조작부에 나오지 않는다 */
+  hiddenCurtains: z.array(Id).default([]),
   /** 연기 공간(조명으로 비추는 영역). 무대 중앙 기준 폭, 무대 앞끝부터의 깊이(m) */
   actingArea: z.object({ width: z.number().positive(), depth: z.number().positive() }).optional(),
   /** 놓지 않은 물체는 무대에 나오지 않는다 */
